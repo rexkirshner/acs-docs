@@ -4,6 +4,16 @@ export default {
 
   ignoreDeadLinks: true,
 
+  head: [
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-65S3KZSEY8' }],
+    ['script', {}, `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-65S3KZSEY8');
+    `]
+  ],
+
   themeConfig: {
     logo: '/logo.svg',
 
