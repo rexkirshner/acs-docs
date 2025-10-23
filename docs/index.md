@@ -49,8 +49,9 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 /init-context
 
 # Daily workflow
-/save          # Quick update (2-3 min)
-/save-full     # Comprehensive save (10-15 min)
+/review-context  # Start of session (30 sec)
+/save            # Quick update (2-3 min)
+/save-full       # Comprehensive save (10-15 min)
 ```
 
 ## What Gets Created
