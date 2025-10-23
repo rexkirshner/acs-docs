@@ -14,28 +14,22 @@ hero:
       link: https://github.com/rexkirshner/ai-context-system
 
 features:
-  - icon: 🔄
-    title: Session Continuity
+  - title: Session Continuity
     details: Resume exactly where you left off—days, weeks, or months later—without re-explaining anything.
 
-  - icon: 👁️
-    title: Externalized Context
+  - title: Externalized Context
     details: Make AI thoughts, decisions, and mental models visible to humans in structured documentation.
 
-  - icon: 🤝
-    title: Human-AI Collaboration
+  - title: Human-AI Collaboration
     details: Full visibility into AI reasoning enables programmers to work alongside AI agents effectively.
 
-  - icon: 🤖
-    title: AI-to-AI Collaboration
+  - title: AI-to-AI Collaboration
     details: Facilitate peer review, project handoffs, and collaborative development between AI agents.
 
-  - icon: ⚡
-    title: Fast & Simple
+  - title: Fast & Simple
     details: Quick saves (2-3 min) for daily work. Comprehensive saves (10-15 min) before breaks.
 
-  - icon: 🌐
-    title: Multi-AI Support
+  - title: Multi-AI Support
     details: Universal file structure works with Claude Code, Cursor, Aider, GitHub Codex, and more.
 ---
 
