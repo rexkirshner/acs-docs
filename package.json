@@ -1,0 +1,17 @@
+{
+  "name": "acs-docs",
+  "version": "1.0.0",
+  "description": "Documentation for AI Context System",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": ["ai", "context", "documentation", "claude", "session-continuity"],
+  "author": "Rex Kirshner",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
