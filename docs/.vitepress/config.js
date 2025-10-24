@@ -11,7 +11,14 @@ export default {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-65S3KZSEY8');
-    `]
+    `],
+    ['meta', { property: 'og:image', content: 'https://acs-docs.pages.dev/og-image.png' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:title', content: 'AI Context System' }],
+    ['meta', { property: 'og:description', content: 'Externalize AI reasoning. Enable perfect session continuity.' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: 'https://acs-docs.pages.dev/og-image.png' }]
   ],
 
   themeConfig: {
