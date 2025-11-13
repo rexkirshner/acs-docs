@@ -146,7 +146,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "3.2.2",
+  "version": "3.3.0",
   "project": {
     "name": "your-project",
     "type": "application",

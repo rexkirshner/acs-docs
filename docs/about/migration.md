@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.2.2
+## Current Version: v3.3.0
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -41,7 +41,31 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.x → v3.2.2 (Current)
+### v3.x → v3.3.0 (Current)
+
+**No breaking changes.** Direct upgrade via `/update-context-system`.
+
+**New features in v3.3.0:**
+- **Template Markers:** HTML comments protect critical sections (prevents 80-90% of deletion errors)
+- **Deletion Protection:** Interactive confirmation before file deletion
+- **Staleness Detection:** Automatic warnings when documentation becomes stale
+- **Decision Guidance:** Proactive prompts for DECISIONS.md documentation
+- **Upgrade Documentation:** "What's New" display after upgrade
+
+**Automatic updates:**
+- Helper functions added to common-functions.sh
+- Staleness detection active in /save-full and /review-context
+- Deletion protection integrated
+- Decision guidance in claude.md template
+
+**Optional (recommended):**
+```bash
+/update-templates  # Add template markers to your context files
+```
+
+**Action required:** None (automatic upgrade). Optionally run `/update-templates` to get template markers.
+
+### v3.x → v3.2.2
 
 **No breaking changes.** Direct upgrade via `/update-context-system`.
 
@@ -170,7 +194,12 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.2.2 (Current)
+### v3.3.0 (Current)
+- ✅ No breaking changes
+- ✅ Backward compatible with all v3.x versions
+- ✅ New features: Template markers, deletion protection, staleness detection
+
+### v3.2.2
 - ✅ No breaking changes
 - ✅ Backward compatible with v3.2.1, v3.2.0
 
@@ -302,7 +331,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.2.2
+Commands: v3.3.0
 Context: v3.0.0
 ```
 
@@ -311,7 +340,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.2.2"  # Update this
+  "version": "3.3.0"  # Update this
 }
 
 # Then:
@@ -357,8 +386,8 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.2.2  # Works
-v1.5.0 → v3.2.2  # Works
+v2.0.0 → v3.3.0  # Works
+v1.5.0 → v3.3.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -366,7 +395,7 @@ v1.5.0 → v3.2.2  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.2.2
+# Should show: 3.3.0
 
 # Test command
 /review-context

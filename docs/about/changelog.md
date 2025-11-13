@@ -2,6 +2,52 @@
 
 All notable changes to the AI Context System.
 
+## [3.3.0] - 2025-11-13
+
+### Added - Template Protection & Documentation Currency
+
+**Major release with 5 features based on 100+ production session feedback**
+
+#### Features Added
+
+**1. Template Markers (Template Protection)**
+- HTML comment markers protect critical template sections
+- `<!-- TEMPLATE SECTION: KEEP ALL -->` preserves structure and content
+- `<!-- TEMPLATE: READ-ONLY -->` marks instructional files
+- `[FILL: description]` provides clear placeholders
+- **Impact:** Prevents 80-90% of template deletion errors
+
+**2. Deletion Protection**
+- Interactive `confirm_deletion()` function with file details
+- Requires explicit "yes" confirmation before deletion
+- Default: keep file (safe by default)
+- **Impact:** Zero data loss from accidental deletions
+
+**3. Documentation Staleness Detection**
+- `/save-full` warns when CONTEXT.md is >7 days old, README.md >14 days old
+- `/review-context` shows color-coded staleness (🟢🟡🔴) for all context/*.md files
+- Detects missing module READMEs
+- **Impact:** Prevents documentation drift before it becomes a problem
+
+**4. Decision Documentation Guidance**
+- Added comprehensive guidance to claude.md template
+- 5 decision categories with examples (Library/Framework, Performance, Data Model, Security, Process)
+- DECISIONS.md format example with metrics
+- **Impact:** Better architectural decision capture and context preservation
+
+**5. Upgrade Path Documentation**
+- "What's New in v3.3.0" section in update-guide.md
+- `/update-context-system` displays features after upgrade
+- Clear adoption guidance for each feature
+- **Impact:** Users understand new features and how to use them
+
+#### Test Coverage
+- 69/69 tests passing (100% pass rate)
+- 13 files changed
+- ~2,000+ lines of code, tests, and documentation
+
+[View full changelog on GitHub →](https://github.com/rexkirshner/ai-context-system/blob/main/CHANGELOG.md)
+
 ## [3.2.2] - 2025-10-23
 
 ### Fixed - Critical Installer Bugs

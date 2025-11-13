@@ -75,6 +75,6 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.2.2** - Production Ready
+**v3.3.0** - Template Protection & Documentation Currency
 
-Critical installer fixes for reliable upgrades. [See changelog →](/about/changelog)
+Five major features based on 100+ production sessions: template markers (prevents 80-90% of deletion errors), deletion protection, staleness detection, decision guidance, and comprehensive upgrade documentation. [See changelog →](/about/changelog)

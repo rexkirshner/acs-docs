@@ -105,16 +105,12 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 3.2.2
+Current Version: 3.3.0
 Latest Version: 3.3.0
 
-📦 Changes in v3.3.0:
-  • Fixed: Session counting bug in meta-projects
-  • Added: Smart loading for large SESSIONS.md
-  • Improved: /code-review context awareness
-  • Updated: Documentation templates
+✅ Already up to date!
 
-Continue with update? [Y/n]
+Your AI Context System is running the latest version.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

@@ -28,7 +28,7 @@ export default {
       { text: 'Commands', link: '/commands/' },
       { text: 'Workflows', link: '/workflows/' },
       {
-        text: 'v3.2.2',
+        text: 'v3.3.0',
         items: [
           { text: 'Changelog', link: '/about/changelog' },
           { text: 'Migration Guides', link: '/about/migration' }

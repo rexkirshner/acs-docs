@@ -317,7 +317,7 @@ pwd  # Should be project root
 
 **Symptoms:**
 ```
-⚠️  Update available: v3.2.2 (you have v3.0.0)
+⚠️  Update available: v3.3.0 (you have v3.0.0)
 ```
 
 **Solution:**
