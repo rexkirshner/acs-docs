@@ -2,6 +2,96 @@
 
 All notable changes to the AI Context System.
 
+## [3.4.0] - 2025-11-17
+
+### Added - Code Review Actionability Features
+
+**Minor release with major enhancement to `/code-review` command based on real-world user feedback from two production projects**
+
+**Context:** Users reported that `/code-review` produced excellent analysis but required 30-60 minutes of manual work to create TodoWrite tasks, update context files, and track progress between reviews.
+
+#### User Impact
+
+**Before v3.4.0:**
+1. Run /code-review
+2. Read 458-line report
+3. Manually create 40+ todos (30 min)
+4. Manually update KNOWN_ISSUES.md
+5. Manually update STATUS.md
+6. Manually compare with previous review
+7. Manually track grade progression
+
+**After v3.4.0:**
+1. Run /code-review
+2. Read report
+3. Accept prompts (Y/Y/Y) → 30 seconds
+4. ✅ Auto-generated 7 grouped tasks from 42 issues
+5. ✅ Auto-updated KNOWN_ISSUES.md (3 critical)
+6. ✅ Auto-updated STATUS.md
+7. ✅ Auto-comparison: "10/12 issues resolved ✅"
+8. ✅ Grade progression tracked in INDEX.md
+
+**Time Saved:** 30-60 minutes → 5 minutes per review
+
+#### Features Added
+
+**1. Smart Issue Grouping**
+- Groups 3+ similar issues into single task
+- Example: 25 "missing type definition" errors → 1 grouped task
+- **Impact:** 40+ tasks → 7-10 actionable tasks
+
+**2. Automatic TodoWrite Task Generation**
+- Auto-generates tasks from findings with severity threshold filtering
+- Smart formatting for grouped vs individual tasks
+- **Impact:** 30 minutes → 30 seconds (user accepts prompt)
+
+**3. KNOWN_ISSUES.md Integration**
+- Auto-adds CRITICAL/HIGH issues to KNOWN_ISSUES.md
+- Bidirectional links (review ↔ issues)
+- **Impact:** Future AI sessions see critical issues without re-reading review
+
+**4. STATUS.md Auto-Update**
+- Auto-adds review summary under "Recent Changes"
+- Grade, issue counts, and link to full report
+- **Impact:** Project status shows current quality at a glance
+
+**5. Review History Tracking**
+- Tracks all reviews in `artifacts/code-reviews/INDEX.md`
+- Tabular format showing quality trends over time
+- **Impact:** Visible quality progression (C → B → A → A+)
+
+**6. Automatic Review Comparison**
+- Auto-detects and compares with previous review
+- Shows resolved/new/persistent issues
+- **Impact:** "10/12 issues resolved ✅" shown automatically
+
+#### New Files
+
+- `scripts/code-review-helpers.sh` - Modular helper library (578 lines, 8 functions)
+- `scripts/tests/test-code-review-helpers.sh` - Comprehensive test suite (33 tests)
+- `scripts/tests/sample-review-issues.json` - Test data
+- `scripts/tests/test-upgrade-path.sh` - Upgrade validation (19 tests)
+
+#### Updated Files
+
+- `.claude/commands/code-review.md` - Added Step 8: Integration & Actionability (+278 lines)
+- `install.sh` - Added new files, jq dependency check, feature announcements
+- `VERSION` - Bumped to 3.4.0
+- `CHANGELOG.md` - Complete v3.4.0 entry
+
+#### Dependencies
+
+- **New requirement:** `jq` for JSON processing
+- Installation: `brew install jq` (macOS) or `apt-get install jq` (Linux)
+
+#### Test Coverage
+
+- Helper functions: 33/33 tests passing ✓
+- Upgrade path: 19/19 tests passing ✓
+- All tests passing before integration (TDD approach)
+
+[View full changelog on GitHub →](https://github.com/rexkirshner/ai-context-system/blob/main/CHANGELOG.md)
+
 ## [3.3.1] - 2025-11-16
 
 ### Fixed - Emergency Bug Fixes & Installer Improvements
