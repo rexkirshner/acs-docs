@@ -2,6 +2,75 @@
 
 All notable changes to the AI Context System.
 
+## [3.3.1] - 2025-11-16
+
+### Fixed - Emergency Bug Fixes & Installer Improvements
+
+**Patch release addressing critical installation reliability issues and command execution bugs discovered during real-world testing**
+
+#### Installer Improvements
+
+**Missing Helper Scripts (CRITICAL)**
+- Fixed: `find-context-folder.sh` and `update-quick-reference.sh` not included in installation
+- Impact: Commands failed with "script not found" when run from subdirectories
+- Now: Both scripts automatically installed and verified
+
+**Version Sync Portability**
+- Fixed: `sed -i` behaves differently on macOS vs Linux
+- Impact: Version could get out of sync between VERSION file and config
+- Now: Portable implementation using temp files, works on all platforms
+
+**Download Retry Logic**
+- Added: Automatic retry with exponential backoff (3 attempts, 2s/4s delays)
+- Impact: Network hiccups and GitHub rate limiting no longer cause installation failures
+- Now: Robust installation even with intermittent connectivity
+
+**Post-Installation Validation**
+- Added: Automatic validation with auto-repair after installation
+- Checks: Version sync, script permissions
+- Impact: Issues caught and fixed immediately, not discovered later
+- Philosophy: Prevention over repair
+
+**Enhanced Backup & Rollback**
+- Added: VERSION file and context/ directory to backup/rollback
+- Impact: Complete system restoration on installation failure
+- Now: Zero data loss from failed installations
+
+#### Command Fixes
+
+**Bash Parsing Errors in /save and /save-full (CRITICAL)**
+- Fixed: Multi-line bash if-then-else blocks caused parsing errors in Claude Code
+- Error: `parse error near 'then'`, `parse error near '&&'`
+- Impact: /save command failed during git status extraction
+- Now: Simple sequential commands with graceful fallback
+- Discovered: User testing in real project (excellent feedback loop!)
+
+#### Testing & Documentation
+
+**Comprehensive Test Suite**
+- Added: 15 automated tests covering all bug fixes (15/15 passing)
+- Coverage: Counter removal, helper scripts, version sync, retry logic, validation, backup/rollback
+
+**Pattern Documentation**
+- Added: Bash command pattern guidelines for future development
+- Documents: Anti-patterns to avoid, recommended alternatives, testing checklist
+
+**Sprint Report**
+- Added: Complete implementation documentation with code examples and lessons learned
+
+### Removed
+
+**Cleanup**
+- Removed: Unused counter fields from config template (dead code)
+
+### Implementation Philosophy
+
+- **Prevention over band-aids**: Post-installation validation catches issues immediately
+- **Modularity**: Each fix implemented as testable function
+- **Real-world validation**: User discovered bash parsing errors during actual usage
+
+[View full changelog on GitHub →](https://github.com/rexkirshner/ai-context-system/blob/main/CHANGELOG.md)
+
 ## [3.3.0] - 2025-11-13
 
 ### Added - Template Protection & Documentation Currency

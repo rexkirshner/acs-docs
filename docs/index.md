@@ -75,6 +75,6 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.3.0** - Template Protection & Documentation Currency
+**v3.3.1** - Emergency Bug Fixes & Installer Improvements
 
-Five major features based on 100+ production sessions: template markers (prevents 80-90% of deletion errors), deletion protection, staleness detection, decision guidance, and comprehensive upgrade documentation. [See changelog →](/about/changelog)
+Critical patch release with installer improvements and command fixes: missing helper scripts fixed, portable version sync, download retry logic with exponential backoff, post-installation validation with auto-repair, and bash parsing fixes for /save and /save-full commands. [See changelog →](/about/changelog)

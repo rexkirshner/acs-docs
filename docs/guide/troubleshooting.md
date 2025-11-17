@@ -317,7 +317,7 @@ pwd  # Should be project root
 
 **Symptoms:**
 ```
-⚠️  Update available: v3.3.0 (you have v3.0.0)
+⚠️  Update available: v3.3.1 (you have v3.0.0)
 ```
 
 **Solution:**
@@ -325,6 +325,8 @@ pwd  # Should be project root
 /update-context-system
 
 # Upgrades commands and scripts from GitHub
+# Now includes automatic retry on download failures
+# Post-installation validation ensures everything works
 ```
 
 ### Upgrade Fails

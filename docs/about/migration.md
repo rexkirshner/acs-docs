@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.3.0
+## Current Version: v3.3.1
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -15,11 +15,12 @@ Latest stable release. [See changelog](/about/changelog) for details.
 ```
 
 **What this does:**
-- Downloads latest commands from GitHub
+- Downloads latest commands from GitHub (with retry logic)
 - Updates scripts with new features
 - Preserves your context files (no data loss)
-- Creates backup before changes
-- Validates installation
+- Creates backup before changes (now includes VERSION and context/)
+- Validates installation and auto-repairs issues
+- Verifies script permissions
 
 **Time:** 2-3 minutes
 
@@ -41,7 +42,25 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.x → v3.3.0 (Current)
+### v3.x → v3.3.1 (Current)
+
+**No breaking changes.** Direct upgrade via `/update-context-system`.
+
+**New features in v3.3.1:**
+- **Installer Reliability:** Download retry logic, portable version sync, post-installation validation
+- **Command Fixes:** /save and /save-full bash parsing issues resolved
+- **Better Backup:** VERSION file and context/ directory now included in backup/rollback
+- **Auto-Repair:** Installation validates and fixes issues automatically
+
+**Automatic updates:**
+- Missing helper scripts now installed automatically
+- Version sync between VERSION and config works reliably on all platforms
+- Download failures handled gracefully with retries
+- Post-installation validation runs automatically
+
+**Action required:** None (automatic upgrade). All fixes apply automatically.
+
+### v3.x → v3.3.0
 
 **No breaking changes.** Direct upgrade via `/update-context-system`.
 
@@ -194,7 +213,12 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.3.0 (Current)
+### v3.3.1 (Current)
+- ✅ No breaking changes
+- ✅ Backward compatible with all v3.x versions
+- ✅ New features: Installer improvements, command fixes, enhanced backup
+
+### v3.3.0
 - ✅ No breaking changes
 - ✅ Backward compatible with all v3.x versions
 - ✅ New features: Template markers, deletion protection, staleness detection
@@ -331,7 +355,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.3.0
+Commands: v3.3.1
 Context: v3.0.0
 ```
 
@@ -340,7 +364,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.3.0"  # Update this
+  "version": "3.3.1"  # Update this
 }
 
 # Then:
@@ -386,8 +410,8 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.3.0  # Works
-v1.5.0 → v3.3.0  # Works
+v2.0.0 → v3.3.1  # Works
+v1.5.0 → v3.3.1  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -395,7 +419,7 @@ v1.5.0 → v3.3.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.3.0
+# Should show: 3.3.1
 
 # Test command
 /review-context
