@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.3.1
+## Current Version: v3.4.0
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -42,7 +42,29 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.x → v3.3.1 (Current)
+### v3.x → v3.4.0 (Current)
+
+**No breaking changes.** Direct upgrade via `/update-context-system`.
+
+**New features in v3.4.0:**
+- **Smart Issue Grouping:** 25 identical errors → 1 grouped task
+- **Auto-TodoWrite Generation:** 40+ findings → 7-10 actionable tasks (30 min → 30 sec)
+- **KNOWN_ISSUES.md Integration:** Critical issues persist across sessions
+- **STATUS.md Auto-Update:** Review summary visible in project status
+- **Review History Tracking:** All reviews tracked in artifacts/code-reviews/INDEX.md
+- **Automatic Comparison:** Auto-detects and compares with previous reviews
+
+**New dependency:**
+- **jq required:** Install via `brew install jq` (macOS) or `apt-get install jq` (Linux)
+
+**Automatic updates:**
+- New scripts/code-review-helpers.sh installed
+- /code-review command updated with Step 8: Integration & Actionability
+- Test suite added for validation
+
+**Action required:** Install `jq` if not already present. All other updates apply automatically.
+
+### v3.x → v3.3.1
 
 **No breaking changes.** Direct upgrade via `/update-context-system`.
 
@@ -51,12 +73,6 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 - **Command Fixes:** /save and /save-full bash parsing issues resolved
 - **Better Backup:** VERSION file and context/ directory now included in backup/rollback
 - **Auto-Repair:** Installation validates and fixes issues automatically
-
-**Automatic updates:**
-- Missing helper scripts now installed automatically
-- Version sync between VERSION and config works reliably on all platforms
-- Download failures handled gracefully with retries
-- Post-installation validation runs automatically
 
 **Action required:** None (automatic upgrade). All fixes apply automatically.
 
@@ -213,7 +229,13 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.3.1 (Current)
+### v3.4.0 (Current)
+- ✅ No breaking changes
+- ✅ Backward compatible with all v3.x versions
+- ✅ New dependency: jq (for JSON processing)
+- ✅ New features: Code review actionability, smart grouping, auto-TodoWrite generation
+
+### v3.3.1
 - ✅ No breaking changes
 - ✅ Backward compatible with all v3.x versions
 - ✅ New features: Installer improvements, command fixes, enhanced backup
@@ -355,7 +377,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.3.1
+Commands: v3.4.0
 Context: v3.0.0
 ```
 
@@ -364,7 +386,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.3.1"  # Update this
+  "version": "3.4.0"  # Update this
 }
 
 # Then:
@@ -410,8 +432,8 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.3.1  # Works
-v1.5.0 → v3.3.1  # Works
+v2.0.0 → v3.4.0  # Works
+v1.5.0 → v3.4.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -419,7 +441,7 @@ v1.5.0 → v3.3.1  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.3.1
+# Should show: 3.4.0
 
 # Test command
 /review-context

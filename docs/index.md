@@ -75,6 +75,6 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.3.1** - Emergency Bug Fixes & Installer Improvements
+**v3.4.0** - Code Review Actionability
 
-Critical patch release with installer improvements and command fixes: missing helper scripts fixed, portable version sync, download retry logic with exponential backoff, post-installation validation with auto-repair, and bash parsing fixes for /save and /save-full commands. [See changelog →](/about/changelog)
+Major enhancement to `/code-review` based on real-world user feedback: smart issue grouping (25 errors → 1 task), auto-TodoWrite generation (30 min → 30 sec), KNOWN_ISSUES.md integration, STATUS.md auto-update, review history tracking, and automatic comparison with previous reviews. Transforms reviews from "excellent analysis" to "immediately actionable." [See changelog →](/about/changelog)

@@ -67,7 +67,7 @@ Updates commands, scripts, and templates while preserving your context files:
 📥 Downloading from GitHub...
    Repository: ai-context-system
    Branch: main
-   Version: 3.2.2 → 3.3.1
+   Version: 3.3.1 → 3.4.0
 ```
 
 ### Step 3: Update Files
