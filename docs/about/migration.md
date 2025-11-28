@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.4.0
+## Current Version: v3.5.0
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -42,7 +42,38 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.x → v3.4.0 (Current)
+### v3.x → v3.5.0 (Current)
+
+**No breaking changes.** Direct upgrade via `/update-context-system`.
+
+**New features in v3.5.0:**
+- **Automatic Session Archiving:** `/save-full` prompts when SESSIONS.md exceeds 2000 lines
+- **Smart Loading:** File size-based loading strategy prevents token crashes
+- **Cross-Document Consistency:** Automatic drift detection across context files
+- **Auto-Report Generation:** Code review reports saved automatically to artifacts/
+
+**Critical bug fixes:**
+- Fixed version detection in zsh shells
+- Fixed zsh/bash version command compatibility
+- Fixed token limit crashes with large SESSIONS.md files
+- Fixed subdirectory context detection (searches up to 3 parent directories)
+- Fixed session count accuracy
+- Fixed upgrade path testing
+
+**Test coverage:**
+- 101/101 tests passing (78 unit, 12 integration, 11 manual)
+- Comprehensive quality gates for deployment readiness
+
+**Automatic updates:**
+- New archiving helper script (scripts/archive-sessions-helper.sh)
+- Enhanced /save-full with archiving prompt
+- Enhanced /review-context with smart loading and consistency checks
+- Enhanced /code-review with auto-report generation
+- Test suite added for validation
+
+**Action required:** None (automatic upgrade). All features work out-of-the-box.
+
+### v3.x → v3.4.0
 
 **No breaking changes.** Direct upgrade via `/update-context-system`.
 
@@ -229,7 +260,14 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.4.0 (Current)
+### v3.5.0 (Current)
+- ✅ No breaking changes
+- ✅ Backward compatible with all v3.x versions
+- ✅ No new dependencies
+- ✅ New features: Automatic archiving, smart loading, consistency checks, auto-report generation
+- ✅ Critical bug fixes: Version detection, token crashes, subdirectory support
+
+### v3.4.0
 - ✅ No breaking changes
 - ✅ Backward compatible with all v3.x versions
 - ✅ New dependency: jq (for JSON processing)
@@ -377,7 +415,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.4.0
+Commands: v3.5.0
 Context: v3.0.0
 ```
 
@@ -386,7 +424,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.4.0"  # Update this
+  "version": "3.5.0"  # Update this
 }
 
 # Then:
@@ -432,8 +470,8 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.4.0  # Works
-v1.5.0 → v3.4.0  # Works
+v2.0.0 → v3.5.0  # Works
+v1.5.0 → v3.5.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -441,7 +479,7 @@ v1.5.0 → v3.4.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.4.0
+# Should show: 3.5.0
 
 # Test command
 /review-context
