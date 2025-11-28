@@ -488,6 +488,73 @@ templates/session-template.md
 
 Follow structure manually when updating SESSIONS.md.
 
+## Managing Large Session Files
+
+::: tip New in v3.5.0
+Automatic archiving and smart loading prevent SESSIONS.md from becoming too large.
+:::
+
+### Automatic Archiving
+
+As your project grows, SESSIONS.md naturally accumulates many session entries. Version 3.5.0 includes automatic archiving to keep the file manageable:
+
+**When SESSIONS.md exceeds 2000 lines:**
+- `/save-full` automatically detects file size
+- Prompts: "Archive old sessions (keep last 10)? [Y/n]"
+- Accepts `Y`: Moves old sessions to `context/SESSIONS-archive-YYYY.md`
+- Keeps last 10 sessions in main file
+- Creates backup before modification
+- Zero data loss (all sessions = main + archives)
+
+**Benefits:**
+- Prevents token limit issues during `/review-context`
+- Faster file reads (80-90% size reduction)
+- Maintains complete historical record in archive files
+- Automatic, safe, and reversible
+
+**Manual archiving:**
+```bash
+bash scripts/archive-sessions-helper.sh --keep 10
+```
+
+### Smart Loading
+
+The `/review-context` command automatically adjusts how it loads SESSIONS.md based on file size:
+
+**Small files (<1000 lines):**
+- Reads full file
+- Fast, complete context
+
+**Medium files (1000-5000 lines):**
+- Strategic loading (index + recent 500 lines)
+- Balances speed and context
+
+**Large files (>5000 lines):**
+- Minimal loading (index + recent 300 lines)
+- Prevents token crashes
+- Can handle 50,000+ line files
+
+**Result:** `/review-context` never crashes, even with years of session history.
+
+### Archive Structure
+
+```
+context/
+├── SESSIONS.md                    # Recent sessions (last 10-20)
+├── SESSIONS-archive-2024.md       # 2024 sessions
+├── SESSIONS-archive-2023.md       # 2023 sessions
+└── .context-config.json
+```
+
+**Reading archives:**
+```bash
+# Review 2024 sessions
+cat context/SESSIONS-archive-2024.md
+
+# Search for specific session
+grep "Session.*Authentication" context/SESSIONS-archive-*.md
+```
+
 ## Best Practices
 
 ### 1. Always Include TL;DR
