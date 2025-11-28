@@ -105,7 +105,19 @@ Reviews code considering:
 
 ### Step 4: Generate Report
 
-Creates detailed report in `artifacts/code-reviews/review-YYYY-MM-DD.md`
+::: tip New in v3.5.0
+Reports are now automatically generated and saved to `artifacts/code-reviews/session-N-review.md` without manual work.
+:::
+
+Creates detailed report that includes:
+- Overall quality grade (A/B/C/D/F)
+- Issue breakdown by severity
+- Context-aware suggestions
+- Decision compliance checks
+- Comparison with previous reviews (if available)
+
+**Report location:** `artifacts/code-reviews/session-N-review.md`
+**Automatic:** No manual "create report document" step needed
 
 ## Example Review Output
 

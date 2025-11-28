@@ -242,12 +242,29 @@ From STATUS.md top section (auto-generated)
 
 ### Step 3: Load Recent Sessions
 
-From SESSIONS.md:
-- Last 1-2 session TL;DRs
-- Recent accomplishments
-- Lessons learned
+::: tip New in v3.5.0 - Smart Loading
+SESSIONS.md is now loaded intelligently based on file size to prevent token limit issues.
+:::
 
-### Step 4: Format Output
+From SESSIONS.md:
+- **Small files (<1000 lines):** Loads fully
+- **Medium files (1000-5000 lines):** Loads index + recent 500 lines strategically
+- **Large files (>5000 lines):** Loads index + recent 300 lines minimally
+- Result: Can handle SESSIONS.md files with 50,000+ lines
+
+### Step 4: Cross-Document Consistency Checks
+
+::: tip New in v3.5.0 - Automatic Consistency
+Automatically detects drift and mismatches across context files.
+:::
+
+Checks:
+- **Last Updated dates** across CONTEXT.md, STATUS.md, SESSIONS.md
+- **Phase consistency** between CONTEXT.md and STATUS.md
+- **Session count** accuracy in SESSIONS.md
+- Warns about discrepancies with specific, actionable messages
+
+### Step 5: Format Output
 
 Pretty-prints information for quick scanning
 

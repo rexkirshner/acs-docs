@@ -401,9 +401,42 @@ documented gotchas with NextResponse cookie API.
 Worked on authentication.
 ```
 
+## Automatic Session Archiving
+
+::: tip New in v3.5.0
+Automatic archiving keeps SESSIONS.md manageable and prevents token limit issues.
+:::
+
+When SESSIONS.md grows large (>2000 lines), `/save-full` automatically prompts you to archive old sessions:
+
+```bash
+📦 SESSIONS.md is large (2847 lines)
+   Archiving old sessions improves performance.
+
+Archive old sessions (keep last 10)? [Y/n]
+```
+
+**If you accept (Y):**
+- Old sessions moved to `context/SESSIONS-archive-2025.md`
+- Last 10 sessions kept in main SESSIONS.md
+- Backup created before modification
+- File size reduced by 80-90%
+- Zero data loss (sessions = main + archive)
+
+**Benefits:**
+- Prevents token limit crashes during `/review-context`
+- Faster file reads and context loading
+- Maintains historical record in archive files
+- Automatic, safe, and reversible
+
+**Manual archiving:**
+```bash
+bash scripts/archive-sessions-helper.sh --keep 10
+```
+
 ## Append-Only Strategy
 
-For large SESSIONS.md files (>1000 lines):
+For large SESSIONS.md files (1000-2000 lines) before archiving:
 
 ```bash
 # Create draft first
@@ -421,6 +454,10 @@ rm context/.session-draft.md
 ```
 
 **Why:** Avoids Read tool limits on large files, zero corruption risk.
+
+::: tip Automatic Archiving
+Once SESSIONS.md exceeds 2000 lines, use automatic archiving instead of manual append-only strategy.
+:::
 
 ## Output Example
 
