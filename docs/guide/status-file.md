@@ -289,6 +289,69 @@ Current Focus: Payment integration with Stripe
 
 **You never manually edit Quick Reference** - it's always current.
 
+## Cross-Document Consistency
+
+::: tip New in v3.5.0
+Automatic consistency checking detects drift across context files.
+:::
+
+The `/review-context` command now automatically checks for inconsistencies across your context files:
+
+### What Gets Checked
+
+**Last Updated Dates:**
+- Compares timestamps across CONTEXT.md, STATUS.md, and SESSIONS.md
+- Warns if files have drifted (e.g., STATUS.md updated but CONTEXT.md not)
+- Suggests running `/save` or `/save-full` to synchronize
+
+**Phase Consistency:**
+- Verifies current phase matches between CONTEXT.md and STATUS.md
+- Detects mismatches (e.g., "MVP Development" in one, "Beta Testing" in another)
+- Recommends updating the outdated file
+
+**Session Count Accuracy:**
+- Validates session numbering in SESSIONS.md
+- Checks for gaps or duplicate session numbers
+- Ensures session index matches actual session count
+
+### Example Warnings
+
+```markdown
+⚠️  Consistency Check Results:
+
+1. Last Updated Drift Detected
+   - STATUS.md: 2025-10-23
+   - CONTEXT.md: 2025-10-15 (8 days old)
+   - Action: Run /save to update CONTEXT.md
+
+2. Phase Mismatch
+   - CONTEXT.md shows: "MVP Development"
+   - STATUS.md shows: "Beta Testing"
+   - Action: Update CONTEXT.md phase to match current state
+
+3. Session Count Issue
+   - SESSIONS.md header shows: "23 sessions"
+   - Actual session entries: 24
+   - Action: Update session index count
+```
+
+### Benefits
+
+- **Automatic Detection:** No manual checking required
+- **Actionable Warnings:** Specific, clear fix instructions
+- **Zero Drift:** Keeps all context files synchronized
+- **Trust in Documentation:** Confidence that files are current
+
+### How It Works
+
+1. `/review-context` runs
+2. Reads metadata from all context files
+3. Compares timestamps, phases, session counts
+4. Generates warnings for any mismatches
+5. Provides specific actions to resolve
+
+**You don't need to do anything** - the system warns you automatically when files drift.
+
 ## Real-World Example
 
 Complete STATUS.md for active project:
