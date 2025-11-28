@@ -90,27 +90,33 @@ cat context/.context-config.json
 ### SESSIONS.md Growing Too Large
 
 **Symptoms:**
-- SESSIONS.md exceeds 25,000 tokens
-- `/review-context` slow or fails
+- SESSIONS.md exceeds 2000 lines
 - File takes long to read
+- Token limit warnings
 
-**Cause:** Many sessions accumulated over time.
+**Cause:** Many sessions accumulated over time (normal for active projects).
 
-**Solution:** System handles this automatically with progressive loading:
+**Solution:** v3.5.0 includes automatic archiving:
 
-- **<1000 lines:** Reads full file
-- **1000-5000 lines:** Strategic loading (first, last, key sections)
-- **>5000 lines:** Indexed loading (headers + recent entries)
+**Automatic Archiving (Recommended):**
+- `/save-full` prompts when SESSIONS.md > 2000 lines
+- One-command archiving: Accept prompt with `Y`
+- Old sessions moved to `context/SESSIONS-archive-YYYY.md`
+- Last 10 sessions kept in main file
+- Backup created automatically
+- Zero data loss
 
-**Manual archive (optional):**
+**Manual Archiving:**
 ```bash
-# Create archive directory
-mkdir -p context/archive/
-
-# Move old sessions (keep recent 10)
-# Edit SESSIONS.md, move sessions 1-50 to:
-# context/archive/SESSIONS-2024-Q1.md
+bash scripts/archive-sessions-helper.sh --keep 10
 ```
+
+**Smart Loading (Automatic):**
+System automatically loads SESSIONS.md intelligently during `/review-context`:
+- **<1000 lines:** Reads full file
+- **1000-5000 lines:** Strategic loading (index + recent 500 lines)
+- **>5000 lines:** Minimal loading (index + recent 300 lines)
+- **Result:** Can handle 50,000+ line files without crashes
 
 ## Git Integration
 
