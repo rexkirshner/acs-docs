@@ -75,6 +75,6 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.4.0** - Code Review Actionability
+**v3.5.0** - Critical Bugs & Performance
 
-Major enhancement to `/code-review` based on real-world user feedback: smart issue grouping (25 errors → 1 task), auto-TodoWrite generation (30 min → 30 sec), KNOWN_ISSUES.md integration, STATUS.md auto-update, review history tracking, and automatic comparison with previous reviews. Transforms reviews from "excellent analysis" to "immediately actionable." [See changelog →](/about/changelog)
+Fixes 6 critical bugs (version detection, zsh compatibility, token crashes, subdirectory support) and adds 3 major performance improvements (automatic session archiving, auto-report generation, cross-document consistency checks). Includes comprehensive test suite with 101/101 tests passing across 3 levels. [See changelog →](/about/changelog)
