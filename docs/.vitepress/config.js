@@ -5,6 +5,7 @@ export default {
   ignoreDeadLinks: true,
 
   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-65S3KZSEY8' }],
     ['script', {}, `
       window.dataLayer = window.dataLayer || [];
