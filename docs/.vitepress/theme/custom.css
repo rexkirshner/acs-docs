@@ -1,0 +1,229 @@
+/**
+ * Custom Theme for AI Context System Documentation
+ * Subtle enhancements to make it feel less generic
+ */
+
+/* ============================================
+   CUSTOM COLOR PALETTE
+   ============================================ */
+
+:root {
+  /* Brand Colors - Purple/Pink theme */
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: #ede9fe;
+
+  /* Better shadows */
+  --vp-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --vp-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --vp-shadow-3: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.dark {
+  --vp-c-brand-1: #a78bfa;
+  --vp-c-brand-2: #c4b5fd;
+  --vp-c-brand-3: #ddd6fe;
+  --vp-c-brand-soft: #2e1065;
+}
+
+/* ============================================
+   TYPOGRAPHY IMPROVEMENTS
+   ============================================ */
+
+/* Gradient headings */
+h1, h2, h3 {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Better spacing */
+.vp-doc h2 {
+  margin-top: 48px;
+  border-bottom: 2px solid var(--vp-c-brand-soft);
+  padding-bottom: 8px;
+}
+
+/* Code blocks */
+.vp-doc div[class*='language-'] {
+  border-radius: 12px;
+  box-shadow: var(--vp-shadow-2);
+  margin: 24px 0;
+}
+
+/* Inline code */
+.vp-doc :not(pre) > code {
+  background-color: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-2);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: 1px solid var(--vp-c-brand-1);
+}
+
+/* ============================================
+   HOME PAGE
+   ============================================ */
+
+/* Center everything in hero */
+.VPHero .container {
+  text-align: center;
+}
+
+.VPHero .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.VPHero .name,
+.VPHero .text,
+.VPHero .tagline {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.VPHero .text {
+  max-width: 900px;
+  font-size: 2.5rem !important;
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 768px) {
+  .VPHero .text {
+    font-size: 1.75rem !important;
+  }
+}
+
+.VPHero .actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Hero gradient text */
+.VPHome .name {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, #ec4899 50%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Better buttons */
+.VPButton.brand {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, var(--vp-c-brand-2) 100%);
+  border: none;
+  box-shadow: var(--vp-shadow-2);
+  transition: all 0.2s ease;
+}
+
+.VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--vp-shadow-3);
+}
+
+.VPButton.alt {
+  border: 2px solid var(--vp-c-brand-1);
+  transition: all 0.2s ease;
+}
+
+.VPButton.alt:hover {
+  background: var(--vp-c-brand-soft);
+  transform: translateY(-2px);
+}
+
+/* Feature cards */
+.VPFeature {
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--vp-shadow-3);
+  border-color: var(--vp-c-brand-1);
+}
+
+.VPFeature .title {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+/* Glassmorphism navbar */
+.VPNav {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.dark .VPNav {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+/* Gradient site title */
+.VPNavBarTitle .title {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.VPSidebarItem.is-active .link {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 600;
+}
+
+.VPSidebarItem.is-active .indicator {
+  background-color: var(--vp-c-brand-1);
+}
+
+/* ============================================
+   LINKS & INTERACTIONS
+   ============================================ */
+
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+  border-bottom-color: var(--vp-c-brand-1);
+}
+
+/* ============================================
+   SMOOTH ANIMATIONS
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
