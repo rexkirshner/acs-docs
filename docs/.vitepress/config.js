@@ -124,8 +124,7 @@ export default {
     },
 
     footer: {
-      message: 'Built for all AI coding assistants. Optimized for Claude Code.',
-      copyright: 'Use freely for personal or commercial projects'
+      copyright: '© 2025 AI Context System. A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Project.'
     }
   }
 }
