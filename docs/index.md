@@ -52,8 +52,8 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ```
 your-project/
-├── context/                     # ← Externalized AI context
-│   ├── claude.md                # Entry point (7-line header)
+├── CLAUDE.md                    # ← Auto-loaded by Claude Code
+├── context/                     # Externalized AI context
 │   ├── CONTEXT.md               # Project orientation
 │   ├── STATUS.md                # Current state + Quick Reference
 │   ├── DECISIONS.md             # Decision log (WHY)
@@ -75,6 +75,6 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.5.0** - Critical Bugs & Performance
+**v3.6.0** - CLAUDE.md Auto-Loading
 
-Fixes 6 critical bugs (version detection, zsh compatibility, token crashes, subdirectory support) and adds 3 major performance improvements (automatic session archiving, auto-report generation, cross-document consistency checks). Includes comprehensive test suite with 101/101 tests passing across 3 levels. [See changelog →](/about/changelog)
+Moves CLAUDE.md to project root for automatic loading by Claude Code. Includes enhanced template with new sections (Project Identity, Critical Rules, Working Style), new troubleshooting documentation, preflight checks, and code quality improvements. Automatic migration from v3.5.x. [See changelog →](/about/changelog)

@@ -126,7 +126,7 @@ Existing files get NEW sections added:
 ### Step 4: Create Missing Files
 
 Files that don't exist are created from templates:
-- context/claude.md (AI entry point)
+- ./CLAUDE.md (AI entry point, at project root for auto-loading)
 - context/CONTEXT.md (references existing README/docs)
 - context/STATUS.md (current state)
 - context/DECISIONS.md (decision log)

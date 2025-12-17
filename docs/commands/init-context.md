@@ -34,10 +34,10 @@ Creates 5 core files + 1 AI header that enable perfect session continuity and AI
 
 ### Core Files (Required)
 
-**context/claude.md** - AI header for Claude Code
-- Entry point for Claude AI
+**./CLAUDE.md** - AI header for Claude Code (at project root)
+- Auto-loaded by Claude Code at conversation start
 - Points to CONTEXT.md for full project context
-- Tool-specific (cursor.md, aider.md for other tools)
+- Other tools use `context/cursor.md`, `context/aider.md`, etc.
 
 **context/CONTEXT.md** - Project orientation (300-400 lines)
 - What & Why: Project purpose and goals
@@ -146,7 +146,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "3.3.1",
+  "version": "3.6.0",
   "project": {
     "name": "your-project",
     "type": "application",
@@ -182,7 +182,7 @@ $ /init-context
    Git: https://github.com/user/my-app
 
 ✅ Creating core documentation files...
-   ✅ context/claude.md
+   ✅ ./CLAUDE.md (at project root, auto-loaded)
    ✅ context/CONTEXT.md (customized for Next.js)
    ✅ context/STATUS.md
    ✅ context/DECISIONS.md

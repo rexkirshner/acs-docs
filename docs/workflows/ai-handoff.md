@@ -152,7 +152,7 @@ Create a handoff note in STATUS.md:
 
 **Quick Start for New AI:**
 1. Read artifacts/exports/context-export-2025-10-24.md
-2. Read context/claude.md (or your tool's header)
+2. Read ./CLAUDE.md (auto-loaded) or your tool's header in context/
 3. Run /review-context to see current state
 4. Start with: Implement rate limiting (see STATUS.md)
 
@@ -207,8 +207,8 @@ cat artifacts/exports/context-export-2025-10-24.md
 ### 2. Read Tool-Specific Header (2 minutes)
 
 ```bash
-# If you're Claude Code:
-cat context/claude.md
+# If you're Claude Code (auto-loaded from project root):
+cat ./CLAUDE.md
 
 # If you're Cursor:
 cat context/cursor.md

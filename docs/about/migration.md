@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.5.0
+## Current Version: v3.6.0
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -42,9 +42,60 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.x → v3.5.0 (Current)
+### v3.5.x → v3.6.0 (Current)
+
+**One breaking change:** CLAUDE.md location moved. Migration is automatic.
+
+**Key change: CLAUDE.md Auto-Loading**
+
+| Before (v3.5.x) | After (v3.6.0) |
+|-----------------|----------------|
+| `context/claude.md` | `./CLAUDE.md` (project root) |
+| Not auto-loaded | Auto-loaded by Claude Code |
+
+**Why:** Claude Code automatically loads `CLAUDE.md` from project root at every conversation start. The old location in `context/` was never auto-loaded, requiring manual file reads.
+
+**Migration scenarios:**
+
+1. **You have `context/claude.md`:**
+   - `/update-context-system` will detect and offer to move it
+   - Your customizations are preserved
+
+2. **You already have `./CLAUDE.md`:**
+   - No action needed
+   - System detects correct location
+
+3. **You have both files:**
+   - Warning shown to merge and delete old file
+   - `/validate-context` will remind you
+
+4. **You have neither:**
+   - Fresh file created from enhanced template
+
+**New features in v3.6.0:**
+- **Enhanced CLAUDE.md template** with Project Identity, Critical Rules, Working Style sections
+- **TROUBLESHOOTING.md** documentation for common issues
+- **Preflight checks** validate environment before commands run
+- **Dependency checks** verify curl, git, jq with install hints
+- **Standardized exit codes** across all scripts
+
+**Automatic updates:**
+- `/init-context` creates CLAUDE.md at root
+- `/update-context-system` handles migration automatically
+- `/validate-context` warns about old location
+- New documentation files added to `.claude/docs/`
+
+**Action required:** Run `/update-context-system` and follow prompts.
+
+---
+
+### v3.x → v3.5.0
 
 **No breaking changes.** Direct upgrade via `/update-context-system`.
+
+::: warning Note
+v3.5.0 placed CLAUDE.md in `context/claude.md`. This was changed in v3.6.0 to `./CLAUDE.md` at project root for auto-loading. If upgrading from v3.5.0, see the v3.6.0 migration section above.
+:::
 
 **New features in v3.5.0:**
 - **Automatic Session Archiving:** `/save-full` prompts when SESSIONS.md exceeds 2000 lines
@@ -260,7 +311,14 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.5.0 (Current)
+### v3.6.0 (Current)
+- ⚠️ Minor breaking change: CLAUDE.md location moved from `context/claude.md` to `./CLAUDE.md` (project root)
+- ✅ Backward compatible with all v3.x versions (migration is simple `git mv`)
+- ✅ No new dependencies
+- ✅ New feature: CLAUDE.md auto-loading by Claude Code
+- ✅ Bug fixes: Config template version, template filename, production TODO removed
+
+### v3.5.0
 - ✅ No breaking changes
 - ✅ Backward compatible with all v3.x versions
 - ✅ No new dependencies
@@ -415,7 +473,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.5.0
+Commands: v3.6.0
 Context: v3.0.0
 ```
 
@@ -424,7 +482,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.5.0"  # Update this
+  "version": "3.6.0"  # Update this
 }
 
 # Then:
@@ -470,8 +528,8 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.5.0  # Works
-v1.5.0 → v3.5.0  # Works
+v2.0.0 → v3.6.0  # Works
+v1.5.0 → v3.6.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -479,7 +537,7 @@ v1.5.0 → v3.5.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.5.0
+# Should show: 3.6.0
 
 # Test command
 /review-context

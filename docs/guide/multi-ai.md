@@ -29,7 +29,7 @@ The AI Context System works with any AI coding assistant—built on universal co
 - ✅ Interactive workflows (approval checkpoints, validation prompts)
 - ✅ Command system (`.claude/commands/` architecture)
 
-**Entry point:** `context/claude.md`
+**Entry point:** `./CLAUDE.md` (at project root, auto-loaded at conversation start)
 
 **Usage:**
 ```bash

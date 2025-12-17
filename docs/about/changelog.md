@@ -2,6 +2,58 @@
 
 All notable changes to the AI Context System.
 
+## [3.6.0] - 2025-12-16
+
+### Changed - CLAUDE.md Auto-Loading Architecture
+
+**Minor release moving CLAUDE.md to project root for automatic loading by Claude Code**
+
+**Context:** The CLAUDE.md file was previously placed in the `context/` folder, which meant Claude Code did not automatically load it at conversation start. Since CLAUDE.md is specifically designed for Claude Code and contains critical context, this was a missed opportunity. This release fixes this architectural oversight.
+
+#### Breaking Change: CLAUDE.md Location
+
+| Aspect | v3.5.x (Before) | v3.6.0 (After) |
+|--------|-----------------|----------------|
+| Location | `context/claude.md` | `./CLAUDE.md` (project root) |
+| Case | lowercase | UPPERCASE |
+| Auto-loaded | No | Yes |
+
+**Migration:** Automatic - `/update-context-system` detects and migrates old location.
+
+#### Enhanced CLAUDE.md Template
+
+New comprehensive template with sections for:
+- **Project Identity:** Project name, tech stack, current phase
+- **Critical Rules:** Git push protocol, no lazy coding, simplicity principles
+- **Working Style:** Communication preferences, task workflows
+- **Debugging Protocol:** Full code flow tracing methodology
+- **Session Management:** Commands reference table
+- **Project-Specific Notes:** Constraints, gotchas, integration points
+
+#### New Documentation
+
+- **TROUBLESHOOTING.md:** Solutions for 10 common issues
+- **MIGRATION_v3.5_to_v3.6.md:** Step-by-step upgrade guide
+
+#### Code Quality Improvements
+
+- **Preflight checks:** Validates environment before command execution
+- **Dependency checks:** Verifies curl, git, jq availability with install hints
+- **Exit code standardization:** All scripts use consistent EXIT_* constants
+- **Color definition deduplication:** Centralized in common-functions.sh
+
+#### Upgrade Path
+
+All scenarios handled automatically:
+1. Fresh install → Creates CLAUDE.md at root
+2. Existing `context/claude.md` → Offers to move to root
+3. Already has `./CLAUDE.md` → No action needed
+4. Both files exist → Warns and suggests merge
+
+**Run:** `/update-context-system` to upgrade from v3.5.x
+
+---
+
 ## [3.5.0] - 2025-11-28
 
 ### Fixed - Critical Bugs & Performance Optimizations
