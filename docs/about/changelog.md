@@ -2,6 +2,107 @@
 
 All notable changes to the AI Context System.
 
+## [4.0.0] - 2026-01-05
+
+### Added - Modular Code Review System
+
+**MAJOR RELEASE** - Transforms `/code-review` into a modular system with 8 specialized audit commands and a master orchestrator.
+
+#### New Modular Audit Commands
+
+| Command | Focus | Key Checks |
+|---------|-------|------------|
+| `/code-review-security` | OWASP Top 10 | Auth, injection, XSS, secrets, dependencies |
+| `/code-review-performance` | Core Web Vitals | LCP, INP, CLS, bundle size, caching |
+| `/code-review-accessibility` | WCAG 2.1 AA | POUR principles, keyboard nav, ARIA |
+| `/code-review-seo` | Technical SEO | Metadata, JSON-LD, crawlability |
+| `/code-review-database` | Query optimization | N+1 detection, indexes, connection pooling |
+| `/code-review-infrastructure` | Serverless costs | Cold starts, rendering strategy, caching |
+| `/code-review-typescript` | Type safety | Strict mode, `any` tracking, Zod validation |
+| `/code-review-testing` | Test quality | Coverage, pyramid, mock strategy, CI |
+
+#### `/build-check` Command
+
+New pre-push build gate:
+- Sequential: lint → typecheck → tests → build
+- Framework auto-detection (Next.js, Remix, Astro, etc.)
+- Common failure patterns and fixes
+
+#### `/code-review` Orchestrator
+
+Transformed from monolithic command to modular orchestrator:
+- Interactive menu for audit selection
+- Command-line arguments: `--security`, `--performance`, etc.
+- Preset combinations:
+  - `--all` - Run all audits
+  - `--prelaunch` - Security + Performance + Accessibility + SEO
+  - `--backend` - Security + Database + Testing
+  - `--frontend` - Performance + Accessibility + SEO
+- Combined summary report with weighted grading
+
+#### Custom Audit Extensibility
+
+Create project-specific audits:
+
+1. **Create command file:** `.claude/commands/code-review-{name}.md`
+2. **Register in config (optional):**
+```json
+{
+  "audits": {
+    "custom": [
+      {
+        "name": "api",
+        "description": "REST API design audit",
+        "weight": 1.2,
+        "presets": ["backend", "all"]
+      }
+    ],
+    "presets": {
+      "quick": {
+        "description": "Fast sanity check",
+        "audits": ["security", "typescript"]
+      }
+    }
+  }
+}
+```
+3. **Automatic pickup:** Orchestrator discovers and includes custom audits
+
+#### New Report Infrastructure
+
+- **Location:** `docs/audits/` (was `artifacts/code-reviews/`)
+- **Naming:** `{type}-audit-NN.md` (was `session-N-review.md`)
+- **Tracking:** `docs/audits/INDEX.md` auto-updated with each audit
+- **Numbering:** Incrementing per audit type (01, 02, etc.)
+
+#### New Helper Functions
+
+Added to `scripts/common-functions.sh`:
+- `get_next_audit_number()` - Returns incrementing audit number
+- `update_audit_index()` - Updates INDEX.md with new entries
+- `detect_database_platform()` - Detects Prisma, Drizzle, TypeORM
+- `detect_hosting_platform()` - Detects Vercel, AWS, Cloudflare
+- `detect_framework()` - Detects Next.js, Remix, Astro
+
+### Changed
+
+- `/code-review` is now an orchestrator (was monolithic)
+- Audit reports go to `docs/audits/` (was `artifacts/code-reviews/`)
+- Report naming: `{type}-audit-NN.md` (was `session-N-review.md`)
+
+### Breaking Changes
+
+| Aspect | v3.6.x (Before) | v4.0.0 (After) |
+|--------|-----------------|----------------|
+| Code review | Single monolithic command | 8 specialized + orchestrator |
+| Reports location | `artifacts/code-reviews/` | `docs/audits/` |
+| Report naming | `session-N-review.md` | `{type}-audit-NN.md` |
+| Checklists | `.claude/checklists/` | Built into audit commands |
+
+**Migration:** `/update-context-system` automatically migrates existing code review reports.
+
+---
+
 ## [3.6.0] - 2025-12-16
 
 ### Changed - CLAUDE.md Auto-Loading Architecture
