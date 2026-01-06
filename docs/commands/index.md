@@ -1,6 +1,6 @@
 # Commands Reference
 
-The AI Context System provides 14 slash commands organized into four categories.
+The AI Context System provides 22 slash commands organized into five categories.
 
 ## Setup Commands (Run Once)
 
@@ -21,10 +21,43 @@ Migrates existing documentation to AI Context System structure. Preserves all ex
 ### [/review-context](/commands/review-context)
 **Run at session start** - Verifies documentation is current. Shows Quick Reference. Checks for updates.
 
-## Collaboration Commands
+## Code Review Commands
+
+::: tip New in v4.0.0
+The code review system is now modular. Use `/code-review` as the orchestrator or run individual audits directly.
+:::
 
 ### [/code-review](/commands/code-review)
-AI peer review with full context understanding. Comprehensive audit leveraging DECISIONS.md and SESSIONS.md.
+**Master orchestrator** - Select and run specialized audits via interactive menu or command-line arguments. Supports presets like `--prelaunch`, `--backend`, `--frontend`.
+
+### [/code-review-security](/commands/code-review-security)
+OWASP Top 10 security audit. Authentication, injection, XSS, secrets, dependencies.
+
+### [/code-review-performance](/commands/code-review-performance)
+Core Web Vitals audit. LCP, INP, CLS, bundle size, caching.
+
+### [/code-review-accessibility](/commands/code-review-accessibility)
+WCAG 2.1 AA compliance audit. Keyboard navigation, screen readers, ARIA.
+
+### [/code-review-seo](/commands/code-review-seo)
+Technical SEO audit. Metadata, structured data (JSON-LD), crawlability.
+
+### [/code-review-database](/commands/code-review-database)
+Database efficiency audit. N+1 detection, indexes, connection pooling.
+
+### [/code-review-infrastructure](/commands/code-review-infrastructure)
+Serverless cost optimization. Cold starts, rendering strategy, caching.
+
+### [/code-review-typescript](/commands/code-review-typescript)
+TypeScript type safety audit. Strict mode, `any` tracking, type coverage.
+
+### [/code-review-testing](/commands/code-review-testing)
+Test coverage and quality audit. Coverage metrics, test pyramid, CI integration.
+
+### [/build-check](/commands/build-check)
+Pre-push build gate. Sequential: lint → typecheck → tests → build.
+
+## Collaboration Commands
 
 ### [/export-context](/commands/export-context)
 Package all context for handoffs. Combines documentation into single markdown file.
@@ -39,6 +72,25 @@ Updates commands and scripts from GitHub. Ensures latest features and fixes.
 
 ### [/update-templates](/commands/update-templates)
 Compare context files with latest templates. Interactive updates with visual diffs.
+
+### [/add-ai-header](/commands/add-ai-header)
+Create AI tool-specific entry points (CLAUDE.md, cursor.md, etc.).
+
+### [/organize-docs](/commands/organize-docs)
+Interactive documentation cleanup and organization.
+
+### [/session-summary](/commands/session-summary)
+Generate summary of current session for handoff.
+
+## Command Quick Reference
+
+| Category | Commands |
+|----------|----------|
+| Setup | `/init-context`, `/migrate-context` |
+| Daily | `/save`, `/save-full`, `/review-context` |
+| Code Review | `/code-review`, + 8 specialized audits, `/build-check` |
+| Collaboration | `/export-context`, `/validate-context` |
+| Maintenance | `/update-context-system`, `/update-templates`, `/add-ai-header`, `/organize-docs`, `/session-summary` |
 
 ## Command Philosophy
 
