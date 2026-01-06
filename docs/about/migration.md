@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.0.0
+## Current Version: v4.0.1
 
-Latest stable release. [See changelog](/about/changelog) for details.
+Latest stable release with bug fixes. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,27 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.6.x → v4.0.0 (Current)
+### v4.0.0 → v4.0.1 (Current)
+
+**Patch release:** Bug fixes from first user feedback.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's Fixed:**
+- ORGANIZATION.md download URL in installer
+- Session number detection (handles gaps from archiving)
+- Consistency check validation in `/review-context`
+
+**What's Improved:**
+- Manual fallbacks added to all audit commands
+- Framework-specific patterns (Svelte, Vue) in security/performance audits
+- Better guidance for non-React frameworks
+
+---
+
+### v3.6.x → v4.0.0
 
 **Major release:** Code review system completely transformed.
 
@@ -393,7 +413,12 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v4.0.0 (Current)
+### v4.0.1 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Bug fixes and framework improvements
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.0.0
 - ⚠️ Major breaking change: `/code-review` is now an orchestrator (runs specialized audits)
 - ⚠️ Report location changed: `artifacts/code-reviews/` → `docs/audits/`
 - ⚠️ Report naming changed: `session-N-review.md` → `{type}-audit-NN.md`
@@ -613,9 +638,9 @@ No deprecations currently planned for v4.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v4.0.0  # Works
-v3.5.0 → v4.0.0  # Works
-v1.5.0 → v4.0.0  # Works
+v2.0.0 → v4.0.1  # Works
+v3.5.0 → v4.0.1  # Works
+v4.0.0 → v4.0.1  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -623,7 +648,7 @@ v1.5.0 → v4.0.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 4.0.0
+# Should show: 4.0.1
 
 # Test command
 /review-context
