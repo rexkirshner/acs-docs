@@ -58,7 +58,7 @@ your-project/
 │   ├── STATUS.md                # Current state + Quick Reference
 │   ├── DECISIONS.md             # Decision log (WHY)
 │   └── SESSIONS.md              # History + mental models
-├── .claude/commands/            # 14 slash commands
+├── .claude/commands/            # 22 slash commands
 └── scripts/                     # Helper utilities
 ```
 
@@ -75,6 +75,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v3.6.0** - CLAUDE.md Auto-Loading
+**v4.0.0** - Modular Code Review System
 
-Moves CLAUDE.md to project root for automatic loading by Claude Code. Includes enhanced template with new sections (Project Identity, Critical Rules, Working Style), new troubleshooting documentation, preflight checks, and code quality improvements. Automatic migration from v3.5.x. [See changelog →](/about/changelog)
+Major release transforming `/code-review` into a modular system with 8 specialized audit commands:
+
+- **Security** - OWASP Top 10, authentication, injection, XSS
+- **Performance** - Core Web Vitals, bundle analysis, runtime
+- **Accessibility** - WCAG 2.1 AA, keyboard navigation, ARIA
+- **SEO** - Metadata, structured data, crawlability
+- **Database** - N+1 detection, indexes, query optimization
+- **Infrastructure** - Serverless costs, caching, builds
+- **TypeScript** - Type safety, strict mode, any tracking
+- **Testing** - Coverage, test quality, CI integration
+
+Plus custom audit extensibility for project-specific audits. [See changelog →](/about/changelog)
