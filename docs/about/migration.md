@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v3.6.0
+## Current Version: v4.0.0
 
 Latest stable release. [See changelog](/about/changelog) for details.
 
@@ -42,7 +42,89 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v3.5.x → v3.6.0 (Current)
+### v3.6.x → v4.0.0 (Current)
+
+**Major release:** Code review system completely transformed.
+
+::: warning Breaking Changes
+This is a major release with breaking changes to the code review system.
+:::
+
+**Key Changes:**
+
+| Aspect | v3.6.x (Before) | v4.0.0 (After) |
+|--------|-----------------|----------------|
+| Code review | Single monolithic command | 8 specialized + orchestrator |
+| Reports location | `artifacts/code-reviews/` | `docs/audits/` |
+| Report naming | `session-N-review.md` | `{type}-audit-NN.md` |
+| Checklists | `.claude/checklists/` | Built into audit commands |
+
+**Migration is automatic:**
+
+```bash
+/update-context-system
+```
+
+**What happens:**
+1. Downloads 9 new audit commands
+2. Creates `docs/audits/` directory
+3. Moves existing `artifacts/code-reviews/*.md` to `docs/audits/archive/`
+4. Creates `docs/audits/INDEX.md` for audit tracking
+5. Updates `/code-review` to orchestrator pattern
+
+**New Commands (22 total):**
+
+| Command | Purpose |
+|---------|---------|
+| `/code-review` | Master orchestrator (select audits) |
+| `/code-review-security` | OWASP Top 10 audit |
+| `/code-review-performance` | Core Web Vitals audit |
+| `/code-review-accessibility` | WCAG 2.1 AA audit |
+| `/code-review-seo` | Technical SEO audit |
+| `/code-review-database` | N+1, indexes, pooling |
+| `/code-review-infrastructure` | Serverless costs audit |
+| `/code-review-typescript` | Type safety audit |
+| `/code-review-testing` | Test coverage audit |
+| `/build-check` | Pre-push build gate |
+
+**New Feature: Custom Audits**
+
+Create project-specific audits:
+
+```json
+// context/.context-config.json
+{
+  "audits": {
+    "custom": [
+      {
+        "name": "api",
+        "description": "REST API design audit",
+        "weight": 1.2,
+        "presets": ["backend", "all"]
+      }
+    ]
+  }
+}
+```
+
+**Workflow Changes:**
+
+```bash
+# Old way (v3.6.x)
+/code-review  # Single long review
+
+# New way (v4.0.0)
+/code-review                    # Interactive menu
+/code-review --security         # Single audit
+/code-review --prelaunch        # Preset combination
+/code-review --all              # Comprehensive
+```
+
+**Action required:** Run `/update-context-system` and explore the new modular system.
+
+---
+
+### v3.5.x → v3.6.0
 
 **One breaking change:** CLAUDE.md location moved. Migration is automatic.
 
@@ -311,7 +393,16 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v3.6.0 (Current)
+### v4.0.0 (Current)
+- ⚠️ Major breaking change: `/code-review` is now an orchestrator (runs specialized audits)
+- ⚠️ Report location changed: `artifacts/code-reviews/` → `docs/audits/`
+- ⚠️ Report naming changed: `session-N-review.md` → `{type}-audit-NN.md`
+- ⚠️ `.claude/checklists/` removed (built into audit commands)
+- ✅ Migration automatic: `/update-context-system` handles everything
+- ✅ No new dependencies
+- ✅ New features: 8 modular audits, custom audit extensibility, /build-check
+
+### v3.6.0
 - ⚠️ Minor breaking change: CLAUDE.md location moved from `context/claude.md` to `./CLAUDE.md` (project root)
 - ✅ Backward compatible with all v3.x versions (migration is simple `git mv`)
 - ✅ No new dependencies
@@ -491,28 +582,22 @@ Context: v3.0.0
 
 ## Deprecation Timeline
 
-### Currently Deprecated
+### Removed in v4.0.0
 
-**`/save-context`** (deprecated v2.1.0)
-- Still works in v3.x
-- Will be removed in v4.0.0
+**`/save-context`** (deprecated v2.1.0, removed v4.0.0)
 - Use `/save` or `/save-full` instead
 
-**Migration:**
-```bash
-# Old:
-/save-context
+**`.claude/checklists/`** (removed v4.0.0)
+- Checklists now built into modular audit commands
+- `/code-review-security`, `/code-review-accessibility`, etc.
 
-# New (quick):
-/save  # 2-3 minutes
-
-# New (comprehensive):
-/save-full  # 10-15 minutes
-```
+**`artifacts/code-reviews/`** (moved v4.0.0)
+- Reports now in `docs/audits/`
+- Existing reports migrated automatically
 
 ### Future Deprecations
 
-No deprecations planned for v3.x series.
+No deprecations currently planned for v4.x series.
 
 ## FAQ
 
@@ -528,8 +613,9 @@ No deprecations planned for v3.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v3.6.0  # Works
-v1.5.0 → v3.6.0  # Works
+v2.0.0 → v4.0.0  # Works
+v3.5.0 → v4.0.0  # Works
+v1.5.0 → v4.0.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -537,7 +623,7 @@ v1.5.0 → v3.6.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 3.6.0
+# Should show: 4.0.0
 
 # Test command
 /review-context
@@ -546,6 +632,10 @@ cat VERSION
 # Check for backup (upgrade creates one)
 ls -la .claude-backup-*
 # If exists, upgrade ran
+
+# Check new audit commands exist
+ls .claude/commands/code-review-*.md
+# Should show 8 modular audit commands
 ```
 
 ### Can I upgrade during active work?
