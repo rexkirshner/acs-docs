@@ -58,7 +58,7 @@ Designed for mature projects with existing documentation. This command:
 
 ### Artifact Files
 
-**Code reviews** - code-reviews/ → artifacts/code-reviews/
+**Code reviews** - code-reviews/ → docs/audits/
 
 **Lighthouse reports** - lighthouse/ → artifacts/lighthouse/
 
@@ -98,8 +98,10 @@ project/
 │   ├── PRD.md                # MOVED from root
 │   └── context-feedback.md   # NEW - system feedback
 │
+├── docs/
+│   └── audits/               # NEW - code review reports (v4.0.0+)
+│
 ├── artifacts/                 # NEW - organized outputs
-│   ├── code-reviews/         # MOVED from root
 │   ├── lighthouse/           # MOVED from root
 │   └── ...
 │
@@ -226,9 +228,11 @@ my-app/
 │   ├── context-feedback.md       # NEW
 │   └── .context-config.json      # NEW
 │
+├── docs/
+│   └── audits/                    # NEW (v4.0.0+)
+│       └── review-001.md          # MOVED from code-reviews/
+│
 └── artifacts/                     # NEW
-    ├── code-reviews/             # MOVED
-    │   └── review-001.md
     └── lighthouse/               # MOVED
         └── report-2025-10.json
 ```
