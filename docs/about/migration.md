@@ -589,7 +589,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v3.6.0
+Commands: v4.0.1
 Context: v3.0.0
 ```
 
@@ -598,7 +598,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "3.6.0"  # Update this
+  "version": "4.0.1"  # Update this
 }
 
 # Then:
