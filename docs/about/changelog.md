@@ -2,6 +2,22 @@
 
 All notable changes to the AI Context System.
 
+## [4.0.1] - 2026-01-06
+
+### Fixed
+
+- **ORGANIZATION.md download URL** - Installer now correctly downloads from `reference/ORGANIZATION.md` instead of root path
+- **Session number detection** - `/save-full` now finds the highest session number instead of counting occurrences, handling gaps from archived sessions correctly
+- **Consistency check logic** - `/review-context` now only checks "Last Updated" and "Phase" fields in files where they actually exist (CONTEXT.md and STATUS.md)
+
+### Improved
+
+- **Audit helper fallbacks** - All 8 audit commands now include manual fallback instructions when helper functions aren't available
+- **Framework-specific patterns** - Added Svelte `{@html}` and Vue `v-html` XSS checks to security audit; added framework-specific memoization patterns (React useMemo, Svelte $derived, Vue computed) to performance audit
+- **Accessibility framework note** - Added guidance on adjusting grep patterns for different frameworks (Svelte, Vue, Astro)
+
+---
+
 ## [4.0.0] - 2026-01-05
 
 ### Added - Modular Code Review System
