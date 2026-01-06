@@ -31,7 +31,7 @@ README.md                    ✅ Keep (project entry)
 ARCHITECTURE.md             ⚠️  Move to context/
 notes.md                    ⚠️  Move to docs/planning/ or delete
 planning-2025-Q1.md         ⚠️  Move to docs/planning/ or archive
-code-review-notes.md        ⚠️  Move to artifacts/code-reviews/
+code-review-notes.md        ⚠️  Move to docs/audits/
 ```
 
 ### Misplaced Artifacts
@@ -39,7 +39,7 @@ code-review-notes.md        ⚠️  Move to artifacts/code-reviews/
 ```
 lighthouse-report.json      ⚠️  Move to artifacts/lighthouse/
 coverage.html               ⚠️  Move to artifacts/coverage/
-review-001.md               ⚠️  Move to artifacts/code-reviews/
+review-001.md               ⚠️  Move to docs/audits/
 ```
 
 ### Old Planning Files
@@ -117,7 +117,7 @@ Root directory is now clean!
 - Old ideas → artifacts/planning/ or delete
 
 ### Artifacts
-- Code reviews → artifacts/code-reviews/
+- Code reviews → docs/audits/
 - Lighthouse → artifacts/lighthouse/
 - Coverage → artifacts/coverage/
 - Performance → artifacts/performance/

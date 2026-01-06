@@ -110,8 +110,10 @@ project/
 │   ├── context-feedback.md    # System feedback
 │   └── .context-config.json   # Configuration
 │
-└── artifacts/                  # Analysis outputs
-    ├── code-reviews/
+├── docs/
+│   └── audits/                 # Code review reports (v4.0.0+)
+│
+└── artifacts/                  # Other analysis outputs
     ├── lighthouse/
     ├── performance/
     ├── security/
@@ -146,7 +148,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "3.6.0",
+  "version": "4.0.0",
   "project": {
     "name": "your-project",
     "type": "application",
@@ -190,8 +192,8 @@ $ /init-context
    ✅ context/context-feedback.md
    ✅ context/.context-config.json
 
-📁 Creating artifact directories...
-   ✅ artifacts/code-reviews/
+📁 Creating directories...
+   ✅ docs/audits/
    ✅ artifacts/lighthouse/
    ... (6 total)
 
