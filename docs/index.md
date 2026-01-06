@@ -75,9 +75,16 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.0.0** - Modular Code Review System
+**v4.0.1** - Bug Fixes & Framework Improvements
 
-Major release transforming `/code-review` into a modular system with 8 specialized audit commands:
+Patch release with fixes from first user feedback:
+- Fixed ORGANIZATION.md download URL in installer
+- Fixed session number detection (handles gaps from archiving)
+- Fixed consistency check validation logic
+- Added manual fallbacks for audit helper functions
+- Added framework-specific patterns (Svelte, Vue) to audits
+
+**v4.0.0** introduced the Modular Code Review System with 8 specialized audit commands:
 
 - **Security** - OWASP Top 10, authentication, injection, XSS
 - **Performance** - Core Web Vitals, bundle analysis, runtime
