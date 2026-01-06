@@ -7,11 +7,18 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "keywords": ["ai", "context", "documentation", "claude", "session-continuity"],
+  "keywords": [
+    "ai",
+    "context",
+    "documentation",
+    "claude",
+    "session-continuity"
+  ],
   "author": "Rex Kirshner",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "canvas": "^3.2.0",
     "vitepress": "^1.6.4"
   }
 }

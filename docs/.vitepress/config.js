@@ -29,7 +29,7 @@ export default {
       { text: 'Commands', link: '/commands/' },
       { text: 'Workflows', link: '/workflows/' },
       {
-        text: 'v3.5.0',
+        text: 'v4.0.0',
         items: [
           { text: 'Changelog', link: '/about/changelog' },
           { text: 'Migration Guides', link: '/about/migration' }
@@ -86,9 +86,23 @@ export default {
           ]
         },
         {
-          text: 'Collaboration',
+          text: 'Code Review',
           items: [
             { text: '/code-review', link: '/commands/code-review' },
+            { text: '/code-review-security', link: '/commands/code-review-security' },
+            { text: '/code-review-performance', link: '/commands/code-review-performance' },
+            { text: '/code-review-accessibility', link: '/commands/code-review-accessibility' },
+            { text: '/code-review-seo', link: '/commands/code-review-seo' },
+            { text: '/code-review-database', link: '/commands/code-review-database' },
+            { text: '/code-review-infrastructure', link: '/commands/code-review-infrastructure' },
+            { text: '/code-review-typescript', link: '/commands/code-review-typescript' },
+            { text: '/code-review-testing', link: '/commands/code-review-testing' },
+            { text: '/build-check', link: '/commands/build-check' }
+          ]
+        },
+        {
+          text: 'Collaboration',
+          items: [
             { text: '/export-context', link: '/commands/export-context' }
           ]
         },

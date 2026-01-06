@@ -211,6 +211,22 @@ h1, h2, h3 {
 }
 
 /* ============================================
+   FOOTER
+   ============================================ */
+
+.VPFooter a {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.VPFooter a:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+/* ============================================
    SMOOTH ANIMATIONS
    ============================================ */
 
