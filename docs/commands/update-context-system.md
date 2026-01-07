@@ -67,7 +67,7 @@ Updates commands, scripts, and templates while preserving your context files:
 📥 Downloading from GitHub...
    Repository: ai-context-system
    Branch: main
-   Version: 4.0.0 → 4.0.1
+   Version: 4.0.1 → 4.0.2
 ```
 
 ### Step 3: Update Files
@@ -91,7 +91,7 @@ Updates commands, scripts, and templates while preserving your context files:
 ### Step 5: Run Migration (If Needed)
 
 ```bash
-📦 Running v4.0.1 migrations...
+📦 Running v4.0.2 migrations...
    ✅ Updated .context-config.json version
    ✅ No breaking changes
 ```
@@ -105,8 +105,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 4.0.1
-Latest Version: 4.0.1
+Current Version: 4.0.2
+Latest Version: 4.0.2
 
 ✅ Already up to date!
 
@@ -132,10 +132,10 @@ Your AI Context System is running the latest version.
    ✅ Templates valid markdown
 
 📝 Updating configuration...
-   ✅ Updated .context-config.json to v4.0.1
+   ✅ Updated .context-config.json to v4.0.2
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ UPDATE COMPLETE - v4.0.1
+✅ UPDATE COMPLETE - v4.0.2
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Updated:
@@ -301,7 +301,7 @@ chmod +x scripts/*.sh
 # Manually update version
 # Edit context/.context-config.json:
 {
-  "version": "4.0.1",  # Update this
+  "version": "4.0.2",  # Update this
   ...
 }
 ```
