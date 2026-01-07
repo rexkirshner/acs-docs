@@ -75,14 +75,13 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.0.1** - Bug Fixes & Framework Improvements
+**v4.0.2** - Graceful File Existence Detection
 
-Patch release with fixes from first user feedback:
-- Fixed ORGANIZATION.md download URL in installer
-- Fixed session number detection (handles gaps from archiving)
-- Fixed consistency check validation logic
-- Added manual fallbacks for audit helper functions
-- Added framework-specific patterns (Svelte, Vue) to audits
+Patch release with improved handling of partial context setups:
+- Commands now detect which context files exist before proceeding
+- Gracefully skip steps for missing files with clear warnings
+- Suggest `/init-context` when multiple core files are missing
+- Dynamic final reports showing exactly what was updated vs skipped
 
 **v4.0.0** introduced the Modular Code Review System with 8 specialized audit commands:
 
