@@ -323,7 +323,7 @@ pwd  # Should be project root
 
 **Symptoms:**
 ```
-⚠️  Update available: v4.0.1 (you have v3.0.0)
+⚠️  Update available: v4.0.2 (you have v3.0.0)
 ```
 
 **Solution:**
