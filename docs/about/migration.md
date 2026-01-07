@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.0.1
+## Current Version: v4.0.2
 
-Latest stable release with bug fixes. [See changelog](/about/changelog) for details.
+Latest stable release with graceful file existence detection. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,26 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.0.0 → v4.0.1 (Current)
+### v4.0.1 → v4.0.2 (Current)
+
+**Patch release:** Graceful handling of partial context setups.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's Fixed:**
+- File existence detection in `/save-full`, `/save`, and `/review-context`
+- Commands now gracefully skip steps for missing files instead of failing
+- Better error handling for projects with partial context installations
+
+**What's New:**
+- Dynamic final reports showing exactly what was updated vs. skipped
+- Test suite for file detection (`scripts/tests/test-file-detection.sh`)
+
+---
+
+### v4.0.0 → v4.0.1
 
 **Patch release:** Bug fixes from first user feedback.
 
@@ -413,7 +432,12 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v4.0.1 (Current)
+### v4.0.2 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Graceful file existence detection
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.0.1
 - ✅ No breaking changes (patch release)
 - ✅ Bug fixes and framework improvements
 - ✅ Simple upgrade: `/update-context-system`
@@ -589,7 +613,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v4.0.1
+Commands: v4.0.2
 Context: v3.0.0
 ```
 
@@ -598,7 +622,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "4.0.1"  # Update this
+  "version": "4.0.2"  # Update this
 }
 
 # Then:
@@ -638,9 +662,9 @@ No deprecations currently planned for v4.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v4.0.1  # Works
-v3.5.0 → v4.0.1  # Works
-v4.0.0 → v4.0.1  # Works
+v2.0.0 → v4.0.2  # Works
+v3.5.0 → v4.0.2  # Works
+v4.0.0 → v4.0.2  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -648,7 +672,7 @@ v4.0.0 → v4.0.1  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 4.0.1
+# Should show: 4.0.2
 
 # Test command
 /review-context
