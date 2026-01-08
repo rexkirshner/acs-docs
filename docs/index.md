@@ -75,18 +75,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.1.1** - Context Completeness Detection
+**v4.2.0** - User Feedback Fixes
 
-Latest release ensures context documentation actually gets filled in:
-- **Context completeness detection** - Detects unfilled `[FILL:...]` placeholders
-- **Project auto-detection** - Automatically gathers project name, tech stack, type from codebase
-- **Smart warnings** - `/save` warns when CONTEXT.md has 5+ unfilled placeholders
-- **Template guidance** - `/save-full` and `/init-context` actively guide filling in templates
+Bug fixes and UX improvements based on real user feedback:
+- **Bash operator precedence fix** - Fixed context directory detection in `/save-full`
+- **Session regex fix** - Fixed session number extraction to ignore template text
+- **Date warning fix** - Changed misleading date mismatch warning to informational note
+- **Already-initialized detection** - `/init-context` and `/migrate-context` warn if ACS already installed
+- **CLAUDE.md detection** - Shows integration guidance when existing CLAUDE.md found
+- **128 tests passing** (78 unit + 30 upgrade + 20 v4.2.0)
 
-**v4.1.0** added documentation health checking:
-- Detects missing or stale documentation files
-- Integrated into `/review-context` and `/save-full`
-- 78/78 tests passing
+**v4.1.x** added context completeness detection and documentation health checking.
 
 **v4.0.0** introduced the Modular Code Review System with 8 specialized audit commands:
 
