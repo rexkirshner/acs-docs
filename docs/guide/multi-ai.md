@@ -24,7 +24,7 @@ The AI Context System works with any AI coding assistant—built on universal co
 ### Claude Code (Fully Optimized)
 
 **Built-in features:**
-- ✅ 14 slash commands (`/save`, `/save-full`, `/init-context`, etc.)
+- ✅ 22 slash commands (`/save`, `/save-full`, `/init-context`, `/code-review`, etc.)
 - ✅ TodoWrite integration (automatic task state capture)
 - ✅ Interactive workflows (approval checkpoints, validation prompts)
 - ✅ Command system (`.claude/commands/` architecture)
