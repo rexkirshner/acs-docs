@@ -47,8 +47,8 @@ Contains:
 ```markdown
 # AI Context System - Project Export
 
-**Exported:** 2025-10-23 14:30:00
-**Version:** 4.2.0
+**Exported:** 2026-01-08 14:30:00
+**Version:** 4.2.1
 **Project:** my-app
 
 ## Table of Contents
@@ -108,7 +108,7 @@ Merges all content with:
 **Export Information:**
 - Date: 2025-10-23 14:30:00
 - Exporter: Claude Code v1.5
-- System Version: 4.2.0
+- System Version: 4.2.1
 - Files Included: 4
 - Total Size: 45,234 words
 ```
@@ -134,8 +134,8 @@ Share this file with incoming AI agent or developer
 ```markdown
 # AI Context System - my-app Export
 
-**Exported:** 2025-10-23 14:30:00 UTC
-**Version:** 4.2.0
+**Exported:** 2026-01-08 14:30:00 UTC
+**Version:** 4.2.1
 **Project:** my-app (Next.js application)
 **Phase:** MVP Development - Authentication Sprint
 
@@ -237,8 +237,8 @@ Only CONTEXT.md, STATUS.md, DECISIONS.md (for quick orientation).
 Exports as structured JSON for programmatic access:
 ```json
 {
-  "exported": "2025-10-23T14:30:00Z",
-  "version": "4.2.0",
+  "exported": "2026-01-08T14:30:00Z",
+  "version": "4.2.1",
   "project": {
     "name": "my-app",
     "phase": "MVP Development"
