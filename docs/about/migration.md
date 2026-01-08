@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.0.2
+## Current Version: v4.1.1
 
-Latest stable release with graceful file existence detection. [See changelog](/about/changelog) for details.
+Latest stable release with context completeness detection and project auto-detection. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,40 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.0.1 → v4.0.2 (Current)
+### v4.1.0 → v4.1.1 (Current)
+
+**Patch release:** Context completeness detection and project auto-detection.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's New:**
+- **Context completeness detection** - Warns when CONTEXT.md has unfilled placeholders
+- **Project auto-detection** - Automatically gathers project name, tech stack, type from codebase
+- **`/save` warning** - Step 7 warns when CONTEXT.md has 5+ unfilled `[FILL:...]` placeholders
+- **`/save-full` template detection** - Step 8 shows auto-detected project info when template-only detected
+- **`/init-context` validation** - Step 8 ensures AI fills in template placeholders
+
+---
+
+### v4.0.2 → v4.1.0
+
+**Minor release:** Documentation health checking and shell robustness.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's New:**
+- **Documentation health check** - New `check_documentation_health()` function
+- **`get_repo_root()` function** - Reliable repository root detection
+- **`color_echo()` function** - Portable color output
+- **Post-upgrade commit guidance** - Step 7 in `/update-context-system` suggests commit
+
+---
+
+### v4.0.1 → v4.0.2
 
 **Patch release:** Graceful handling of partial context setups.
 
