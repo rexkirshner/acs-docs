@@ -2,6 +2,73 @@
 
 All notable changes to the AI Context System.
 
+## [4.1.1] - 2026-01-07
+
+### Added - Context Completeness Detection
+
+**PATCH RELEASE** - Ensures context documentation actually gets filled in
+
+#### Context Completeness Detection
+
+- **`count_unfilled_placeholders()`** - New function in common-functions.sh that counts `[FILL:...]` placeholders in files
+- **`/save` warning** - Step 7 warns when CONTEXT.md has 5+ unfilled placeholders
+- **`/save-full` template detection** - Step 8 checks placeholders FIRST, shows auto-detected project info when template-only detected
+- **`/init-context` validation** - Step 8 (CRITICAL) ensures AI fills in template placeholders before completing
+
+#### Project Auto-Detection
+
+New functions automatically gather project info from the codebase:
+
+- `detect_project_name()` - From package.json, Cargo.toml, pyproject.toml, or directory name
+- `detect_project_description()` - From package.json or README.md
+- `detect_repo_url()` - From git remote (converts SSH to HTTPS)
+- `detect_tech_stack()` - Detects frameworks (Next.js, React, Vue), languages (TypeScript), databases (PostgreSQL, MongoDB), hosting (Vercel, AWS)
+- `detect_project_type()` - Infers web-app, api, cli, library, or unknown
+
+#### Why This Matters
+
+User feedback revealed that CONTEXT.md was remaining as templates despite regular `/save` and `/save-full` usage. Context files left as templates defeat the purpose of the system—AI agents and future sessions need actual project information, not placeholder text.
+
+---
+
+## [4.1.0] - 2026-01-06
+
+### Added - Documentation Health Checking
+
+**MINOR RELEASE** - Documentation health checks and shell robustness improvements
+
+#### Documentation Health Check
+
+New `check_documentation_health()` function in common-functions.sh that:
+
+- Detects missing CLAUDE.md or CONTEXT.md files
+- Finds unfilled `[FILL:...]` template placeholders
+- Identifies stale documentation (CLAUDE.md significantly older than CONTEXT.md)
+- Detects tech stack drift between files
+- Provides actionable recommendations
+
+Integrated into:
+- `/review-context` (Step 1.7)
+- `/save-full` final report
+
+#### Shell Robustness
+
+- **`get_repo_root()` function** - Reliable repository root detection for monorepo support
+- **`color_echo()` function** - Portable color output using printf for cross-shell compatibility
+- **Post-upgrade commit guidance** - Step 7 in `/update-context-system` suggests commit command
+
+#### Test Coverage
+
+26 new tests added:
+- `test-repo-root.sh` (4 tests)
+- `test-quick-reference-edge-cases.sh` (6 tests)
+- `test-color-echo.sh` (6 tests)
+- `test-doc-health-check.sh` (10 tests)
+
+Total: 78/78 tests passing
+
+---
+
 ## [4.0.2] - 2026-01-06
 
 ### Fixed
