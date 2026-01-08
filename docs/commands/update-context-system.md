@@ -67,7 +67,7 @@ Updates commands, scripts, and templates while preserving your context files:
 📥 Downloading from GitHub...
    Repository: ai-context-system
    Branch: main
-   Version: 4.1.1 → 4.2.0
+   Version: [current] → [latest]
 ```
 
 ### Step 3: Update Files
@@ -91,7 +91,7 @@ Updates commands, scripts, and templates while preserving your context files:
 ### Step 5: Run Migration (If Needed)
 
 ```bash
-📦 Running v4.2.0 migrations...
+📦 Running migrations (if needed)...
    ✅ Updated .context-config.json version
    ✅ No breaking changes
 ```
@@ -106,25 +106,19 @@ $ /update-context-system
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Current Version: 4.2.0
-Latest Version: 4.2.0
-
-✅ Already up to date!
-
-Your AI Context System is running the latest version.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Latest Version: 4.2.1
 
 🔄 Creating backup...
-   ✅ .claude/ → .claude-backup-2025-10-23/
-   ✅ scripts/ → .claude-backup-2025-10-23/scripts/
+   ✅ .claude/ → .claude-backup-20260108/
+   ✅ scripts/ → .claude-backup-20260108/scripts/
 
 📥 Downloading latest version...
    ✅ Downloaded from GitHub (main branch)
 
 🔄 Updating files...
-   ✅ .claude/commands/ (13 commands updated)
+   ✅ .claude/commands/ (22 commands updated)
    ✅ scripts/ (8 scripts updated)
-   ✅ templates/ (6 templates updated)
+   ✅ templates/ (16 templates updated)
 
 ✅ Validating installation...
    ✅ All commands executable
@@ -132,29 +126,32 @@ Your AI Context System is running the latest version.
    ✅ Templates valid markdown
 
 📝 Updating configuration...
-   ✅ Updated .context-config.json to v4.2.0
+   ✅ Updated .context-config.json
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ UPDATE COMPLETE - v4.2.0
+✅ UPDATE COMPLETE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Updated:
-  ✅ Commands (13 files)
+  ✅ Commands (22 files)
   ✅ Scripts (8 files)
-  ✅ Templates (6 files)
+  ✅ Templates (16 files)
 
 Preserved:
   ✅ context/ (your documentation - unchanged)
   ✅ artifacts/ (your outputs - unchanged)
 
 Backup Location:
-  📁 .claude-backup-2025-10-23/
+  📁 .claude-backup-20260108/
   (Remove after verifying update successful)
 
+⚠️  IMPORTANT: Restart Claude Code to use new commands
+   Claude Code caches slash commands at session start.
+
 Next Steps:
-  1. Test commands: /review-context
-  2. Verify everything works
-  3. Delete backup: rm -rf .claude-backup-2025-10-23/
+  1. Restart Claude Code (exit and reopen)
+  2. Test commands: /review-context
+  3. Delete backup: rm -rf .claude-backup-20260108/
 
 Full changelog: https://github.com/rexkirshner/ai-context-system/blob/main/CHANGELOG.md
 ```
@@ -301,7 +298,7 @@ chmod +x scripts/*.sh
 # Manually update version
 # Edit context/.context-config.json:
 {
-  "version": "4.2.0",  # Update this
+  "version": "4.2.1",  # Update to current version
   ...
 }
 ```
