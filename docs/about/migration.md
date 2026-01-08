@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.1.1
+## Current Version: v4.2.0
 
-Latest stable release with context completeness detection and project auto-detection. [See changelog](/about/changelog) for details.
+Latest stable release with bug fixes and UX improvements based on user feedback. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,30 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.1.0 → v4.1.1 (Current)
+### v4.1.1 → v4.2.0 (Current)
+
+**Minor release:** Bug fixes and UX improvements based on user feedback.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's Fixed:**
+- **Bash operator precedence** - Fixed context directory detection in `/save-full` (changed from && || chain to if-elif-else)
+- **Session regex** - Fixed session number extraction to ignore template text (now requires `## Session N |` format)
+- **Date warning** - Changed misleading date mismatch warning in `/review-context` to informational note (CONTEXT.md vs STATUS.md dates differ by design)
+
+**What's New:**
+- **Already-initialized detection** - `/init-context` and `/migrate-context` warn if ACS already installed
+- **CLAUDE.md detection** - Shows integration guidance when existing CLAUDE.md found (size-aware messaging)
+
+**Testing:**
+- 20 new tests for v4.2.0 bug fixes
+- 128 total tests passing (78 unit + 30 upgrade + 20 v4.2.0)
+
+---
+
+### v4.1.0 → v4.1.1
 
 **Patch release:** Context completeness detection and project auto-detection.
 
@@ -465,7 +488,23 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v4.0.2 (Current)
+### v4.2.0 (Current)
+- ✅ No breaking changes (minor release)
+- ✅ Bug fixes and UX improvements
+- ✅ 128 tests passing
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.1.1
+- ✅ No breaking changes (patch release)
+- ✅ Context completeness detection
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.1.0
+- ✅ No breaking changes (minor release)
+- ✅ Documentation health checking
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.0.2
 - ✅ No breaking changes (patch release)
 - ✅ Graceful file existence detection
 - ✅ Simple upgrade: `/update-context-system`
@@ -646,7 +685,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v4.0.2
+Commands: v4.2.0
 Context: v3.0.0
 ```
 
@@ -655,7 +694,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "4.0.2"  # Update this
+  "version": "4.2.0"  # Update this
 }
 
 # Then:
@@ -695,9 +734,10 @@ No deprecations currently planned for v4.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v4.0.2  # Works
-v3.5.0 → v4.0.2  # Works
-v4.0.0 → v4.0.2  # Works
+v2.0.0 → v4.2.0  # Works
+v3.5.0 → v4.2.0  # Works
+v4.0.0 → v4.2.0  # Works
+v4.1.1 → v4.2.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -705,7 +745,7 @@ v4.0.0 → v4.0.2  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 4.0.2
+# Should show: 4.2.0
 
 # Test command
 /review-context
