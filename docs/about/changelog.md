@@ -2,6 +2,48 @@
 
 All notable changes to the AI Context System.
 
+## [4.2.1] - 2026-01-08
+
+### Fixed - UX Polish for Update Process
+
+**PATCH RELEASE** - Addresses UX issues identified during real v4.0.2 → v4.2.0 upgrade experiences.
+
+#### Bug Fixes
+
+**Update Notice During Update**
+- **Problem:** When running `/update-context-system`, the "Run /update-context-system to upgrade" message appeared
+- **Impact:** Confusing since user was already running the update command
+- **Fixed:** Added `ACS_UPDATING` environment variable check to suppress notice during updates
+- **Location:** `scripts/common-functions.sh` check_for_updates() and `.claude/commands/update-context-system.md`
+
+#### Removed
+
+**Outdated update-guide.md**
+- Removed 803-line `.claude/docs/update-guide.md` documenting v3.3.0 systems
+- File showed "What's New in v3.3.0" which confused users at v4.2.x
+- Documented section-based template updates that no longer exist in v4
+- Referenced `--accept-all` flag that doesn't exist in current implementation
+- Updated `install.sh` to remove reference
+
+#### Testing
+
+- **8 new tests** in `scripts/tests/test-v421-ux-polish.sh`
+  - 4 tests for ACS_UPDATING suppression
+  - 4 tests for update-guide.md removal
+- **86+ total tests passing**
+
+#### Code Quality Improvements (Audit Fixes)
+
+During the v4.2.1 audit, several maintenance issues were fixed:
+- Updated fallback version in installer from 3.0.0 to 4.0.0
+- Removed hardcoded project name from update-context-system.md
+- Made test runner read version from VERSION file dynamically
+- Updated README.md to reference VERSION file instead of hardcoded version
+- Fixed "CCS" → "ACS" terminology in feedback template
+- Removed reference to non-existent file in .claude/docs/README.md
+
+---
+
 ## [4.2.0] - 2026-01-07
 
 ### Fixed - User Feedback Bugs
