@@ -148,7 +148,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "4.0.2",
+  "version": "4.1.1",
   "project": {
     "name": "your-project",
     "type": "application",
@@ -159,6 +159,29 @@ Creates `.context-config.json` with:
 ```
 
 This config drives the **auto-generated Quick Reference** in STATUS.md.
+
+### Step 3.5: Auto-Detect Project Info (v4.1.1)
+
+::: tip New in v4.1.1
+/init-context now automatically detects project information from your codebase.
+:::
+
+Before creating files, the command gathers info from:
+- `package.json` (name, description, dependencies)
+- `Cargo.toml`, `pyproject.toml`, `go.mod` (language-specific projects)
+- `git remote` (repository URL)
+- Project files (framework, database, hosting detection)
+
+```bash
+📊 Auto-Detected Project Information:
+  Project Name: my-app
+  Description: A Next.js web application with user authentication
+  Repository: https://github.com/user/my-app
+  Tech Stack: Next.js, TypeScript, PostgreSQL, Prisma
+  Project Type: web-app
+```
+
+This information is used to pre-populate templates, reducing manual work.
 
 ### Step 4: Ready to Use
 
@@ -219,6 +242,32 @@ Documentation: https://acs.rexkirshner.com/
 ```
 
 ## Best Practices
+
+### Fill In Template Placeholders (Critical!)
+
+::: warning New in v4.1.1
+/init-context now validates that template placeholders are filled in before completing.
+:::
+
+After file creation, the command shows unfilled `[FILL:...]` placeholders:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  CRITICAL: Fill In Template Placeholders
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTEXT.md has 17 [FILL:...] placeholders that need your project info.
+
+Key placeholders to fill:
+  • [FILL: Project Name] - Use: my-app (auto-detected)
+  • [FILL: 2-3 sentence description] - Use: A Next.js web application...
+  • [FILL: Primary goal 1] - Your project's main goal
+  • [FILL: e.g., Next.js 15] - Use: Next.js (auto-detected)
+
+Please fill these in now to ensure AI agents have proper context.
+```
+
+**Why this matters:** Context files left as templates defeat the purpose of the system. AI agents need actual project information, not placeholder text.
 
 ### Customize CONTEXT.md Immediately
 

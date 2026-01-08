@@ -264,6 +264,31 @@ Checks:
 - **Session count** accuracy in SESSIONS.md
 - Warns about discrepancies with specific, actionable messages
 
+### Step 4.5: Documentation Health Check (v4.1.0)
+
+::: tip New in v4.1.0
+Comprehensive documentation health analysis.
+:::
+
+Checks for:
+- **Missing files** - CLAUDE.md or CONTEXT.md not found
+- **Template placeholders** - Unfilled `[FILL:...]` markers
+- **Stale documentation** - CLAUDE.md significantly older than CONTEXT.md
+- **Tech stack drift** - Mismatches between files
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 DOCUMENTATION HEALTH CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CLAUDE.md exists (3 days old)
+✅ CONTEXT.md exists (1 day old)
+⚠️  CONTEXT.md has 5 unfilled [FILL:...] placeholders
+
+Recommendations:
+  • Fill in remaining placeholders in context/CONTEXT.md
+```
+
 ### Step 5: Format Output
 
 Pretty-prints information for quick scanning
