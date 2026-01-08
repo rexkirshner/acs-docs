@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.2.0
+## Current Version: v4.2.1
 
-Latest stable release with bug fixes and UX improvements based on user feedback. [See changelog](/about/changelog) for details.
+Latest stable release with UX polish for the update process. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,31 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.1.1 → v4.2.0 (Current)
+### v4.2.0 → v4.2.1 (Current)
+
+**Patch release:** UX polish for update process.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - no breaking changes.
+:::
+
+**What's Fixed:**
+- **Update notice during update** - No more confusing "Run /update-context-system" message while already running the update
+- **Removed outdated docs** - Cleaned up 803-line update-guide.md that showed v3.3.0 content
+
+**Code Quality Improvements:**
+- Updated installer fallback version from 3.0.0 to 4.0.0
+- Removed hardcoded project names from update command
+- Test runner now reads version dynamically from VERSION file
+- Fixed "CCS" → "ACS" terminology in feedback template
+
+**Testing:**
+- 8 new tests for v4.2.1 UX polish
+- 86+ total tests passing
+
+---
+
+### v4.1.1 → v4.2.0
 
 **Minor release:** Bug fixes and UX improvements based on user feedback.
 
@@ -488,10 +512,15 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v4.2.0 (Current)
+### v4.2.1 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ UX polish for update process
+- ✅ 86+ tests passing
+- ✅ Simple upgrade: `/update-context-system`
+
+### v4.2.0
 - ✅ No breaking changes (minor release)
 - ✅ Bug fixes and UX improvements
-- ✅ 128 tests passing
 - ✅ Simple upgrade: `/update-context-system`
 
 ### v4.1.1
@@ -685,7 +714,7 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v4.2.0
+Commands: v4.2.1
 Context: v3.0.0
 ```
 
@@ -694,7 +723,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "4.2.0"  # Update this
+  "version": "4.2.1"  # Update this
 }
 
 # Then:
@@ -734,10 +763,10 @@ No deprecations currently planned for v4.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v4.2.0  # Works
-v3.5.0 → v4.2.0  # Works
-v4.0.0 → v4.2.0  # Works
-v4.1.1 → v4.2.0  # Works
+v2.0.0 → v4.2.1  # Works
+v3.5.0 → v4.2.1  # Works
+v4.0.0 → v4.2.1  # Works
+v4.2.0 → v4.2.1  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -745,7 +774,7 @@ v4.1.1 → v4.2.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 4.2.0
+# Should show: 4.2.1
 
 # Test command
 /review-context
