@@ -47,14 +47,14 @@ After running `/init-context`, you'll have:
 
 ```
 your-project/
+├── CLAUDE.md                    # Claude Code entry point (auto-loaded)
 ├── context/
 │   ├── .context-config.json     # Project configuration
-│   ├── claude.md                # Claude Code entry point
 │   ├── CONTEXT.md               # Project orientation
 │   ├── STATUS.md                # Current state
 │   ├── DECISIONS.md             # Decision log
 │   └── SESSIONS.md              # History
-├── .claude/commands/            # 14 slash commands
+├── .claude/commands/            # 22 slash commands
 ├── scripts/                     # Helper utilities
 └── templates/                   # Documentation templates
 ```
