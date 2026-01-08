@@ -2,6 +2,60 @@
 
 All notable changes to the AI Context System.
 
+## [4.2.0] - 2026-01-07
+
+### Fixed - User Feedback Bugs
+
+**MINOR RELEASE** - Bug fixes and UX improvements based on real user feedback from v4.0.2 deployment.
+
+#### Bug Fixes
+
+**Bash Operator Precedence in `/save-full`**
+- **Problem:** Context directory detection used `test && echo || test && echo` chain with incorrect operator precedence
+- **Impact:** Multiple branches could execute in edge cases
+- **Fixed:** Changed to explicit if-elif-else structure
+- **Also Added:** Helpful error message when context/ not found
+
+**Session Number Regex in `/save-full`**
+- **Problem:** Regex `^## Session [0-9]+` matched template text like "## Session Index" headings
+- **Impact:** Incorrect session numbering
+- **Fixed:** Changed to `^## Session [0-9]+ \|` requiring the pipe separator that real session entries have
+- **Now Ignores:** Session Index headings, template placeholders like "## Session [N]"
+
+**Date Warning in `/review-context`**
+- **Problem:** Warning ⚠️ shown when CONTEXT.md and STATUS.md had different dates
+- **Impact:** Users thought this was a problem requiring action
+- **Reality:** Different dates are BY DESIGN (CONTEXT.md is static, STATUS.md is dynamic)
+- **Fixed:** Changed to informational ℹ️ note explaining the static vs dynamic layer design
+
+#### New Features
+
+**Already-Initialized Detection (Step 0.7)**
+
+Added to both `/init-context` and `/migrate-context`:
+- Checks for existing `context/.context-config.json`
+- If found, shows warning with existing context files
+- Presents options: continue, reset to fresh, or cancel
+- Prevents confusion from running init on initialized project
+
+**CLAUDE.md Detection (Step 0.8)**
+
+Added to both `/init-context` and `/migrate-context`:
+- Detects existing CLAUDE.md at project root
+- For large files (>5KB): Shows full ACS integration strategy
+- For small files (<5KB): Shows brief info message
+- Explains how ACS supplements existing documentation
+- Uses cross-platform size formatting (works on macOS and Linux)
+
+#### Testing
+
+- **20 new tests** in `scripts/tests/test-v420-bug-fixes.sh`
+  - 13 tests for bug fixes
+  - 7 tests for improvements
+- **128 total tests passing** (78 unit + 30 upgrade + 20 v4.2.0)
+
+---
+
 ## [4.1.1] - 2026-01-07
 
 ### Added - Context Completeness Detection
