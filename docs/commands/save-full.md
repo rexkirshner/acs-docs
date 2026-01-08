@@ -213,6 +213,40 @@ If complexity demands:
 - Update ARCHITECTURE.md (major system design changes)
 - Update PRD.md (product vision changes)
 
+### Step 7: Template Detection (v4.1.1)
+
+::: tip New in v4.1.1
+/save-full now detects unfilled template placeholders and helps you fill them in.
+:::
+
+Before completing, /save-full checks CONTEXT.md for `[FILL:...]` placeholders:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  ACTION REQUIRED: CONTEXT.md Needs Information
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTEXT.md has 17 unfilled [FILL:...] placeholders.
+This file appears to still be in template state.
+
+📊 Auto-Detected Project Information:
+  Project Name: my-app
+  Description: A Next.js web application
+  Repository: https://github.com/user/my-app
+  Tech Stack: Next.js, TypeScript, PostgreSQL
+  Project Type: web-app
+
+Please fill in the [FILL:...] placeholders in context/CONTEXT.md
+using the auto-detected information above as a starting point.
+```
+
+**Project auto-detection** gathers info from:
+- `package.json` (name, description, dependencies)
+- `git remote` (repository URL)
+- Project files (framework, database, hosting detection)
+
+This ensures context files contain actual project information instead of placeholder text.
+
 ## Mental Models Section (Critical!)
 
 This section is **why /save-full is essential for AI collaboration**:

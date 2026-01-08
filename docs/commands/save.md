@@ -227,6 +227,30 @@ When documenting approach:
 - See DEC-012 for library choice rationale
 ```
 
+## Context Completeness Check
+
+::: tip New in v4.1.1
+/save now warns when CONTEXT.md has too many unfilled placeholders.
+:::
+
+After updating STATUS.md, /save checks if CONTEXT.md still has template placeholders:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  CONTEXT.md Needs Attention
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTEXT.md has 17 unfilled [FILL:...] placeholders.
+This file appears to still be in template state.
+
+Recommendation: Run /save-full which will guide you through filling
+in your project information, or manually edit context/CONTEXT.md
+```
+
+**Why this matters:** Context files left as templates defeat the purpose of the system. AI agents and future sessions need actual project information, not placeholder text.
+
+This is a **non-blocking warning** - the save still completes, but you should fill in CONTEXT.md when convenient.
+
 ## What /save Does NOT Do
 
 ❌ Create SESSIONS.md entries (use /save-full)
