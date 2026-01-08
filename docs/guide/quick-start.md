@@ -13,7 +13,7 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 **What this does:**
 - Downloads system files to current directory
 - Creates `.claude/`, `scripts/`, `templates/` folders
-- Installs 14 slash commands
+- Installs 22 slash commands
 - Sets up configuration
 
 ### Verify Installation
@@ -27,7 +27,8 @@ ls -la .claude/commands/
 # save.md
 # save-full.md
 # review-context.md
-# ... and 10 more commands
+# code-review.md (+ 8 specialized audit commands)
+# ... and more
 ```
 
 ## Initialize Context (3 minutes)
@@ -40,13 +41,14 @@ ls -la .claude/commands/
 
 **What happens:**
 1. Creates `context/` directory
-2. Generates 5 core files:
-   - `claude.md` - Entry point for AI
-   - `CONTEXT.md` - Project orientation
-   - `STATUS.md` - Current state
-   - `DECISIONS.md` - Decision log
-   - `SESSIONS.md` - Session history
-3. Creates `.context-config.json` - Project configuration
+2. Generates core files:
+   - `./CLAUDE.md` - Entry point (at project root, auto-loaded by Claude Code)
+   - `context/CONTEXT.md` - Project orientation
+   - `context/STATUS.md` - Current state
+   - `context/DECISIONS.md` - Decision log
+   - `context/SESSIONS.md` - Session history
+3. Creates `context/.context-config.json` - Project configuration
+4. Auto-detects project info from package.json, git, etc. (v4.1.1)
 
 ### Fill Out CONTEXT.md
 
