@@ -86,7 +86,7 @@ Since Cursor doesn't have slash commands:
 All workflows documented in .claude/commands/ are tool-agnostic.
 Follow the same patterns manually.
 
-See [Multi-AI Support](/guide/multi-ai-support) for details.
+See [Multi-AI Support](/guide/multi-ai) for details.
 ```
 
 ## Multi-AI Setup
@@ -129,5 +129,5 @@ If team uses multiple tools, document which tool each person uses.
 
 ## See Also
 
-- [Multi-AI Support](/guide/multi-ai-support) - Using multiple AI tools
+- [Multi-AI Support](/guide/multi-ai) - Using multiple AI tools
 - [CONTEXT.md Guide](/guide/context-file) - Platform-neutral docs
