@@ -75,13 +75,18 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.0.2** - Graceful File Existence Detection
+**v4.1.1** - Context Completeness Detection
 
-Patch release with improved handling of partial context setups:
-- Commands now detect which context files exist before proceeding
-- Gracefully skip steps for missing files with clear warnings
-- Suggest `/init-context` when multiple core files are missing
-- Dynamic final reports showing exactly what was updated vs skipped
+Latest release ensures context documentation actually gets filled in:
+- **Context completeness detection** - Detects unfilled `[FILL:...]` placeholders
+- **Project auto-detection** - Automatically gathers project name, tech stack, type from codebase
+- **Smart warnings** - `/save` warns when CONTEXT.md has 5+ unfilled placeholders
+- **Template guidance** - `/save-full` and `/init-context` actively guide filling in templates
+
+**v4.1.0** added documentation health checking:
+- Detects missing or stale documentation files
+- Integrated into `/review-context` and `/save-full`
+- 78/78 tests passing
 
 **v4.0.0** introduced the Modular Code Review System with 8 specialized audit commands:
 
