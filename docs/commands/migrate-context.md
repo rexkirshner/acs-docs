@@ -72,6 +72,46 @@ Designed for mature projects with existing documentation. This command:
 
 ## How It Works
 
+### Step 0.5: Already-Initialized Detection (v4.2.0)
+
+::: tip New in v4.2.0
+/migrate-context now detects if ACS is already installed and prevents accidental re-initialization.
+:::
+
+If the command finds an existing `context/.context-config.json`:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  AI Context System Already Initialized
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Found existing context/.context-config.json
+
+Existing context files:
+  ✅ CONTEXT.md (exists)
+  ✅ STATUS.md (exists)
+  ✅ DECISIONS.md (exists)
+  ✅ SESSIONS.md (exists)
+
+Options:
+  [C] Continue anyway (may overwrite files)
+  [R] Reset to fresh installation
+  [X] Cancel and keep existing
+```
+
+### Step 0.6: CLAUDE.md Detection (v4.2.0)
+
+::: tip New in v4.2.0
+/migrate-context now detects existing CLAUDE.md files and provides integration guidance.
+:::
+
+If an existing CLAUDE.md is found at the project root, the command shows how ACS context files supplement (not replace) your existing CLAUDE.md:
+
+- **CLAUDE.md**: Project rules, coding standards, AI instructions
+- **context/CONTEXT.md**: Project orientation, tech stack, goals
+- **context/STATUS.md**: Current state, work in progress
+- **context/SESSIONS.md**: Session history, mental models
+
 ### Step 1: Scan Existing Structure
 
 Automatically detects:
