@@ -75,15 +75,14 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.2.0** - User Feedback Fixes
+**v4.2.1** - UX Polish for Update Process
 
-Bug fixes and UX improvements based on real user feedback:
-- **Bash operator precedence fix** - Fixed context directory detection in `/save-full`
-- **Session regex fix** - Fixed session number extraction to ignore template text
-- **Date warning fix** - Changed misleading date mismatch warning to informational note
-- **Already-initialized detection** - `/init-context` and `/migrate-context` warn if ACS already installed
-- **CLAUDE.md detection** - Shows integration guidance when existing CLAUDE.md found
-- **128 tests passing** (78 unit + 30 upgrade + 20 v4.2.0)
+Latest fixes based on real upgrade experience feedback:
+- **Update notice suppression** - No more confusing "Run /update-context-system" during updates
+- **Removed outdated docs** - Cleaned up 800+ lines of v3.x documentation
+- **86+ tests passing** across all modules
+
+**v4.2.0** added bash operator fixes, session regex improvements, and CLAUDE.md detection.
 
 **v4.1.x** added context completeness detection and documentation health checking.
 
