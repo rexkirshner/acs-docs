@@ -148,7 +148,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "4.1.1",
+  "version": "4.2.0",
   "project": {
     "name": "your-project",
     "type": "application",
@@ -182,6 +182,67 @@ Before creating files, the command gathers info from:
 ```
 
 This information is used to pre-populate templates, reducing manual work.
+
+### Step 3.6: Already-Initialized Detection (v4.2.0)
+
+::: tip New in v4.2.0
+/init-context now detects if ACS is already installed and prevents accidental re-initialization.
+:::
+
+If the command finds an existing `context/.context-config.json`:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  AI Context System Already Initialized
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Found existing context/.context-config.json
+
+Existing context files:
+  ✅ CONTEXT.md (exists)
+  ✅ STATUS.md (exists)
+  ✅ DECISIONS.md (exists)
+  ✅ SESSIONS.md (exists)
+
+Options:
+  [C] Continue anyway (may overwrite files)
+  [R] Reset to fresh installation
+  [X] Cancel and keep existing
+```
+
+This prevents confusion when running init on an already-initialized project.
+
+### Step 3.7: CLAUDE.md Detection (v4.2.0)
+
+::: tip New in v4.2.0
+/init-context now detects existing CLAUDE.md files and provides integration guidance.
+:::
+
+If an existing CLAUDE.md is found at the project root:
+
+**For large files (>5KB):**
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ℹ️  Existing CLAUDE.md Detected (12.3 KB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This file is larger than typical ACS templates.
+
+How ACS supplements existing CLAUDE.md:
+  • CLAUDE.md: Project rules, coding standards, AI instructions
+  • context/CONTEXT.md: Project orientation, tech stack, goals
+  • context/STATUS.md: Current state, work in progress
+  • context/SESSIONS.md: Session history, mental models
+
+Recommendation: Keep your CLAUDE.md for project rules,
+use context/ files for session state and continuity.
+```
+
+**For small files (<5KB):**
+```bash
+ℹ️  Note: Existing CLAUDE.md (2.1 KB) will be preserved.
+   ACS context/ files supplement, not replace, your CLAUDE.md.
+```
 
 ### Step 4: Ready to Use
 
