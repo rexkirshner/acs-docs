@@ -1,9 +1,9 @@
 # /code-review
 
-Master orchestrator for modular code reviews. Select and run specialized audits.
+Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
-::: tip New in v4.0.0
-`/code-review` has been transformed from a monolithic command into a modular orchestrator. It now coordinates 8 specialized audit commands and supports custom audits.
+::: tip Agent-Based Architecture (v5.0.0)
+`/code-review` now coordinates **8 specialist review agents**, each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists.
 :::
 
 ## Overview
@@ -206,6 +206,40 @@ Add to `context/.context-config.json`:
 ### Step 3: Automatic Pickup
 
 Custom audits automatically appear in the menu and can be run with `--api`.
+
+## Agent Contracts
+
+Each specialist agent declares its capabilities via a contract block:
+
+```json
+{
+  "id": "security-reviewer",
+  "prefix": "SEC",
+  "category": "security",
+  "applicability": {
+    "required_files": ["package.json"],
+    "triggers": ["auth", "login", "password", "token", "api"]
+  },
+  "focusAreas": ["authentication", "authorization", "injection", "xss"],
+  "outputFormat": "audit-report",
+  "tools": ["grep", "ast-analysis", "dependency-check"]
+}
+```
+
+**Contract fields:**
+- **id** - Unique agent identifier
+- **prefix** - Finding ID prefix (e.g., SEC-001)
+- **category** - Audit category for routing
+- **applicability** - When this agent is relevant
+- **focusAreas** - What the agent specializes in
+- **outputFormat** - Report format (validated by schema)
+- **tools** - Capabilities the agent can use
+
+The orchestrator uses contracts to:
+1. Automatically discover available agents
+2. Route reviews to appropriate specialists
+3. Validate agent outputs against schemas
+4. Build capability indexes for smart routing
 
 ## Migration from v3.x
 

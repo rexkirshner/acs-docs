@@ -23,8 +23,8 @@ Migrates existing documentation to AI Context System structure. Preserves all ex
 
 ## Code Review Commands
 
-::: tip New in v4.0.0
-The code review system is now modular. Use `/code-review` as the orchestrator or run individual audits directly.
+::: tip Agent-Based Architecture (v5.0.0)
+The code review system now uses **specialist agents** with self-declaring contracts. Each review domain is handled by a dedicated agent in `.claude/agents/` that declares its own capabilities via JSON Schema-validated contracts.
 :::
 
 ### [/code-review](/commands/code-review)
