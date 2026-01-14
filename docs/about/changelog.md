@@ -2,6 +2,157 @@
 
 All notable changes to the AI Context System.
 
+## [5.0.0] - 2026-01-13
+
+### Added - Agent-Based Code Review Architecture
+
+**MAJOR RELEASE** - Transforms code review from commands into an intelligent multi-agent system with formal contracts.
+
+#### Agent-Based Architecture
+
+**8 Specialist Review Agents**
+
+Each code review domain is now handled by a dedicated agent with a formal contract:
+
+| Agent | Focus | Key Capabilities |
+|-------|-------|------------------|
+| `security-reviewer` | OWASP Top 10 | Auth, injection, XSS, secrets, dependencies |
+| `performance-reviewer` | Core Web Vitals | LCP, INP, CLS, bundle analysis, runtime |
+| `accessibility-reviewer` | WCAG 2.1 AA | POUR principles, keyboard nav, ARIA |
+| `seo-reviewer` | Technical SEO | Metadata, JSON-LD, crawlability |
+| `database-reviewer` | Query optimization | N+1 detection, indexes, connection pooling |
+| `infrastructure-reviewer` | Serverless costs | Cold starts, rendering strategy, caching |
+| `type-safety-reviewer` | TypeScript | Strict mode, `any` tracking, Zod validation |
+| `test-coverage-reviewer` | Test quality | Coverage, pyramid, mock strategy, CI |
+
+**Self-Declaring Contracts**
+
+Agents declare their own capabilities via JSON Schema-validated contracts embedded in each agent file:
+
+```json
+{
+  "id": "security-reviewer",
+  "prefix": "SEC",
+  "category": "security",
+  "applicability": {
+    "required_files": ["package.json"],
+    "triggers": ["auth", "login", "password", "token", "api"]
+  },
+  "focusAreas": ["authentication", "authorization", "injection", "xss"],
+  "outputFormat": "audit-report",
+  "tools": ["grep", "ast-analysis", "dependency-check"]
+}
+```
+
+**Agent Discovery**
+
+The system automatically discovers agents by:
+1. Scanning `.claude/agents/` directory
+2. Parsing contract blocks from agent files
+3. Validating contracts against JSON Schema
+4. Building capability index for routing
+
+#### Session-Start Hooks
+
+**New: Automatic Context Health Checks**
+
+`.claude/hooks/session-start.sh` runs at the start of each Claude Code session:
+
+- Detects context directory (`context/` or `.context/`)
+- Checks STATUS.md freshness (warns if >7 days old)
+- Validates Quick Reference block presence
+- Detects missing Current Focus section
+- Identifies unclosed session markers in SESSIONS.md
+- Respects profile settings (skips on minimal profile)
+- Cross-platform compatible (macOS and Linux stat handling)
+
+#### Template Improvements
+
+**Invariants & Non-goals Section**
+
+New section in CONTEXT.template.md prevents AI from "helpfully" undoing intentional choices:
+
+```markdown
+## Invariants & Non-goals
+
+**Invariants (Do Not Change Without Discussion):**
+- [e.g., "No Redux - using React Context + Zustand by design"]
+
+**Non-goals (Not Now):**
+- [e.g., "Mobile app (web-first until v2)"]
+```
+
+**Open Loops Section**
+
+New section in SESSIONS.template.md captures unresolved questions:
+
+```markdown
+### Open Loops
+
+**Unresolved questions and uncertainties:**
+- [e.g., "Why does auth middleware sometimes return 401 on valid tokens?"]
+- [e.g., "Performance degrades with >1000 items - haven't profiled yet"]
+```
+
+#### Feedback Archiving
+
+**Upgrade Preservation**
+
+- User feedback in `context/context-feedback.md` is now archived during upgrades
+- Archived to `context/artifacts/feedback/feedback-vX.X.X-YYYY-MM-DD.md`
+- Template examples are excluded from entry detection
+- Feedback history preserved across version upgrades
+
+#### JSON Schemas
+
+**7 Validated Schemas**
+
+New `.claude/schemas/` directory with JSON Schema definitions:
+
+| Schema | Purpose |
+|--------|---------|
+| `agent-contract.json` | Agent capability contracts |
+| `audit-finding.json` | Individual audit findings |
+| `audit-report.json` | Complete audit reports |
+| `context-health.json` | Context health metrics |
+| `handoff-package.json` | Session handoff data |
+| `session-entry.json` | Session log entries |
+| `settings.json` | System configuration |
+
+#### Profile Settings
+
+**Configurable Profiles**
+
+Three profile levels in `.claude/settings.json`:
+
+- **minimal** - Quick saves only, hooks disabled
+- **standard** - Full context system (default)
+- **comprehensive** - Extended audits, detailed logging
+
+#### Testing
+
+**458 Tests Passing**
+
+Comprehensive test coverage across all components:
+
+| Category | Tests | Coverage |
+|----------|-------|----------|
+| Core Modules | 78 | Commands, helpers, detection |
+| Install Script | 31 | Structure, security, downloads |
+| Rollback Logic | 18 | Safety, user content protection |
+| Schema Validation | 45 | All 7 schemas validated |
+| Hooks Execution | 29 | Health checks, profiles |
+| Cross-Platform | 229 | stat, sed, date portability |
+| Template Improvements | 17 | Invariants, Open Loops |
+| Feedback Archiving | 11 | Entry detection, exclusions |
+
+#### Bug Fixes
+
+- Fixed `grep -c` double-output bug in session-start.sh (unclosed session detection)
+- Fixed non-portable `date +%s%N` usage (nanoseconds unavailable on macOS)
+
+---
+
 ## [4.2.1] - 2026-01-08
 
 ### Fixed - UX Polish for Update Process
