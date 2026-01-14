@@ -2,6 +2,10 @@
 
 View current project state and resume work (30 seconds).
 
+::: tip Automatic Health Checks (v5.0.0)
+Starting in v5.0, a **session-start hook** automatically runs when you begin a Claude Code session. It checks context health before you even type `/review-context`—warning about stale STATUS.md, missing Quick Reference, or unclosed sessions.
+:::
+
 ## Overview
 
 Lightning-fast command to see where you are and what to do next:
@@ -242,8 +246,8 @@ From STATUS.md top section (auto-generated)
 
 ### Step 3: Load Recent Sessions
 
-::: tip New in v3.5.0 - Smart Loading
-SESSIONS.md is now loaded intelligently based on file size to prevent token limit issues.
+::: tip Smart Loading
+SESSIONS.md is loaded intelligently based on file size to prevent token limit issues.
 :::
 
 From SESSIONS.md:
@@ -254,7 +258,7 @@ From SESSIONS.md:
 
 ### Step 4: Cross-Document Consistency Checks
 
-::: tip New in v3.5.0 - Automatic Consistency
+::: tip Automatic Consistency
 Automatically detects drift and mismatches across context files.
 :::
 
@@ -264,9 +268,9 @@ Checks:
 - **Session count** accuracy in SESSIONS.md
 - Warns about discrepancies with specific, actionable messages
 
-### Step 4.5: Documentation Health Check (v4.1.0)
+### Step 4.5: Documentation Health Check
 
-::: tip New in v4.1.0
+::: tip Documentation Health
 Comprehensive documentation health analysis.
 :::
 

@@ -2,6 +2,10 @@
 
 Deep OWASP-style security audit covering authentication, injection, XSS, and dependency vulnerabilities.
 
+::: tip Agent-Based (v5.0.0)
+This command is now backed by the **security-reviewer agent** (`.claude/agents/security-reviewer.md`) with a self-declaring contract that specifies its capabilities and output format.
+:::
+
 ## Overview
 
 Comprehensive security audit based on the OWASP Top 10:
