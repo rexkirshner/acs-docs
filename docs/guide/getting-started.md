@@ -62,7 +62,7 @@ your-project/
 ## Daily Workflow
 
 ```bash
-# Start your session
+# Start your session (automatic health check runs first)
 /review-context
 
 # Work on your project...
@@ -73,6 +73,10 @@ your-project/
 # Before breaks/handoffs (10-15 minutes)
 /save-full
 ```
+
+::: tip Automatic Health Checks
+Starting in v5.0, a session-start hook automatically runs when you begin a Claude Code session. It checks context freshness, validates Quick Reference presence, and warns about unclosed sessions—all before you even type `/review-context`.
+:::
 
 ## Next Steps
 
@@ -86,6 +90,7 @@ your-project/
 **For Claude Code users (full features):**
 - Claude Code CLI
 - File system access
+- `jq` for JSON processing (`brew install jq` on macOS, `apt install jq` on Linux)
 
 **For other AI tools:**
 - Any AI coding assistant with file system access
@@ -95,6 +100,7 @@ your-project/
 **Universal:**
 - Any project (language/framework agnostic)
 - Git recommended but not required
+- Bash 3.2+ (macOS default) or compatible shell
 
 ## Troubleshooting
 
