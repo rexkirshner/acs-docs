@@ -194,7 +194,42 @@ CONTEXT.md provides **complete project orientation** in one place:
 - Workflow stays consistent
 - Reduces back-and-forth
 
-### 6. Anti-Patterns
+### 6. Invariants & Non-goals
+
+::: tip New in v5.0.0
+Prevents AI from "helpfully" undoing intentional architectural choices.
+:::
+
+**What should NOT change:**
+
+```markdown
+## Invariants & Non-goals
+
+**Invariants (Do Not Change Without Discussion):**
+- No Redux - using React Context + Zustand by design
+- All auth via httpOnly cookies, not localStorage
+- Server Components by default, Client Components only where needed
+- TypeScript strict mode with no `any` types
+- Mobile-first responsive design
+
+**Non-goals (Not Now):**
+- Mobile native app (web-first until v2)
+- Bundle size optimization (functionality first)
+- Multi-tenancy (single tenant for MVP)
+- Real-time collaboration (async-first by design)
+
+**When to Update:**
+- Add new invariants when making architectural decisions
+- Move non-goals to active development when scope changes
+- Remove invariants only after explicit discussion
+```
+
+**Why this matters:**
+- Prevents AI from "fixing" intentional choices
+- Documents what's deliberately out of scope
+- Reduces wasted effort on rejected approaches
+
+### 7. Anti-Patterns
 
 **What NOT to do:**
 
@@ -225,7 +260,7 @@ CONTEXT.md provides **complete project orientation** in one place:
 - Maintains project quality
 - Saves time on course-correction
 
-### 7. References
+### 8. References
 
 **Links to other documentation:**
 

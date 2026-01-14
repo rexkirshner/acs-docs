@@ -291,8 +291,8 @@ Current Focus: Payment integration with Stripe
 
 ## Cross-Document Consistency
 
-::: tip New in v3.5.0
-Automatic consistency checking detects drift across context files.
+::: tip Automatic Consistency Checking
+The system automatically detects drift across context files.
 :::
 
 The `/review-context` command now automatically checks for inconsistencies across your context files:

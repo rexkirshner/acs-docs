@@ -488,10 +488,34 @@ templates/session-template.md
 
 Follow structure manually when updating SESSIONS.md.
 
+## Open Loops Section
+
+::: tip New in v5.0.0
+Captures unresolved questions and uncertainties that persist across sessions.
+:::
+
+The session template now includes an **Open Loops** section to track things that are uncertain or need follow-up:
+
+```markdown
+### Open Loops
+
+**Unresolved questions and uncertainties:**
+
+- [Question 1 - e.g., "Why does auth middleware sometimes return 401 on valid tokens?"]
+- [Question 2 - e.g., "Should we consolidate the two user tables?"]
+- [Risk/concern - e.g., "Performance degrades with >1000 items - haven't profiled yet"]
+```
+
+**Why this matters:**
+- Open loops are often what kills continuity
+- Forgetting *what you were uncertain about* is as damaging as forgetting what you did
+- Future sessions can address these unknowns
+- Provides clear follow-up items for next session
+
 ## Managing Large Session Files
 
-::: tip New in v3.5.0
-Automatic archiving and smart loading prevent SESSIONS.md from becoming too large.
+::: tip Automatic Archiving
+The system automatically archives old sessions to keep SESSIONS.md manageable.
 :::
 
 ### Automatic Archiving
