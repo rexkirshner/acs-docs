@@ -75,26 +75,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v4.2.1** - UX Polish for Update Process
+**v5.0.0** - Agent-Based Code Review Architecture
 
-Latest fixes based on real upgrade experience feedback:
-- **Update notice suppression** - No more confusing "Run /update-context-system" during updates
-- **Removed outdated docs** - Cleaned up 800+ lines of v3.x documentation
-- **86+ tests passing** across all modules
+Major release introducing self-declaring specialist agents with formal contracts:
 
-**v4.2.0** added bash operator fixes, session regex improvements, and CLAUDE.md detection.
+- **8 Specialist Review Agents** - Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing
+- **Self-Declaring Contracts** - Agents declare their own capabilities via JSON Schema-validated contracts
+- **Session-Start Hooks** - Automatic context health checks at session start
+- **Template Improvements** - Invariants/Non-goals section, Open Loops tracking
+- **Feedback Archiving** - User feedback preserved during upgrades
+- **458 tests passing** - Comprehensive coverage including install, hooks, and cross-platform
 
-**v4.1.x** added context completeness detection and documentation health checking.
+**v4.x** introduced modular code review, documentation health checking, and Quick Reference auto-generation.
 
-**v4.0.0** introduced the Modular Code Review System with 8 specialized audit commands:
-
-- **Security** - OWASP Top 10, authentication, injection, XSS
-- **Performance** - Core Web Vitals, bundle analysis, runtime
-- **Accessibility** - WCAG 2.1 AA, keyboard navigation, ARIA
-- **SEO** - Metadata, structured data, crawlability
-- **Database** - N+1 detection, indexes, query optimization
-- **Infrastructure** - Serverless costs, caching, builds
-- **TypeScript** - Type safety, strict mode, any tracking
-- **Testing** - Coverage, test quality, CI integration
-
-Plus custom audit extensibility for project-specific audits. [See changelog →](/about/changelog)
+[See full changelog →](/about/changelog)
