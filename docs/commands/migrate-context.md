@@ -72,9 +72,9 @@ Designed for mature projects with existing documentation. This command:
 
 ## How It Works
 
-### Step 0.5: Already-Initialized Detection (v4.2.0)
+### Step 0.5
 
-::: tip New in v4.2.0
+::: tip
 /migrate-context now detects if ACS is already installed and prevents accidental re-initialization.
 :::
 
@@ -99,9 +99,9 @@ Options:
   [X] Cancel and keep existing
 ```
 
-### Step 0.6: CLAUDE.md Detection (v4.2.0)
+### Step 0.6
 
-::: tip New in v4.2.0
+::: tip
 /migrate-context now detects existing CLAUDE.md files and provides integration guidance.
 :::
 

@@ -213,9 +213,9 @@ If complexity demands:
 - Update ARCHITECTURE.md (major system design changes)
 - Update PRD.md (product vision changes)
 
-### Step 7: Template Detection (v4.1.1)
+### Step 7
 
-::: tip New in v4.1.1
+::: tip
 /save-full now detects unfilled template placeholders and helps you fill them in.
 :::
 
@@ -437,7 +437,7 @@ Worked on authentication.
 
 ## Automatic Session Archiving
 
-::: tip New in v3.5.0
+::: tip
 Automatic archiving keeps SESSIONS.md manageable and prevents token limit issues.
 :::
 

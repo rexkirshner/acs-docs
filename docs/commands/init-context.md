@@ -160,9 +160,9 @@ Creates `.context-config.json` with:
 
 This config drives the **auto-generated Quick Reference** in STATUS.md.
 
-### Step 3.5: Auto-Detect Project Info (v4.1.1)
+### Step 3.5
 
-::: tip New in v4.1.1
+::: tip
 /init-context now automatically detects project information from your codebase.
 :::
 
@@ -183,9 +183,9 @@ Before creating files, the command gathers info from:
 
 This information is used to pre-populate templates, reducing manual work.
 
-### Step 3.6: Already-Initialized Detection (v4.2.0)
+### Step 3.6
 
-::: tip New in v4.2.0
+::: tip
 /init-context now detects if ACS is already installed and prevents accidental re-initialization.
 :::
 
@@ -212,9 +212,9 @@ Options:
 
 This prevents confusion when running init on an already-initialized project.
 
-### Step 3.7: CLAUDE.md Detection (v4.2.0)
+### Step 3.7
 
-::: tip New in v4.2.0
+::: tip
 /init-context now detects existing CLAUDE.md files and provides integration guidance.
 :::
 
@@ -306,7 +306,7 @@ Documentation: https://acs.rexkirshner.com/
 
 ### Fill In Template Placeholders (Critical!)
 
-::: warning New in v4.1.1
+::: warning
 /init-context now validates that template placeholders are filled in before completing.
 :::
 

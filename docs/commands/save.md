@@ -229,7 +229,7 @@ When documenting approach:
 
 ## Context Completeness Check
 
-::: tip New in v4.1.1
+::: tip
 /save now warns when CONTEXT.md has too many unfilled placeholders.
 :::
 
