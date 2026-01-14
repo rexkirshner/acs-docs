@@ -96,7 +96,7 @@ cat context/.context-config.json
 
 **Cause:** Many sessions accumulated over time (normal for active projects).
 
-**Solution:** v3.5.0 includes automatic archiving:
+**Solution:** The system includes automatic archiving:
 
 **Automatic Archiving (Recommended):**
 - `/save-full` prompts when SESSIONS.md > 2000 lines
@@ -323,7 +323,7 @@ pwd  # Should be project root
 
 **Symptoms:**
 ```
-⚠️  Update available: v4.2.0 (you have v3.0.0)
+⚠️  Update available: v5.0.0 (you have v4.x.x)
 ```
 
 **Solution:**
