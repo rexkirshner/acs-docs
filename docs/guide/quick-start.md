@@ -48,7 +48,7 @@ ls -la .claude/commands/
    - `context/DECISIONS.md` - Decision log
    - `context/SESSIONS.md` - Session history
 3. Creates `context/.context-config.json` - Project configuration
-4. Auto-detects project info from package.json, git, etc. (v4.1.1)
+4. Auto-detects project info from package.json, git, etc.
 
 ### Fill Out CONTEXT.md
 
@@ -74,6 +74,8 @@ Edit `context/CONTEXT.md` with your project details:
 
 ### 1. Check Current Status
 
+When you start a Claude Code session, an automatic health check runs showing context status. Then run:
+
 ```bash
 /review-context
 ```
@@ -82,7 +84,7 @@ Edit `context/CONTEXT.md` with your project details:
 - Quick Reference (project overview)
 - Current work in progress
 - Last session summary
-- System version check
+- Documentation health warnings (if any)
 
 ### 2. Start Working
 
