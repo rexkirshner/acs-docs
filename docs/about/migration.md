@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v4.2.1
+## Current Version: v5.0.0
 
-Latest stable release with UX polish for the update process. [See changelog](/about/changelog) for details.
+Latest major release with agent-based code review architecture. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,74 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.2.0 → v4.2.1 (Current)
+### v4.2.1 → v5.0.0 (Current)
+
+**Major release:** Agent-based code review architecture with self-declaring contracts.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - automatic migration handles everything.
+:::
+
+**Key Changes:**
+
+| Aspect | v4.2.1 (Before) | v5.0.0 (After) |
+|--------|-----------------|----------------|
+| Code review commands | Standalone skills | Agent-backed with contracts |
+| Agent contracts | None | JSON Schema-validated |
+| Session hooks | Manual review | Automatic health checks |
+| Template sections | Standard | +Invariants, +Open Loops |
+| User feedback | Overwritten on upgrade | Archived automatically |
+| JSON schemas | None | 7 schemas in `.claude/schemas/` |
+| Test coverage | 86+ tests | 458 tests |
+
+**What's New:**
+
+1. **Agent-Based Code Review Architecture**
+   - 8 specialist agents with self-declaring contracts
+   - Each agent declares: id, prefix, category, applicability, checklist, output schema
+   - Commands now delegate to agents: `/code-review-security` → `security-reviewer.md`
+
+2. **Self-Declaring Contracts**
+   - Agents include JSON contract blocks
+   - Contract validation via JSON Schema
+   - Standardized output format
+
+3. **Session-Start Hooks**
+   - `.claude/hooks/session-start.sh` runs at conversation start
+   - Automatic context health checks
+   - Shows stale files, unfilled placeholders, version mismatches
+
+4. **Template Improvements**
+   - **Invariants & Non-goals section**: Prevents AI from "helpfully" undoing intentional choices
+   - **Open Loops section**: Tracks unresolved questions across sessions
+
+5. **Feedback Archiving**
+   - User feedback in `context/context-feedback.md` preserved during upgrades
+   - Archived to `context/context-feedback-archive-YYYY-MM-DD.md`
+   - Zero data loss on upgrade
+
+6. **Profile Settings**
+   - Three detail levels: minimal, standard, comprehensive
+   - Configurable in `.context-config.json`
+   - Controls verbosity of saves and reviews
+
+7. **JSON Schemas**
+   - 7 schemas in `.claude/schemas/`
+   - `agent-contract.json`, `audit-finding.json`, `context-config.json`, etc.
+   - Enables structured data validation
+
+**Automatic updates:**
+- All 8 specialist agents installed to `.claude/agents/`
+- Session-start hook created
+- JSON schemas added
+- Templates updated with new sections
+- Feedback archived (not overwritten)
+
+**Action required:** Run `/update-context-system` and optionally configure profile in `.context-config.json`.
+
+---
+
+### v4.2.0 → v4.2.1
 
 **Patch release:** UX polish for update process.
 
@@ -512,7 +579,17 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v4.2.1 (Current)
+### v5.0.0 (Current)
+- ⚠️ Code review commands now delegate to specialist agents
+- ⚠️ Session-start hook added (may run automatically)
+- ⚠️ New template sections (Invariants, Open Loops) in fresh installs
+- ✅ Migration automatic: `/update-context-system` handles everything
+- ✅ No data loss: Existing context files unchanged
+- ✅ Feedback preserved: Archived during upgrade
+- ✅ 458 tests passing
+- ✅ New features: 8 agents, contracts, hooks, schemas, profiles
+
+### v4.2.1
 - ✅ No breaking changes (patch release)
 - ✅ UX polish for update process
 - ✅ 86+ tests passing
@@ -714,8 +791,8 @@ cp -r .claude-backup-*/context/ .
 **Symptom:**
 ```
 ⚠️  Version mismatch:
-Commands: v4.2.1
-Context: v3.0.0
+Commands: v5.0.0
+Context: v4.0.0
 ```
 
 **Solution:**
@@ -723,7 +800,7 @@ Context: v3.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "4.2.1"  # Update this
+  "version": "5.0.0"  # Update this
 }
 
 # Then:
@@ -747,7 +824,12 @@ Context: v3.0.0
 
 ### Future Deprecations
 
-No deprecations currently planned for v4.x series.
+No deprecations currently planned for v5.x series.
+
+**Note on v5.0.0 changes:**
+- Code review commands still work the same way, but now delegate to agents
+- No commands removed - all v4.x commands remain available
+- Agents are additive (new capability, not replacement)
 
 ## FAQ
 
@@ -763,10 +845,10 @@ No deprecations currently planned for v4.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v4.2.1  # Works
-v3.5.0 → v4.2.1  # Works
-v4.0.0 → v4.2.1  # Works
-v4.2.0 → v4.2.1  # Works
+v2.0.0 → v5.0.0  # Works
+v3.5.0 → v5.0.0  # Works
+v4.0.0 → v5.0.0  # Works
+v4.2.1 → v5.0.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -774,7 +856,7 @@ v4.2.0 → v4.2.1  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 4.2.1
+# Should show: 5.0.0
 
 # Test command
 /review-context
@@ -784,9 +866,13 @@ cat VERSION
 ls -la .claude-backup-*
 # If exists, upgrade ran
 
-# Check new audit commands exist
-ls .claude/commands/code-review-*.md
-# Should show 8 modular audit commands
+# Check new agents exist (v5.0.0+)
+ls .claude/agents/
+# Should show 8 specialist reviewer agents
+
+# Check new schemas exist (v5.0.0+)
+ls .claude/schemas/
+# Should show 7 JSON schemas
 ```
 
 ### Can I upgrade during active work?
