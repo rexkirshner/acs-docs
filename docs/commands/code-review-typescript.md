@@ -2,6 +2,10 @@
 
 TypeScript type safety audit analyzing strict mode, `any` usage, and type coverage.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **type-safety-reviewer agent** (`.claude/agents/type-safety-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 TypeScript quality audit:

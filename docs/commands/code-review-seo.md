@@ -2,6 +2,10 @@
 
 Technical SEO audit covering metadata, structured data, and crawlability.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **seo-reviewer agent** (`.claude/agents/seo-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 SEO audit for search engine optimization:

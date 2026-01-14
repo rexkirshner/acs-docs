@@ -2,6 +2,10 @@
 
 Database efficiency audit detecting N+1 queries, missing indexes, and connection issues.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **database-reviewer agent** (`.claude/agents/database-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 Database performance audit:

@@ -2,6 +2,10 @@
 
 Core Web Vitals audit analyzing LCP, INP, CLS, bundle size, and runtime performance.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **performance-reviewer agent** (`.claude/agents/performance-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 Performance audit focused on user-perceived metrics:

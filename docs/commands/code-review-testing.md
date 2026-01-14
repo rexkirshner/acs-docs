@@ -2,6 +2,10 @@
 
 Test coverage and quality audit analyzing coverage metrics, test pyramid, and CI integration.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **test-coverage-reviewer agent** (`.claude/agents/test-coverage-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 Testing quality audit:

@@ -2,6 +2,10 @@
 
 WCAG 2.1 AA compliance audit covering keyboard navigation, screen readers, and ARIA.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **accessibility-reviewer agent** (`.claude/agents/accessibility-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 Accessibility audit based on WCAG 2.1 AA guidelines:

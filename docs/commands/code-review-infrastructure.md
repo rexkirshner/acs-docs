@@ -2,6 +2,10 @@
 
 Serverless cost optimization audit analyzing cold starts, rendering strategy, and caching.
 
+::: tip Agent-Based (v5.0.0)
+This command is backed by the **infrastructure-reviewer agent** (`.claude/agents/infrastructure-reviewer.md`) with a self-declaring contract.
+:::
+
 ## Overview
 
 Infrastructure audit for serverless/edge deployments:
