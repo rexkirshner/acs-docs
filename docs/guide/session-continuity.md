@@ -101,6 +101,20 @@ When you return, `/review-context` shows this immediately.
 
 ## How It Works
 
+### Automatic Health Checks
+
+::: tip New in v5.0.0
+Session-start hooks automatically check context health when you begin a Claude Code session.
+:::
+
+When you start a Claude Code session, the system automatically:
+- Checks if STATUS.md is stale (>7 days old)
+- Validates Quick Reference presence
+- Detects unclosed session markers
+- Shows context health summary
+
+This happens **before** you even type `/review-context`, so you know immediately if something needs attention.
+
 ### Daily Workflow
 
 **Start of session:**
@@ -112,7 +126,7 @@ Shows:
 - Quick Reference (project overview)
 - Current work in progress
 - Recent decisions
-- Version check
+- Documentation health warnings (if any)
 
 **During work:**
 ```bash
