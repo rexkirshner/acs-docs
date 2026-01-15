@@ -105,8 +105,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 4.2.0
-Latest Version: 4.2.1
+Current Version: 5.0.0
+Latest Version: 5.0.1
 
 🔄 Creating backup...
    ✅ .claude/ → .claude-backup-20260108/
@@ -116,7 +116,9 @@ Latest Version: 4.2.1
    ✅ Downloaded from GitHub (main branch)
 
 🔄 Updating files...
-   ✅ .claude/commands/ (22 commands updated)
+   ✅ .claude/commands/ (commands updated)
+   ✅ .claude/skills/ (7 skills updated)
+   ✅ .claude/agents/ (12 agents updated)
    ✅ scripts/ (8 scripts updated)
    ✅ templates/ (16 templates updated)
 
@@ -133,7 +135,8 @@ Latest Version: 4.2.1
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Updated:
-  ✅ Commands (22 files)
+  ✅ Skills (7 files)
+  ✅ Agents (12 files)
   ✅ Scripts (8 files)
   ✅ Templates (16 files)
 
@@ -298,7 +301,7 @@ chmod +x scripts/*.sh
 # Manually update version
 # Edit context/.context-config.json:
 {
-  "version": "4.2.1",  # Update to current version
+  "version": "5.0.1",  # Update to current version
   ...
 }
 ```
