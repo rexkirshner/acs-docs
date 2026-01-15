@@ -1,10 +1,10 @@
 # Commands Reference
 
-The AI Context System v5.0 uses a **modular skills and agents architecture**:
+The AI Context System v5.0.2 uses an **agent-based architecture**:
 
-- **7 Skills** - Core functionality (save, save-full, review-context, etc.)
+- **22 Slash Commands** - Entry points for all functionality
 - **12 Specialist Agents** - Domain experts (security reviewer, performance reviewer, etc.)
-- **JSON Schemas** - Contract validation for all agents
+- **7 JSON Schemas** - Contract validation for all agents
 - **Session Hooks** - Automatic context health checks
 
 Commands are organized into categories below.
@@ -109,19 +109,18 @@ All commands follow these principles:
 4. **Resumable** - Safe to interrupt and restart
 5. **Helpful** - Provide guidance and next steps
 
-## Architecture (v5.0)
+## Architecture (v5.0.2)
 
-The system uses a modular architecture:
+The system uses an agent-based architecture:
 
 ```
 .claude/
-├── commands/    # Slash command entry points
-├── skills/      # 7 modular skills (save, save-full, etc.)
-├── agents/      # 12 specialist agents (code reviewer, etc.)
-├── schemas/     # JSON Schema contracts
+├── commands/    # 22 slash commands
+├── agents/      # 12 specialist agents (code reviewers, etc.)
+├── schemas/     # 7 JSON Schema contracts
 └── hooks/       # Session automation
 ```
 
 **For Claude Code users:** Use slash commands directly (e.g., `/save`)
 
-**For other AI tools:** Reference skill and agent files in `.claude/skills/` and `.claude/agents/` to follow the same workflows
+**For other AI tools:** Reference agent files in `.claude/agents/` to follow the same workflows
