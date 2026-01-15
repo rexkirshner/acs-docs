@@ -801,7 +801,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.0.0"  # Update this
+  "version": "5.0.2"  # Update this
 }
 
 # Then:
