@@ -13,7 +13,7 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 **What this does:**
 - Downloads system files to current directory
 - Creates `.claude/`, `scripts/`, `templates/` folders
-- Installs 7 modular skills + 12 specialist agents
+- Installs 22 slash commands + 12 specialist agents
 - Sets up configuration with session-start hooks
 
 ### Verify Installation
@@ -23,10 +23,9 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 ls -la .claude/
 
 # Should see:
-# commands/     - Slash commands
-# skills/       - 7 modular skills (save, save-full, etc.)
-# agents/       - 12 specialist agents (code reviewer, etc.)
-# schemas/      - JSON validation schemas
+# commands/     - 22 slash commands
+# agents/       - 12 specialist agents (code reviewers, etc.)
+# schemas/      - 7 JSON validation schemas
 # hooks/        - Session automation (context health checks)
 ```
 

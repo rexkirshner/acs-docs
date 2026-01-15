@@ -55,10 +55,9 @@ your-project/
 │   ├── DECISIONS.md             # Decision log
 │   └── SESSIONS.md              # History
 ├── .claude/
-│   ├── commands/                # Slash commands
-│   ├── skills/                  # 7 modular skills
+│   ├── commands/                # 22 slash commands
 │   ├── agents/                  # 12 specialist agents
-│   ├── schemas/                 # JSON validation schemas
+│   ├── schemas/                 # 7 JSON validation schemas
 │   └── hooks/                   # Session automation
 ├── scripts/                     # Helper utilities
 └── templates/                   # Documentation templates
