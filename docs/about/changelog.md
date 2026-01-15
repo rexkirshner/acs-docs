@@ -2,6 +2,46 @@
 
 All notable changes to the AI Context System.
 
+## [5.0.2] - 2026-01-15
+
+### Fixed - Shell Compatibility and Robust Parsing
+
+**PATCH RELEASE** - Addresses shell compatibility issues (zsh vs bash) and improves JSON export reliability across platforms.
+
+#### Bug Fixes
+
+- **zsh arithmetic failures** - `grep -c` empty results now properly handled with fallback
+- **Variable expansion issues** - Replaced `$MV_CMD` variable with `move_file()` function for cross-shell compatibility
+- **JSON export truncation** - Complete rewrite using `|||` delimiter to preserve colons in titles
+- **Code blocks in SESSIONS.md** - JSON export now ignores session headers inside fenced code blocks
+- **Multi-paragraph TL;DR** - JSON export now preserves multi-paragraph TL;DR content
+- **Decision count patterns** - `count_decisions()` now supports both `## D001` and `### D001` formats
+- **Stale file detection** - Archive files now excluded from stale count
+- **Current focus extraction** - Pattern cascade tries multiple STATUS.md formats
+
+#### New Features
+
+- **`color_echo()` function** - TTY-aware output that strips ANSI codes when piped
+- **`count_decisions()` helper** - Centralized in `common-functions.sh` for consistent decision counting
+- **`IS_UPDATE` detection** - Installer now detects upgrade vs fresh install BEFORE any file operations
+- **Context-appropriate messages** - Installer shows different "Next Steps" for upgrades vs fresh installs
+- **Enhanced session template** - Added optional sections: Duration, Problem Solved, Tests & Build, Work In Progress, Open Loops
+
+#### Code Review Agent Improvements
+
+- **Scope Boundaries** - All 8 specialist agents now have clear ownership boundaries preventing duplicate findings
+- **Pattern Clarity** - Changed from regex patterns to natural language "Look For" / "Safe If" format
+- **Coverage Documentation** - Added comprehensive Coverage Scope section documenting what's covered and intentionally excluded
+- **Deduplication Fixes** - Fixed rate limiting, lang attribute, and SQL injection ownership overlaps
+
+#### Testing
+
+- All 80 core module tests passing
+- New test suites: shell-compatibility, json-export, data-extraction, exit-codes, ux-polish
+- Shell compatibility verified on bash, zsh, and sh
+
+---
+
 ## [5.0.1] - 2026-01-14
 
 ### Fixed - Upgrade Path & Documentation QA
