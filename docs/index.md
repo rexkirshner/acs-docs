@@ -58,7 +58,12 @@ your-project/
 │   ├── STATUS.md                # Current state + Quick Reference
 │   ├── DECISIONS.md             # Decision log (WHY)
 │   └── SESSIONS.md              # History + mental models
-├── .claude/commands/            # 22 slash commands
+├── .claude/
+│   ├── commands/                # Slash commands
+│   ├── skills/                  # 7 modular skills (v5.0)
+│   ├── agents/                  # 12 specialist agents (v5.0)
+│   ├── schemas/                 # JSON validation schemas
+│   └── hooks/                   # Session automation
 └── scripts/                     # Helper utilities
 ```
 
@@ -75,16 +80,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.0.0** - Agent-Based Code Review Architecture
+**v5.0.1** - Agent-Based Code Review Architecture
 
 Major release introducing self-declaring specialist agents with formal contracts:
 
-- **8 Specialist Review Agents** - Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing
+- **12 Specialist Agents** - Code Reviewer (orchestrator) + Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing reviewers + Context Coach, Session Continuity, Documentation Auditor
+- **7 Modular Skills** - Save, Save-Full, Review-Context, Init-Context, Organize-Docs, Validate-Context, Update-Context-System
 - **Self-Declaring Contracts** - Agents declare their own capabilities via JSON Schema-validated contracts
 - **Session-Start Hooks** - Automatic context health checks at session start
 - **Template Improvements** - Invariants/Non-goals section, Open Loops tracking
 - **Feedback Archiving** - User feedback preserved during upgrades
-- **458 tests passing** - Comprehensive coverage including install, hooks, and cross-platform
+- **78 tests passing** - Comprehensive coverage including install, hooks, and cross-platform
 
 **v4.x** introduced modular code review, documentation health checking, and Quick Reference auto-generation.
 
