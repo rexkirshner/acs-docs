@@ -59,10 +59,9 @@ your-project/
 │   ├── DECISIONS.md             # Decision log (WHY)
 │   └── SESSIONS.md              # History + mental models
 ├── .claude/
-│   ├── commands/                # Slash commands
-│   ├── skills/                  # 7 modular skills (v5.0)
+│   ├── commands/                # 22 slash commands
 │   ├── agents/                  # 12 specialist agents (v5.0)
-│   ├── schemas/                 # JSON validation schemas
+│   ├── schemas/                 # 7 JSON validation schemas
 │   └── hooks/                   # Session automation
 └── scripts/                     # Helper utilities
 ```
@@ -80,17 +79,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.0.1** - Agent-Based Code Review Architecture
+**v5.0.2** - Agent-Based Code Review Architecture
 
 Major release introducing self-declaring specialist agents with formal contracts:
 
-- **12 Specialist Agents** - Code Reviewer (orchestrator) + Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing reviewers + Context Coach, Session Continuity, Documentation Auditor
-- **7 Modular Skills** - Save, Save-Full, Review-Context, Init-Context, Organize-Docs, Validate-Context, Update-Context-System
+- **12 Specialist Agents** - Code Reviewer (orchestrator) + 8 Specialist Reviewers (Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing) + 3 Support Agents (Codebase Scanner, Synthesis Agent, Audit Compare)
+- **22 Slash Commands** - Full command suite including code review orchestrator, specialized audits, context management, and session workflows
 - **Self-Declaring Contracts** - Agents declare their own capabilities via JSON Schema-validated contracts
 - **Session-Start Hooks** - Automatic context health checks at session start
-- **Template Improvements** - Invariants/Non-goals section, Open Loops tracking
-- **Feedback Archiving** - User feedback preserved during upgrades
-- **78 tests passing** - Comprehensive coverage including install, hooks, and cross-platform
+- **Scope Boundaries** - Clear ownership between agents preventing duplicate findings
+- **Shell Compatibility** - Full support for bash, zsh, and sh across macOS and Linux
+- **80 tests passing** - Comprehensive coverage including install, hooks, shell compatibility, and cross-platform
 
 **v4.x** introduced modular code review, documentation health checking, and Quick Reference auto-generation.
 
