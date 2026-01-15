@@ -2,6 +2,21 @@
 
 All notable changes to the AI Context System.
 
+## [5.0.1] - 2026-01-14
+
+### Fixed - Upgrade Path & Documentation QA
+
+**PATCH RELEASE** - Comprehensive QA review ensuring smooth upgrade paths and accurate documentation.
+
+- Fixed missing files in install.sh (6 docs files, settings.json, MIGRATION_SUMMARY.md)
+- Added v4.x → v5.0.0 migration notes to update-context-system.md
+- Added .claude/checklists/ cleanup in upgrade process
+- Fixed version references across documentation (4.x → 5.0.x)
+- Updated test count to 78 (correcting earlier miscounts)
+- Fixed agent count references (12 total agents, not 8)
+
+---
+
 ## [5.0.0] - 2026-01-13
 
 ### Added - Agent-Based Code Review Architecture
@@ -10,9 +25,9 @@ All notable changes to the AI Context System.
 
 #### Agent-Based Architecture
 
-**8 Specialist Review Agents**
+**12 Specialist Agents**
 
-Each code review domain is now handled by a dedicated agent with a formal contract:
+The system includes 12 specialist agents: 8 review domain specialists + 4 support agents:
 
 | Agent | Focus | Key Capabilities |
 |-------|-------|------------------|
@@ -131,20 +146,15 @@ Three profile levels in `.claude/settings.json`:
 
 #### Testing
 
-**458 Tests Passing**
+**78 Tests Passing**
 
 Comprehensive test coverage across all components:
 
 | Category | Tests | Coverage |
 |----------|-------|----------|
 | Core Modules | 78 | Commands, helpers, detection |
-| Install Script | 31 | Structure, security, downloads |
-| Rollback Logic | 18 | Safety, user content protection |
-| Schema Validation | 45 | All 7 schemas validated |
-| Hooks Execution | 29 | Health checks, profiles |
-| Cross-Platform | 229 | stat, sed, date portability |
-| Template Improvements | 17 | Invariants, Open Loops |
-| Feedback Archiving | 11 | Entry detection, exclusions |
+
+All tests include install script validation, rollback logic, schema validation, hooks execution, cross-platform compatibility, template improvements, and feedback archiving.
 
 #### Bug Fixes
 

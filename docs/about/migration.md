@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.0.0
+## Current Version: v5.0.1
 
 Latest major release with agent-based code review architecture. [See changelog](/about/changelog) for details.
 
@@ -60,12 +60,12 @@ Just run `/update-context-system` - automatic migration handles everything.
 | Template sections | Standard | +Invariants, +Open Loops |
 | User feedback | Overwritten on upgrade | Archived automatically |
 | JSON schemas | None | 7 schemas in `.claude/schemas/` |
-| Test coverage | 86+ tests | 458 tests |
+| Test coverage | 86+ tests | 78 tests |
 
 **What's New:**
 
 1. **Agent-Based Code Review Architecture**
-   - 8 specialist agents with self-declaring contracts
+   - 12 specialist agents (8 review domains + 4 support agents) with self-declaring contracts
    - Each agent declares: id, prefix, category, applicability, checklist, output schema
    - Commands now delegate to agents: `/code-review-security` → `security-reviewer.md`
 
@@ -586,8 +586,8 @@ ls -la context/
 - ✅ Migration automatic: `/update-context-system` handles everything
 - ✅ No data loss: Existing context files unchanged
 - ✅ Feedback preserved: Archived during upgrade
-- ✅ 458 tests passing
-- ✅ New features: 8 agents, contracts, hooks, schemas, profiles
+- ✅ 78 tests passing
+- ✅ New features: 12 agents, contracts, hooks, schemas, profiles
 
 ### v4.2.1
 - ✅ No breaking changes (patch release)
@@ -868,7 +868,7 @@ ls -la .claude-backup-*
 
 # Check new agents exist (v5.0.0+)
 ls .claude/agents/
-# Should show 8 specialist reviewer agents
+# Should show 12 specialist agents
 
 # Check new schemas exist (v5.0.0+)
 ls .claude/schemas/
