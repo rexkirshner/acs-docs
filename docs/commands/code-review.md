@@ -2,8 +2,8 @@
 
 Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
-::: tip Agent-Based Architecture (v5.0.0)
-`/code-review` now coordinates **8 specialist review agents**, each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists.
+::: tip Agent-Based Architecture (v5.0)
+`/code-review` coordinates **12 specialist agents** (8 review domains + 4 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists.
 :::
 
 ## Overview
@@ -241,18 +241,26 @@ The orchestrator uses contracts to:
 3. Validate agent outputs against schemas
 4. Build capability indexes for smart routing
 
-## Migration from v3.x
+## Migration from Earlier Versions
 
-If you used the monolithic `/code-review`:
+### From v3.x
 
-| v3.x Behavior | v4.0.0 Approach |
+| v3.x Behavior | v4.0+ Approach |
 |---------------|-----------------|
 | Single long report | Multiple focused reports + summary |
 | `artifacts/code-reviews/` | `docs/audits/` |
 | `session-N-review.md` | `{type}-audit-NN.md` |
 | One checklist file | Built into each command |
 
-**Migration:** Run `/update-context-system` to automatically migrate existing reports.
+### From v4.x to v5.0
+
+| v4.x Behavior | v5.0 Approach |
+|---------------|---------------|
+| Commands in `.claude/commands/` | Skills in `.claude/skills/` + agents in `.claude/agents/` |
+| Checklists in `.claude/checklists/` | Removed (built into skills) |
+| 22 monolithic commands | 7 modular skills + 12 specialist agents |
+
+**Migration:** Run `/update-context-system` to automatically migrate existing configuration.
 
 ## Related Commands
 
