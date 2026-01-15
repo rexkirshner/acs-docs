@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.0.1
+## Current Version: v5.0.2
 
-Latest major release with agent-based code review architecture. [See changelog](/about/changelog) for details.
+Latest release with shell compatibility fixes and code review agent improvements. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -42,7 +42,7 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
-### v4.2.1 → v5.0.0 (Current)
+### v4.2.1 → v5.0.x
 
 **Major release:** Agent-based code review architecture with self-declaring contracts.
 
@@ -60,7 +60,7 @@ Just run `/update-context-system` - automatic migration handles everything.
 | Template sections | Standard | +Invariants, +Open Loops |
 | User feedback | Overwritten on upgrade | Archived automatically |
 | JSON schemas | None | 7 schemas in `.claude/schemas/` |
-| Test coverage | 86+ tests | 78 tests |
+| Test coverage | 86+ tests | 80 tests |
 
 **What's New:**
 
@@ -579,15 +579,16 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.0.0 (Current)
+### v5.0.x (Current: v5.0.2)
 - ⚠️ Code review commands now delegate to specialist agents
 - ⚠️ Session-start hook added (may run automatically)
 - ⚠️ New template sections (Invariants, Open Loops) in fresh installs
 - ✅ Migration automatic: `/update-context-system` handles everything
 - ✅ No data loss: Existing context files unchanged
 - ✅ Feedback preserved: Archived during upgrade
-- ✅ 78 tests passing
+- ✅ 80 tests passing
 - ✅ New features: 12 agents, contracts, hooks, schemas, profiles
+- ✅ Shell compatibility: bash, zsh, and sh across macOS and Linux
 
 ### v4.2.1
 - ✅ No breaking changes (patch release)
@@ -845,10 +846,11 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.0.0  # Works
-v3.5.0 → v5.0.0  # Works
-v4.0.0 → v5.0.0  # Works
-v4.2.1 → v5.0.0  # Works
+v2.0.0 → v5.0.2  # Works
+v3.5.0 → v5.0.2  # Works
+v4.0.0 → v5.0.2  # Works
+v4.2.1 → v5.0.2  # Works
+v5.0.0 → v5.0.2  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -856,7 +858,7 @@ v4.2.1 → v5.0.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.0.0
+# Should show: 5.0.2
 
 # Test command
 /review-context
