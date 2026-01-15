@@ -1,6 +1,13 @@
 # Commands Reference
 
-The AI Context System provides 22 slash commands organized into five categories.
+The AI Context System v5.0 uses a **modular skills and agents architecture**:
+
+- **7 Skills** - Core functionality (save, save-full, review-context, etc.)
+- **12 Specialist Agents** - Domain experts (security reviewer, performance reviewer, etc.)
+- **JSON Schemas** - Contract validation for all agents
+- **Session Hooks** - Automatic context health checks
+
+Commands are organized into categories below.
 
 ## Setup Commands (Run Once)
 
@@ -88,7 +95,7 @@ Generate summary of current session for handoff.
 |----------|----------|
 | Setup | `/init-context`, `/migrate-context` |
 | Daily | `/save`, `/save-full`, `/review-context` |
-| Code Review | `/code-review`, + 8 specialized audits, `/build-check` |
+| Code Review | `/code-review` (orchestrator) + 8 specialized domain audits |
 | Collaboration | `/export-context`, `/validate-context` |
 | Maintenance | `/update-context-system`, `/update-templates`, `/add-ai-header`, `/organize-docs`, `/session-summary` |
 
@@ -102,10 +109,19 @@ All commands follow these principles:
 4. **Resumable** - Safe to interrupt and restart
 5. **Helpful** - Provide guidance and next steps
 
-## Universal Commands
+## Architecture (v5.0)
 
-These commands are universal and work with any AI coding assistant. They're organized in `.claude/commands/` following Claude Code's slash command paradigm, but the workflows themselves are generalizable.
+The system uses a modular architecture:
 
-**For Claude Code users:** Use slash commands directly
+```
+.claude/
+├── commands/    # Slash command entry points
+├── skills/      # 7 modular skills (save, save-full, etc.)
+├── agents/      # 12 specialist agents (code reviewer, etc.)
+├── schemas/     # JSON Schema contracts
+└── hooks/       # Session automation
+```
 
-**For other AI tools:** Reference command files manually (e.g., `.claude/commands/save.md`) to follow the same workflows
+**For Claude Code users:** Use slash commands directly (e.g., `/save`)
+
+**For other AI tools:** Reference skill and agent files in `.claude/skills/` and `.claude/agents/` to follow the same workflows
