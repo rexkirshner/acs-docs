@@ -3,8 +3,8 @@
 The AI Context System v5.1.0 uses an **agent-based architecture**:
 
 - **22 Slash Commands** - Entry points for all functionality
-- **12 Specialist Agents** - Domain experts (security reviewer, performance reviewer, etc.)
-- **7 JSON Schemas** - Contract validation for all agents
+- **13 Specialist Agents** - Domain experts (security reviewer, performance reviewer, cost-optimizer, etc.)
+- **8 JSON Schemas** - Contract validation for all agents
 - **Session Hooks** - Automatic context health checks
 
 Commands are organized into categories below.
@@ -116,8 +116,8 @@ The system uses an agent-based architecture:
 ```
 .claude/
 ├── commands/    # 22 slash commands
-├── agents/      # 12 specialist agents (code reviewers, etc.)
-├── schemas/     # 7 JSON Schema contracts
+├── agents/      # 13 specialist agents (code reviewers, etc.)
+├── schemas/     # 8 JSON Schema contracts
 └── hooks/       # Session automation
 ```
 
