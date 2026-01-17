@@ -239,8 +239,8 @@ Only CONTEXT.md, STATUS.md, DECISIONS.md (for quick orientation).
 Exports as structured JSON for programmatic access:
 ```json
 {
-  "exported": "2026-01-08T14:30:00Z",
-  "version": "5.1.0",
+  "exported": "2026-01-17T14:30:00Z",
+  "version": "5.1.1",
   "project": {
     "name": "my-app",
     "phase": "MVP Development"
