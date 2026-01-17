@@ -3,7 +3,7 @@
 Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
 ::: tip Agent-Based Architecture (v5.1.0)
-`/code-review` coordinates **12 specialist agents** (8 review domains + 4 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists. New in v5.1.0: Decision-aware review considers DECISIONS.md and finding deduplication combines overlapping findings across reviewers.
+`/code-review` coordinates **13 specialist agents** (8 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists. New in v5.1.0: Decision-aware review considers DECISIONS.md, finding deduplication combines overlapping findings, and cost-optimizer agent added.
 :::
 
 ## Overview
