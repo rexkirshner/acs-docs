@@ -2,6 +2,92 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.0] - 2026-01-17
+
+### Added - Finding Deduplication & Enhanced Security
+
+**MAJOR RELEASE** - Intelligent finding synthesis, decision-aware review, and comprehensive testing infrastructure.
+
+#### Finding Deduplication (Phase 9)
+
+**Synthesis Agent** - Combines overlapping findings across reviewers:
+- Detects duplicate findings by location and content similarity
+- Merges findings with attribution to original reviewers
+- Groups related findings by pattern
+- Provides deduplication statistics (raw → deduplicated count)
+
+```json
+{
+  "findings": [...],
+  "groups": [
+    {
+      "id": "GROUP-SECURITY-0",
+      "type": "group",
+      "category": "security",
+      "pattern": "Hardcoded API key",
+      "count": 3,
+      "memberIds": ["SEC-001", "SEC-005", "SEC-012"]
+    }
+  ],
+  "stats": {
+    "rawFindings": 45,
+    "afterDedup": 28,
+    "reductionPercent": 38
+  }
+}
+```
+
+#### Decision-Aware Review (Phase 0)
+
+**Code review now considers DECISIONS.md:**
+- Reviewers check architectural decisions before flagging issues
+- Reduces false positives when choices were intentional
+- Links findings to relevant decisions when applicable
+
+#### Upgrade Protection (Phase 3)
+
+**Idempotent upgrade paths with automatic backup/rollback:**
+- Creates backup before any changes
+- Validates installation after upgrade
+- Automatic rollback on failure
+- Preserves user modifications
+
+#### Monorepo Support (Phase 5)
+
+**Multi-project configurations:**
+- Shared context across related projects
+- Per-project overrides
+- Workspace-aware commands
+
+#### Hook Security Enhancements (Phase 6)
+
+**Enhanced permission model for session automation:**
+- Explicit security-relevant file detection
+- Permission prompts for sensitive operations
+- Audit logging for hook execution
+
+#### Shell Compatibility (Phase 7)
+
+**Full support across shells and platforms:**
+- bash, zsh, and sh compatibility verified
+- macOS and Linux support
+- Fixed zsh-specific variable declaration issues
+
+#### Test Infrastructure (Phase 8)
+
+**203+ tests passing:**
+- Comprehensive unit tests
+- Integration tests
+- Shell compatibility tests
+- Upgrade path tests
+
+#### Bug Fixes
+
+- **zsh spurious output** - Fixed `local var` + `var=$(...)` pattern in loops that caused zsh to print assignments
+- **Version consistency** - All files now reference 5.1.0 consistently
+
+---
+
 ## [5.0.2] - 2026-01-15
 
 ### Fixed - Shell Compatibility and Robust Parsing

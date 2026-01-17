@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.0.2
+## Current Version: v5.1.0
 
-Latest release with shell compatibility fixes and code review agent improvements. [See changelog](/about/changelog) for details.
+Latest release with finding deduplication, decision-aware review, and 203+ tests passing. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -579,7 +579,16 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.0.x (Current: v5.0.2)
+### v5.1.0 (Current)
+- ⚠️ Code review now considers DECISIONS.md (decision-aware review)
+- ✅ Finding deduplication: Synthesis agent combines overlapping findings
+- ✅ Upgrade protection: Idempotent upgrades with automatic backup/rollback
+- ✅ Monorepo support: Multi-project configurations
+- ✅ Hook security: Enhanced permission model
+- ✅ 203+ tests passing
+- ✅ Shell compatibility: bash, zsh, and sh across macOS and Linux
+
+### v5.0.x
 - ⚠️ Code review commands now delegate to specialist agents
 - ⚠️ Session-start hook added (may run automatically)
 - ⚠️ New template sections (Invariants, Open Loops) in fresh installs
@@ -801,7 +810,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.0.2"  # Update this
+  "version": "5.1.0"  # Update this
 }
 
 # Then:
@@ -846,11 +855,11 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.0.2  # Works
-v3.5.0 → v5.0.2  # Works
-v4.0.0 → v5.0.2  # Works
-v4.2.1 → v5.0.2  # Works
-v5.0.0 → v5.0.2  # Works
+v2.0.0 → v5.1.0  # Works
+v3.5.0 → v5.1.0  # Works
+v4.0.0 → v5.1.0  # Works
+v4.2.1 → v5.1.0  # Works
+v5.0.x → v5.1.0  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -858,7 +867,7 @@ v5.0.0 → v5.0.2  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.0.2
+# Should show: 5.1.0
 
 # Test command
 /review-context
