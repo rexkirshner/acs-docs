@@ -2,6 +2,46 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.1] - 2026-01-17
+
+### Fixed - Shell Compatibility
+
+**PATCH RELEASE** - Fixes shell compatibility bugs discovered during real-world deployment across multiple projects.
+
+#### macOS grep compatibility (BUG-A)
+
+- **Problem:** grep patterns using BRE alternation (`\|`) failed silently on BSD grep when combined with `^` anchors and special characters
+- **Impact:** `detect_project_description()` returned empty string instead of README description
+- **Fixed:** All patterns now use ERE (`-E` flag) which is more portable
+- **Scope:** 8 patterns converted across scripts and commands
+
+#### Parent directory detection (BUG-B)
+
+- **Problem:** `.claude` directory detection used `find -maxdepth 2` which incorrectly found sibling directories
+- **Impact:** False warnings about "multiple .claude directories" for unrelated projects
+- **Fixed:** New `check_ancestor_claude()` function walks up directory tree checking only direct ancestors
+- **Scope:** Updated `init-context.md` and `migrate-context.md`
+
+#### zsh debug output (BUG-C)
+
+- **Problem:** In zsh, `local var` on one line followed by `var=$(...)` on next line inside loops printed the assignment
+- **Impact:** Spurious `line_num=X` and `context_lines=...` output during session index generation
+- **Fixed:** Combined local declaration with assignment
+- **Scope:** Fixed in `generate_session_index()` and `match_finding_to_decision()`
+
+#### Arithmetic errors (BUG-D)
+
+- **Status:** Audited and found already mitigated
+- **Details:** All `grep -c` and `wc -l` outputs already have proper defensive patterns (`| tr -d '\n'`, `|| echo "0"`, `${var:-0}`)
+- **Scope:** No changes needed
+
+#### Testing
+
+- **80/80 unit tests passing**
+- **Smoke tests verified on macOS** with both bash and zsh
+
+---
+
 ## [5.1.0] - 2026-01-17
 
 ### Added - Finding Deduplication & Enhanced Security
