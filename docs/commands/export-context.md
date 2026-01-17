@@ -238,7 +238,7 @@ Exports as structured JSON for programmatic access:
 ```json
 {
   "exported": "2026-01-08T14:30:00Z",
-  "version": "4.2.1",
+  "version": "5.1.0",
   "project": {
     "name": "my-app",
     "phase": "MVP Development"
