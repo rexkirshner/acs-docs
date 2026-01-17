@@ -81,6 +81,11 @@ All notable changes to the AI Context System.
 - Shell compatibility tests
 - Upgrade path tests
 
+#### New Components
+
+- **cost-optimizer agent** - New specialist agent for cost optimization (13 total agents)
+- **codebase-context.json schema** - New schema for codebase context data (8 total schemas)
+
 #### Bug Fixes
 
 - **zsh spurious output** - Fixed `local var` + `var=$(...)` pattern in loops that caused zsh to print assignments
