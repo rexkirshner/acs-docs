@@ -582,6 +582,8 @@ ls -la context/
 ### v5.1.0 (Current)
 - ⚠️ Code review now considers DECISIONS.md (decision-aware review)
 - ✅ Finding deduplication: Synthesis agent combines overlapping findings
+- ✅ New: cost-optimizer agent (13 total agents now)
+- ✅ New: codebase-context.json schema (8 total schemas now)
 - ✅ Upgrade protection: Idempotent upgrades with automatic backup/rollback
 - ✅ Monorepo support: Multi-project configurations
 - ✅ Hook security: Enhanced permission model
