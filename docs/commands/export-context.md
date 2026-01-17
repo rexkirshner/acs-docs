@@ -28,10 +28,13 @@ Perfect for **AI-to-AI handoffs** and **developer onboarding**.
 
 ## What Gets Exported
 
-### Single File Output
+### Output Directory
 
 ```
-artifacts/exports/context-export-2025-10-23.md
+context-export-20251023-143000/
+├── README.md              # Main combined export
+├── sessions-data.json     # Machine-readable sessions
+└── context-config.json    # Project configuration
 ```
 
 Contains:
@@ -117,16 +120,15 @@ Merges all content with:
 
 ```bash
 📦 Export saved to:
-   artifacts/exports/context-export-2025-10-23.md
+   context-export-20251023-143000/
 
 📊 Export contains:
-   - CONTEXT.md (project orientation)
-   - STATUS.md (current state)
-   - DECISIONS.md (15 decisions)
-   - SESSIONS.md (15 sessions)
+   - README.md (combined documentation)
+   - sessions-data.json (machine-readable)
+   - context-config.json (project config)
    - Total: 45,000 words
 
-Share this file with incoming AI agent or developer
+Share this directory with incoming AI agent or developer
 ```
 
 ## Example Output
@@ -260,7 +262,7 @@ Exports as structured JSON for programmatic access:
 /export-context              # Create export
 
 # Share with incoming AI:
-# "Read artifacts/exports/context-export-2025-10-23.md
+# "Read context-export-20251023-143000/README.md
 #  for complete project context"
 
 # Incoming AI reads export and continues work
@@ -284,8 +286,8 @@ Exports as structured JSON for programmatic access:
 /export-context
 
 # Archive for records:
-mv artifacts/exports/context-export-2025-10-23.md \
-   artifacts/snapshots/sprint-5-complete.md
+mv context-export-20251023-143000 \
+   artifacts/snapshots/sprint-5-complete
 ```
 
 ### Stakeholder Update
@@ -333,7 +335,7 @@ If SESSIONS.md >5000 lines:
 /export-context              # 3. Create export
 
 # Handoff note in STATUS.md:
-# "See artifacts/exports/context-export-2025-10-23.md
+# "See context-export-20251023-143000/README.md
 #  for complete project context"
 ```
 
@@ -341,7 +343,7 @@ If SESSIONS.md >5000 lines:
 
 ```bash
 # Don't commit exports to git (too large)
-echo "artifacts/exports/" >> .gitignore
+echo "context-export-*/" >> .gitignore
 
 # Instead: Share via file sharing
 # Or: Archive important snapshots separately
@@ -361,8 +363,8 @@ context-export-YYYY-MM-DD-HH-MM.md  # If multiple per day
 # Create export
 /export-context
 
-# Review it
-cat artifacts/exports/context-export-$(date +%Y-%m-%d).md | less
+# Review it (check the most recent export directory)
+cat context-export-*/README.md | less
 
 # Verify:
 # - No sensitive data
@@ -394,17 +396,16 @@ $ /export-context
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📄 Export saved to:
-   artifacts/exports/context-export-2025-10-23.md
+   context-export-20251023-143000/
 
 📊 Export contains:
-   - CONTEXT.md (project orientation)
-   - STATUS.md (current state)
-   - DECISIONS.md (15 decisions)
-   - SESSIONS.md (15 sessions)
+   - README.md (combined documentation)
+   - sessions-data.json (machine-readable)
+   - context-config.json (project config)
    - Total: 45,234 words
 
 📤 Ready to share:
-   • AI-to-AI handoff: Provide file path to incoming AI
+   • AI-to-AI handoff: Provide directory path to incoming AI
    • Developer onboarding: Email or share via file sharing
    • Documentation snapshot: Archive for records
 
