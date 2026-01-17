@@ -116,7 +116,7 @@ Recommendation: Update STATUS.md and complete DEC-012
 - Includes: CONTEXT.md, STATUS.md, DECISIONS.md, SESSIONS.md
 - Adds navigation links
 - Timestamps export
-- Saves to `artifacts/exports/`
+- Saves to `context-export-[DATE]/` directory
 
 **Example output:**
 ```
@@ -127,7 +127,7 @@ Recommendation: Update STATUS.md and complete DEC-012
 ✅ Generated navigation links
 
 📄 Export saved to:
-   artifacts/exports/context-export-2025-10-24.md
+   context-export-20251024-143022/README.md
 
 📊 Export contains:
    - CONTEXT.md (project orientation)
@@ -151,7 +151,7 @@ Create a handoff note in STATUS.md:
 **To:** [Incoming AI]
 
 **Quick Start for New AI:**
-1. Read artifacts/exports/context-export-2025-10-24.md
+1. Read context-export-20251024-143022/README.md
 2. Read ./CLAUDE.md (auto-loaded) or your tool's header in context/
 3. Run /review-context to see current state
 4. Start with: Implement rate limiting (see STATUS.md)
@@ -190,7 +190,7 @@ Good luck! The context is comprehensive. Trust the documentation.
 
 ```bash
 # Open the export file
-cat artifacts/exports/context-export-2025-10-24.md
+cat context-export-20251024-143022/README.md
 ```
 
 **Read in this order:**
@@ -298,7 +298,7 @@ Ready for handoff
 /export-context
 
 # Creates:
-# artifacts/exports/context-export-2025-10-24.md
+# context-export-20251024-170000/README.md
 ```
 
 **Claude Code adds handoff note to STATUS.md:**
@@ -317,7 +317,7 @@ Key context in Session 12 (webhook logic) and Session 15 (current state).
 
 ```bash
 # Read export
-cat artifacts/exports/context-export-2025-10-24.md
+cat context-export-20251024-170000/README.md
 
 # Learns:
 # - Next.js App Router architecture
@@ -378,7 +378,7 @@ cat context/DECISIONS.md | grep -A 30 "DEC-017"
 
 ### Incoming AI
 
-- [ ] Read `artifacts/exports/context-export-[date].md`
+- [ ] Read `context-export-[DATE]/README.md`
 - [ ] Read CONTEXT.md (project overview)
 - [ ] Read STATUS.md (current state)
 - [ ] Skim DECISIONS.md (key decisions)
@@ -418,7 +418,7 @@ cat context/DECISIONS.md | grep -A 30 "DEC-017"
 **Incoming (Aider):**
 ```bash
 # Read export
-cat artifacts/exports/context-export-[date].md
+cat context-export-[DATE]/README.md
 
 # Read aider-specific instructions
 cat context/aider.md
