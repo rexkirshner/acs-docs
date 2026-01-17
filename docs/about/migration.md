@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.1.0
+## Current Version: v5.1.1
 
-Latest release with finding deduplication, decision-aware review, and 203+ tests passing. [See changelog](/about/changelog) for details.
+Latest patch release with shell compatibility fixes (macOS grep, parent detection, zsh output). 80 tests passing. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -579,7 +579,15 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.1.0 (Current)
+### v5.1.1 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ macOS grep compatibility: Fixed BRE patterns that failed on BSD grep
+- ✅ Parent directory detection: Now checks ancestors only, not siblings
+- ✅ zsh debug output: Fixed spurious variable output in loops
+- ✅ 80 tests passing
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.1.0
 - ⚠️ Code review now considers DECISIONS.md (decision-aware review)
 - ✅ Finding deduplication: Synthesis agent combines overlapping findings
 - ✅ New: cost-optimizer agent (13 total agents now)
@@ -587,7 +595,7 @@ ls -la context/
 - ✅ Upgrade protection: Idempotent upgrades with automatic backup/rollback
 - ✅ Monorepo support: Multi-project configurations
 - ✅ Hook security: Enhanced permission model
-- ✅ 203+ tests passing
+- ✅ 80 tests passing
 - ✅ Shell compatibility: bash, zsh, and sh across macOS and Linux
 
 ### v5.0.x
@@ -812,7 +820,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.0"  # Update this
+  "version": "5.1.1"  # Update this
 }
 
 # Then:
@@ -857,11 +865,12 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.1.0  # Works
-v3.5.0 → v5.1.0  # Works
-v4.0.0 → v5.1.0  # Works
-v4.2.1 → v5.1.0  # Works
-v5.0.x → v5.1.0  # Works
+v2.0.0 → v5.1.1  # Works
+v3.5.0 → v5.1.1  # Works
+v4.0.0 → v5.1.1  # Works
+v4.2.1 → v5.1.1  # Works
+v5.0.x → v5.1.1  # Works
+v5.1.0 → v5.1.1  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -869,7 +878,7 @@ v5.0.x → v5.1.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.1.0
+# Should show: 5.1.1
 
 # Test command
 /review-context
