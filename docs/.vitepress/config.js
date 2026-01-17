@@ -103,7 +103,8 @@ export default {
         {
           text: 'Collaboration',
           items: [
-            { text: '/export-context', link: '/commands/export-context' }
+            { text: '/export-context', link: '/commands/export-context' },
+            { text: '/session-summary', link: '/commands/session-summary' }
           ]
         },
         {
@@ -111,7 +112,9 @@ export default {
           items: [
             { text: '/validate-context', link: '/commands/validate-context' },
             { text: '/update-context-system', link: '/commands/update-context-system' },
-            { text: '/update-templates', link: '/commands/update-templates' }
+            { text: '/update-templates', link: '/commands/update-templates' },
+            { text: '/add-ai-header', link: '/commands/add-ai-header' },
+            { text: '/organize-docs', link: '/commands/organize-docs' }
           ]
         }
       ],
