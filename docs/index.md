@@ -79,18 +79,19 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.0.2** - Agent-Based Code Review Architecture
+**v5.1.0** - Finding Deduplication & Enhanced Security
 
-Major release introducing self-declaring specialist agents with formal contracts:
+Major release building on the agent-based architecture with intelligent finding synthesis:
 
-- **12 Specialist Agents** - Code Reviewer (orchestrator) + 8 Specialist Reviewers (Security, Performance, Accessibility, SEO, Database, Infrastructure, TypeScript, Testing) + 3 Support Agents (Codebase Scanner, Synthesis Agent, Audit Compare)
-- **22 Slash Commands** - Full command suite including code review orchestrator, specialized audits, context management, and session workflows
-- **Self-Declaring Contracts** - Agents declare their own capabilities via JSON Schema-validated contracts
-- **Session-Start Hooks** - Automatic context health checks at session start
-- **Scope Boundaries** - Clear ownership between agents preventing duplicate findings
+- **Finding Deduplication** - Intelligent synthesis combining overlapping findings across reviewers
+- **Decision-Aware Review** - Code review considers DECISIONS.md for architectural context
+- **Synthesis Agent** - Automated finding combination with source attribution
+- **Upgrade Protection** - Idempotent upgrade paths with automatic backup/rollback
+- **Monorepo Support** - Multi-project configurations with shared context
+- **Hook Security** - Enhanced permission model for session automation
 - **Shell Compatibility** - Full support for bash, zsh, and sh across macOS and Linux
-- **80 tests passing** - Comprehensive coverage including install, hooks, shell compatibility, and cross-platform
+- **203+ tests passing** - Comprehensive coverage including install, hooks, shell compatibility, and cross-platform
 
-**v4.x** introduced modular code review, documentation health checking, and Quick Reference auto-generation.
+**v5.0** introduced agent-based code review with 12 specialist agents and self-declaring contracts.
 
 [See full changelog →](/about/changelog)
