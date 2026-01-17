@@ -105,8 +105,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 5.1.0
-Latest Version: 5.1.1
+Current Version: 5.1.1
+Latest Version: 5.1.2
 
 🔄 Creating backup...
    ✅ .claude/ → .claude-backup-20260108/
