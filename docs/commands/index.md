@@ -1,6 +1,6 @@
 # Commands Reference
 
-The AI Context System v5.1.0 uses an **agent-based architecture**:
+The AI Context System v5.1.1 uses an **agent-based architecture**:
 
 - **22 Slash Commands** - Entry points for all functionality
 - **13 Specialist Agents** - Domain experts (security reviewer, performance reviewer, cost-optimizer, etc.)
@@ -109,7 +109,7 @@ All commands follow these principles:
 4. **Resumable** - Safe to interrupt and restart
 5. **Helpful** - Provide guidance and next steps
 
-## Architecture (v5.1.0)
+## Architecture (v5.1.1)
 
 The system uses an agent-based architecture:
 
