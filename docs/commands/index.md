@@ -69,6 +69,9 @@ Pre-push build gate. Sequential: lint → typecheck → tests → build.
 ### [/export-context](/commands/export-context)
 Package all context for handoffs. Combines documentation into single markdown file.
 
+### [/session-summary](/commands/session-summary)
+Generate summary of current session for handoff.
+
 ### [/validate-context](/commands/validate-context)
 Check documentation health. Reports staleness, missing sections, and health score.
 
@@ -86,9 +89,6 @@ Create AI tool-specific entry points (CLAUDE.md, cursor.md, etc.).
 ### [/organize-docs](/commands/organize-docs)
 Interactive documentation cleanup and organization.
 
-### [/session-summary](/commands/session-summary)
-Generate summary of current session for handoff.
-
 ## Command Quick Reference
 
 | Category | Commands |
@@ -96,8 +96,8 @@ Generate summary of current session for handoff.
 | Setup | `/init-context`, `/migrate-context` |
 | Daily | `/save`, `/save-full`, `/review-context` |
 | Code Review | `/code-review` (orchestrator) + 8 specialized domain audits |
-| Collaboration | `/export-context`, `/validate-context` |
-| Maintenance | `/update-context-system`, `/update-templates`, `/add-ai-header`, `/organize-docs`, `/session-summary` |
+| Collaboration | `/export-context`, `/session-summary`, `/validate-context` |
+| Maintenance | `/update-context-system`, `/update-templates`, `/add-ai-header`, `/organize-docs` |
 
 ## Command Philosophy
 
