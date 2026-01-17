@@ -60,8 +60,8 @@ your-project/
 │   └── SESSIONS.md              # History + mental models
 ├── .claude/
 │   ├── commands/                # 22 slash commands
-│   ├── agents/                  # 12 specialist agents (v5.0)
-│   ├── schemas/                 # 7 JSON validation schemas
+│   ├── agents/                  # 13 specialist agents (v5.1)
+│   ├── schemas/                 # 8 JSON validation schemas
 │   └── hooks/                   # Session automation
 └── scripts/                     # Helper utilities
 ```
@@ -92,6 +92,6 @@ Major release building on the agent-based architecture with intelligent finding 
 - **Shell Compatibility** - Full support for bash, zsh, and sh across macOS and Linux
 - **203+ tests passing** - Comprehensive coverage including install, hooks, shell compatibility, and cross-platform
 
-**v5.0** introduced agent-based code review with 12 specialist agents and self-declaring contracts.
+**v5.0** introduced agent-based code review with specialist agents and self-declaring contracts.
 
 [See full changelog →](/about/changelog)
