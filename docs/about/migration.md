@@ -879,11 +879,11 @@ ls -la .claude-backup-*
 
 # Check new agents exist (v5.0.0+)
 ls .claude/agents/
-# Should show 12 specialist agents
+# Should show 13 specialist agents
 
 # Check new schemas exist (v5.0.0+)
 ls .claude/schemas/
-# Should show 7 JSON schemas
+# Should show 8 JSON schemas
 ```
 
 ### Can I upgrade during active work?
