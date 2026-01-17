@@ -79,18 +79,16 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.0** - Finding Deduplication & Enhanced Security
+**v5.1.1** - Shell Compatibility Fixes
 
-Major release building on the agent-based architecture with intelligent finding synthesis:
+Patch release fixing shell compatibility bugs discovered during real-world deployment:
 
-- **Finding Deduplication** - Intelligent synthesis combining overlapping findings across reviewers
-- **Decision-Aware Review** - Code review considers DECISIONS.md for architectural context
-- **Synthesis Agent** - Automated finding combination with source attribution
-- **Upgrade Protection** - Idempotent upgrade paths with automatic backup/rollback
-- **Monorepo Support** - Multi-project configurations with shared context
-- **Hook Security** - Enhanced permission model for session automation
-- **Shell Compatibility** - Full support for bash, zsh, and sh across macOS and Linux
-- **203+ tests passing** - Comprehensive coverage including install, hooks, shell compatibility, and cross-platform
+- **macOS grep compatibility** - Fixed BRE patterns that failed on BSD grep
+- **Parent directory detection** - Now correctly checks ancestor directories only
+- **zsh debug output** - Fixed spurious variable output in loops
+- **80 tests passing** - All existing tests continue to pass
+
+**v5.1.0** introduced finding deduplication, decision-aware review, and comprehensive testing infrastructure.
 
 **v5.0** introduced agent-based code review with specialist agents and self-declaring contracts.
 
