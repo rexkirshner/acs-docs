@@ -406,6 +406,23 @@ pwd
 
 The system auto-detects context up to 3 parent directories, but works best from project root.
 
+### Nested Git Repository Warning?
+
+**Problem:** Installer shows "nested git repositories detected"
+
+**Solution:** This warning appears when your project contains nested git repos (not submodules):
+
+```bash
+# If you want separate ACS installations:
+# Install in EACH git repo separately
+
+# If you want single ACS installation:
+# Only install in the parent repo
+# Remove context/ from nested repos if present
+```
+
+See [Troubleshooting > Nested Git Repositories](/guide/troubleshooting#nested-git-repositories-causing-context-confusion) for details.
+
 ### Quick Reference Not Generated?
 
 **Problem:** STATUS.md Quick Reference section is empty
