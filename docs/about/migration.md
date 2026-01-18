@@ -42,6 +42,39 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ## Version-Specific Migrations
 
+### v5.1.1 → v5.1.2
+
+**Patch release:** Nested repository detection and Claude Code settings conflict fix.
+
+::: tip Simple Upgrade
+Just run `/update-context-system` - automatic migration handles everything.
+:::
+
+**What's Fixed:**
+
+1. **Nested Repository Detection (Install-Time)**
+   - Installer now warns when nested `.git/` directories detected
+   - Warns when parent directory already has ACS installed
+   - Warns when orphaned `context/` folder exists (no `.context-config.json`)
+
+2. **Git Boundary Checking (Runtime)**
+   - `find_context_folder()` now respects git boundaries
+   - Stops searching at `.git/` directories to prevent context confusion
+   - Clear error messages explain git boundary detection
+
+3. **Claude Code Settings Conflict**
+   - `.claude/settings.json` renamed to `.claude/acs-settings.json`
+   - Fixes Claude Code showing "Settings Error" for invalid schema
+   - Migration automatically removes old file if it has ACS schema
+
+**Testing:**
+- 19 new tests for nested repo detection
+- 166 total tests passing
+
+**Action required:** Run `/update-context-system`. If you see Claude Code "Settings Error" after upgrade, restart Claude Code.
+
+---
+
 ### v4.2.1 → v5.0.x
 
 **Major release:** Agent-based code review architecture with self-declaring contracts.
