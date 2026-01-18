@@ -317,13 +317,109 @@ cd /path/to/your/project
 pwd  # Should be project root
 ```
 
+## Nested Repository Issues
+
+### Nested Git Repositories Causing Context Confusion
+
+**Symptoms:**
+- Context files appear in wrong location
+- `/save` saves to parent project
+- Duplicate context folders
+- `find_context_folder` finds wrong context
+
+**Cause:** You have nested git repositories where both parent and child have (or should have) separate context systems.
+
+**Example structure:**
+```
+parent-project/           # Has .git/ and context/
+├── .git/
+├── context/
+│   └── STATUS.md         # Parent's context
+└── child-app/            # Also has .git/ (separate repo)
+    └── .git/
+    └── context/
+        └── STATUS.md     # Child's context (may be orphaned)
+```
+
+**Solution:**
+
+1. **Install ACS in each repository separately:**
+   ```bash
+   # In parent
+   cd parent-project
+   curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
+
+   # In child (separate installation)
+   cd parent-project/child-app
+   curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
+   ```
+
+2. **Or use only the parent's context system:**
+   - Remove any manually-created `context/` folders in child directories
+   - All context files will be managed at the parent level
+
+3. **Fix orphaned context folders:**
+   If you have `context/STATUS.md` without `.context-config.json`:
+   ```bash
+   # Run /init-context to properly initialize, or
+   # Delete the orphaned context/ folder if not needed
+   rm -rf context/
+   ```
+
+**Prevention:** The v5.1.2 installer detects nested repos and warns before installation.
+
+**Added in:** v5.1.2
+
+---
+
+### Claude Code Shows "Settings Error" for .claude/settings.json
+
+**Symptoms:**
+```
+Settings Error
+.claude/settings.json
+  ├ $schema: Invalid value. Expected one of:
+  │ "https://json.schemastore.org/claude-code-settings.json"
+  └ hooks
+    ├ enabled: Invalid key in record
+    ├ onFailure: Invalid key in record
+    └ timeout: Invalid key in record
+```
+
+**Cause:** Older versions of ACS (pre-v5.1.2) created `.claude/settings.json` with a custom schema that conflicts with Claude Code's reserved schema for that filename.
+
+**Impact:** Claude Code ignores ALL project settings when this file is present.
+
+**Solution:**
+
+1. **Upgrade ACS (recommended):**
+   ```bash
+   /update-context-system
+   ```
+   The v5.1.2 upgrade automatically removes the conflicting file.
+
+2. **Manual removal:**
+   ```bash
+   # First check if it's the ACS file (has our schema)
+   grep "acs.rexkirshner.com" .claude/settings.json
+
+   # If it shows a match, remove it
+   rm .claude/settings.json
+   ```
+
+**Note:** v5.1.2+ uses `.claude/acs-settings.json` instead, which doesn't conflict with Claude Code.
+
+**Fixed in:** v5.1.2
+
+---
+
 ## Version Issues
 
 ### System Version Outdated
 
 **Symptoms:**
 ```
-⚠️  Update available: v5.1.1 (you have v5.0.x)
+⚠️  Update available: v5.1.2 (you have v5.0.x)
 ```
 
 **Solution:**
