@@ -135,6 +135,21 @@ Automatically analyzes your project:
 If multiple .claude directories are detected in parent folders, you'll see a warning. Only keep .claude in your actual project root (unless you're using a meta-project setup).
 :::
 
+::: warning Nested Git Repositories (v5.1.2+)
+If nested git repositories are detected, you'll see a warning:
+
+```bash
+⚠️  Nested git repositories detected:
+   ./child-app/.git
+   ./another-repo/.git
+
+This may cause context confusion. Each git repo should have its own
+AI Context System installation, or use only the parent's context.
+```
+
+This prevents context confusion where a child repo accidentally uses a parent repo's context files.
+:::
+
 ### Step 2: Customized Templates
 
 Creates files customized to your project:
@@ -148,13 +163,13 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "5.1.1",
+  "version": "5.1.2",
   "project": {
     "name": "your-project",
     "type": "application",
     "tech_stack": ["Next.js", "TypeScript", "PostgreSQL"]
   },
-  "created": "2026-01-17"
+  "created": "2026-01-18"
 }
 ```
 
