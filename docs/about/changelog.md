@@ -389,7 +389,7 @@ New `.claude/schemas/` directory with JSON Schema definitions:
 | `context-health.json` | Context health metrics |
 | `handoff-package.json` | Session handoff data |
 | `session-entry.json` | Session log entries |
-| `settings.json` | System configuration |
+| `settings.json` | System configuration (renamed to `acs-settings.json` in v5.1.2) |
 
 #### Profile Settings
 
