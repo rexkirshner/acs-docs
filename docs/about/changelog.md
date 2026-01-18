@@ -395,7 +395,7 @@ New `.claude/schemas/` directory with JSON Schema definitions:
 
 **Configurable Profiles**
 
-Three profile levels in `.claude/settings.json`:
+Three profile levels in `.claude/acs-settings.json` (renamed from `settings.json` in v5.1.2):
 
 - **minimal** - Quick saves only, hooks disabled
 - **standard** - Full context system (default)
