@@ -113,6 +113,12 @@ Starting in v5.0, a session-start hook automatically runs when you begin a Claud
 - Only keep `.claude` in project root
 - Exception: Meta-projects intentionally have multiple
 
+**Nested git repository warning?**
+- The installer detects nested git repos and warns you (v5.1.2+)
+- Each git repo should have its own ACS installation
+- Or use only the parent repo's context system
+- See [Nested Git Repositories](/guide/troubleshooting#nested-git-repositories-causing-context-confusion)
+
 **Need help?**
 - [Troubleshooting Guide](/guide/troubleshooting)
 - [GitHub Issues](https://github.com/rexkirshner/ai-context-system/issues)
