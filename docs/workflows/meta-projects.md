@@ -32,6 +32,14 @@ Managing parent directories that contain multiple sub-repositories with AI Conte
 - Maintains consistency across repos
 - Enables working from any subdirectory
 
+::: warning Meta-Projects vs Nested Git Repos
+**Meta-projects** have NO `.git/` in the parent directory - it's just a folder containing separate repos.
+
+**Nested git repos** have `.git/` in BOTH parent AND child directories.
+
+For nested repos (where parent has `.git/`), see [Nested Git Repositories](/guide/troubleshooting#nested-git-repositories-causing-context-confusion). The v5.1.2 git boundary detection prevents child repos from accidentally using parent's context.
+:::
+
 ## Setup
 
 ### 1. Install in Parent Directory
