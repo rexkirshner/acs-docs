@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.1.1
+## Current Version: v5.1.2
 
-Latest patch release with shell compatibility fixes (macOS grep, parent detection, zsh output). 80 tests passing. [See changelog](/about/changelog) for details.
+Latest patch release with nested repository detection and Claude Code settings conflict fix. 166 tests passing. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 

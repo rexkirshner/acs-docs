@@ -2,6 +2,92 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.2] - 2026-01-18
+
+### Fixed - Nested Repository Detection & Claude Code Conflict
+
+**PATCH RELEASE** - Addresses two critical issues: nested git repository context confusion and Claude Code settings conflict.
+
+#### Nested Repository Detection (Install-Time)
+
+**Problem:** When installing ACS in a project that contains nested git repositories (not submodules), or in a child repo inside a parent with ACS, context files could appear in the wrong location or cause confusion.
+
+**Example structure:**
+```
+parent-project/           # Has .git/ and context/
+├── .git/
+├── context/
+│   └── STATUS.md         # Parent's context
+└── child-app/            # Also has .git/ (separate repo)
+    └── .git/
+    └── context/
+        └── STATUS.md     # Child's context (may be orphaned)
+```
+
+**Solution:** The installer now performs three safety checks before installation:
+
+1. **Nested repo detection** - Warns when nested `.git/` directories found
+2. **Parent context detection** - Warns when parent directory has ACS installed
+3. **Orphaned context detection** - Warns when `context/` exists without `.context-config.json`
+
+```bash
+⚠️  Nested git repositories detected:
+   ./child-app/.git
+   ./another-repo/.git
+
+This may cause context confusion. Each git repo should have its own
+AI Context System installation, or use only the parent's context.
+```
+
+#### Git Boundary Checking (Runtime)
+
+**Problem:** `find_context_folder()` could traverse up past git boundaries, potentially finding a parent project's context when working from a nested git repo subdirectory.
+
+**Solution:** The function now checks for `.git` at each level during upward traversal and stops at git boundaries:
+
+- Checks `.git` at current directory before searching parents
+- Checks `.git` at parent directory before checking parent context
+- Checks `.git` at grandparent before checking grandparent context
+- Provides clear error message explaining git boundary detection
+
+```bash
+⚠️  Git boundary detected at: /path/to/parent-project
+   Search stopped to prevent nested repo context confusion.
+   Parent directories beyond this point were NOT searched.
+```
+
+#### Claude Code Settings Conflict Fix
+
+**Problem:** `.claude/settings.json` conflicted with Claude Code's reserved schema for that filename, causing Claude Code to show settings errors and ignore project settings.
+
+**Symptom:**
+```
+Settings Error
+.claude/settings.json
+  ├ $schema: Invalid value. Expected one of:
+  │ "https://json.schemastore.org/claude-code-settings.json"
+  └ hooks
+    ├ enabled: Invalid key in record
+    ├ onFailure: Invalid key in record
+    └ timeout: Invalid key in record
+```
+
+**Solution:**
+- Renamed ACS settings file to `.claude/acs-settings.json`
+- Migration automatically removes old `settings.json` if it has ACS schema
+- Safe migration: only removes file if it contains ACS schema URL
+
+#### Testing
+
+- **19 new tests** in `scripts/tests/test-nested-repo-detection.sh`
+  - 6 tests for install.sh detection code
+  - 5 tests for functional detection
+  - 5 tests for runtime git boundary checking
+  - 3 tests for documentation updates
+- **166 total tests passing**
+
+---
+
 ## [5.1.1] - 2026-01-17
 
 ### Fixed - Shell Compatibility

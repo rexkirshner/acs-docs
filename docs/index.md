@@ -79,14 +79,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.1** - Shell Compatibility Fixes
+**v5.1.2** - Nested Repository Detection & Claude Code Conflict Fix
 
-Patch release fixing shell compatibility bugs discovered during real-world deployment:
+Patch release addressing two critical issues:
 
-- **macOS grep compatibility** - Fixed BRE patterns that failed on BSD grep
-- **Parent directory detection** - Now correctly checks ancestor directories only
-- **zsh debug output** - Fixed spurious variable output in loops
-- **80 tests passing** - All existing tests continue to pass
+- **Nested repo detection** - Installer warns when nested git repositories detected
+- **Parent context detection** - Warns when parent directory already has ACS installed
+- **Git boundary checking** - `find_context_folder()` respects git boundaries at runtime
+- **Claude Code conflict fix** - Renamed `settings.json` to `acs-settings.json` to avoid schema conflict
+- **166 tests passing** - Including 19 new tests for nested repo detection
+
+**v5.1.1** fixed shell compatibility bugs (macOS grep, parent detection, zsh output).
 
 **v5.1.0** introduced finding deduplication, decision-aware review, and comprehensive testing infrastructure.
 
