@@ -105,8 +105,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 5.1.0
-Latest Version: 5.1.1
+Current Version: 5.1.1
+Latest Version: 5.1.2
 
 🔄 Creating backup...
    ✅ .claude/ → .claude-backup-20260108/
@@ -302,7 +302,7 @@ chmod +x scripts/*.sh
 # Manually update version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.1",  # Update to current version
+  "version": "5.1.2",  # Update to current version
   ...
 }
 ```
