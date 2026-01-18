@@ -59,13 +59,13 @@ Just run `/update-context-system` - automatic migration handles everything.
 | Session hooks | Manual review | Automatic health checks |
 | Template sections | Standard | +Invariants, +Open Loops |
 | User feedback | Overwritten on upgrade | Archived automatically |
-| JSON schemas | None | 7 schemas in `.claude/schemas/` |
+| JSON schemas | None | 8 schemas in `.claude/schemas/` |
 | Test coverage | 86+ tests | 80 tests |
 
 **What's New:**
 
 1. **Agent-Based Code Review Architecture**
-   - 12 specialist agents (8 review domains + 4 support agents) with self-declaring contracts
+   - 13 specialist agents (8 review domains + 5 support agents) with self-declaring contracts
    - Each agent declares: id, prefix, category, applicability, checklist, output schema
    - Commands now delegate to agents: `/code-review-security` → `security-reviewer.md`
 
@@ -94,7 +94,7 @@ Just run `/update-context-system` - automatic migration handles everything.
    - Controls verbosity of saves and reviews
 
 7. **JSON Schemas**
-   - 7 schemas in `.claude/schemas/`
+   - 8 schemas in `.claude/schemas/`
    - `agent-contract.json`, `audit-finding.json`, `context-config.json`, etc.
    - Enables structured data validation
 
@@ -606,7 +606,7 @@ ls -la context/
 - ✅ No data loss: Existing context files unchanged
 - ✅ Feedback preserved: Archived during upgrade
 - ✅ 80 tests passing
-- ✅ New features: 12 agents, contracts, hooks, schemas, profiles
+- ✅ New features: 13 agents, contracts, hooks, schemas, profiles
 - ✅ Shell compatibility: bash, zsh, and sh across macOS and Linux
 
 ### v4.2.1

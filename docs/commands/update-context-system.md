@@ -105,8 +105,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 5.1.1
-Latest Version: 5.1.2
+Current Version: 5.1.0
+Latest Version: 5.1.1
 
 🔄 Creating backup...
    ✅ .claude/ → .claude-backup-20260108/
@@ -136,8 +136,8 @@ Latest Version: 5.1.2
 
 Updated:
   ✅ Commands (22 files)
-  ✅ Agents (12 files)
-  ✅ Schemas (7 files)
+  ✅ Agents (13 files)
+  ✅ Schemas (8 files)
   ✅ Scripts (8 files)
   ✅ Templates (16 files)
 
