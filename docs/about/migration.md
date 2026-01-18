@@ -612,7 +612,15 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.1.1 (Current)
+### v5.1.2 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Nested repo detection: Installer warns about nested git repositories
+- ✅ Git boundary checking: `find_context_folder()` respects git boundaries at runtime
+- ✅ Claude Code conflict fix: Renamed `settings.json` to `acs-settings.json`
+- ✅ 166 tests passing
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.1.1
 - ✅ No breaking changes (patch release)
 - ✅ macOS grep compatibility: Fixed BRE patterns that failed on BSD grep
 - ✅ Parent directory detection: Now checks ancestors only, not siblings
@@ -853,7 +861,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.1"  # Update this
+  "version": "5.1.2"  # Update this
 }
 
 # Then:
@@ -898,12 +906,13 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.1.1  # Works
-v3.5.0 → v5.1.1  # Works
-v4.0.0 → v5.1.1  # Works
-v4.2.1 → v5.1.1  # Works
-v5.0.x → v5.1.1  # Works
-v5.1.0 → v5.1.1  # Works
+v2.0.0 → v5.1.2  # Works
+v3.5.0 → v5.1.2  # Works
+v4.0.0 → v5.1.2  # Works
+v4.2.1 → v5.1.2  # Works
+v5.0.x → v5.1.2  # Works
+v5.1.0 → v5.1.2  # Works
+v5.1.1 → v5.1.2  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -911,7 +920,7 @@ v5.1.0 → v5.1.1  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.1.1
+# Should show: 5.1.2
 
 # Test command
 /review-context
@@ -928,6 +937,10 @@ ls .claude/agents/
 # Check new schemas exist (v5.0.0+)
 ls .claude/schemas/
 # Should show 8 JSON schemas
+
+# Check settings file renamed (v5.1.2+)
+ls .claude/acs-settings.json
+# Should exist (not settings.json)
 ```
 
 ### Can I upgrade during active work?
