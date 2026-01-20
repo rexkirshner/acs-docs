@@ -559,7 +559,7 @@ Next Session:
 
 ## See Also
 
-- [Breaks & Handoffs Workflow](/workflows/breaks-handoffs) - When to use /save-full
+- [Daily Work Workflow](/workflows/daily-work) - When to use /save-full
 - [AI-to-AI Handoff](/workflows/ai-handoff) - Using /save-full for handoffs
 - [SESSIONS.md Guide](/guide/sessions-file) - Understanding session entries
 - [Mental Models](/guide/mental-models) - Externalizing your thinking
