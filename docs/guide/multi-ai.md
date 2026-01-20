@@ -348,7 +348,7 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 **Project:** portfolio-tracker (10-day development)
 
 **Workflow:**
-1. Claude Code: Initial development + v3.2.1 dogfooding
+1. Claude Code: Initial development + architecture
 2. Cursor: Frontend refinements
 3. Both AIs read same context/
 4. Zero context loss in handoff
