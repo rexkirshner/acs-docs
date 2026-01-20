@@ -25,7 +25,7 @@ The AI Context System works with any AI coding assistant—built on universal co
 
 **Built-in features:**
 - ✅ 22 slash commands (`/save`, `/save-full`, `/init-context`, `/code-review`, etc.)
-- ✅ 13 specialist agents (8 review domains + 5 support agents including synthesis and cost-optimizer)
+- ✅ 14 specialist agents (9 review domains + 5 support agents including synthesis and cost-optimizer)
 - ✅ TodoWrite integration (automatic task state capture)
 - ✅ Interactive workflows (approval checkpoints, validation prompts)
 - ✅ Session-start hooks (automatic context health checks)
