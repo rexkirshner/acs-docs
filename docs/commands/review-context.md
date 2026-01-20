@@ -408,7 +408,7 @@ cat context/SESSIONS.md | tail -200
 # Check current directory
 pwd
 
-# Should be project root or up to 3 levels deep
+# Should be project root or up to 2 levels deep
 cd /path/to/your/project
 /review-context
 ```
