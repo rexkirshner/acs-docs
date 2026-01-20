@@ -117,7 +117,7 @@ Latest Version: 5.1.4
 
 🔄 Updating files...
    ✅ .claude/commands/ (22 commands updated)
-   ✅ .claude/agents/ (13 agents updated)
+   ✅ .claude/agents/ (14 agents updated)
    ✅ .claude/schemas/ (8 schemas updated)
    ✅ scripts/ (8 scripts updated)
    ✅ templates/ (16 templates updated)
