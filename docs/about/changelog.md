@@ -2,6 +2,53 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.4] - 2026-01-20
+
+### Added - Library Adoption Reviewer
+
+**PATCH RELEASE** - New code review specialist that identifies homegrown code that could be replaced with battle-tested libraries.
+
+#### Library Adoption Reviewer Agent
+
+New specialist agent (`.claude/agents/library-adoption-reviewer.md`) that scans for custom implementations and recommends well-maintained library alternatives:
+
+- **Detection patterns** for common reinvented wheels:
+  - Date manipulation → date-fns, dayjs, luxon
+  - Schema validation → zod, yup, joi, valibot
+  - HTTP clients → axios, ky, got
+  - Deep cloning → structuredClone (native)
+  - UUID generation → uuid, nanoid
+  - Encryption/hashing → crypto-js, bcrypt, argon2
+  - State management → zustand, jotai
+  - Retry logic → p-retry, async-retry
+
+- **Comprehensive analysis** for each finding:
+  - Current approach (lines of code, complexity)
+  - Recommended library (version, docs, alternatives)
+  - Impact analysis (code reduction, reliability, maintenance)
+  - Honest downsides (bundle size, learning curve, migration effort)
+  - Difficulty rating (easy/medium/hard)
+  - Priority level (recommended/consider/optional)
+
+#### New Command
+
+- **`/code-review --libraries`** - Run library adoption reviewer independently
+- Also included in **`/code-review --all`** preset
+
+#### Changes
+
+- **Available specialists:** Increased from 8 to 9
+- **audit-finding.json schema:** Updated to v1.1.0 (allows agent-specific fields)
+
+#### Technical Notes
+
+- Uses `LIB-` prefix for finding IDs
+- Runs with `--all` or `--libraries` only (not with presets)
+- Skips recommendations when library already installed
+- Respects intentional decisions documented in DECISIONS.md
+
+---
+
 ## [5.1.3] - 2026-01-20
 
 ### Fixed - Bug Fixes & Documentation Clarity
