@@ -79,20 +79,19 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.2** - Nested Repository Detection & Claude Code Conflict Fix
+**v5.1.3** - Bug Fixes & Documentation Clarity
 
-Patch release addressing two critical issues:
+Patch release with bug fixes and improved documentation for AI agents:
 
-- **Nested repo detection** - Installer warns when nested git repositories detected
-- **Parent context detection** - Warns when parent directory already has ACS installed
-- **Git boundary checking** - `find_context_folder()` respects git boundaries at runtime
-- **Claude Code conflict fix** - Renamed `settings.json` to `acs-settings.json` to avoid schema conflict
-- **166 tests passing** - Including 19 new tests for nested repo detection
+- **Session statistics fix** - `/review-context` correctly handles archived sessions using common functions
+- **CHANGELOG reference fix** - Install script now links to GitHub instead of missing local file
+- **Bash block labeling** - Documented `ACTION:` convention for executable code blocks
+- **80 tests passing** - All unit tests pass across 11 modules
+
+**v5.1.2** fixed nested repo detection and Claude Code settings conflict.
 
 **v5.1.1** fixed shell compatibility bugs (macOS grep, parent detection, zsh output).
 
 **v5.1.0** introduced finding deduplication, decision-aware review, and comprehensive testing infrastructure.
-
-**v5.0** introduced agent-based code review with specialist agents and self-declaring contracts.
 
 [See full changelog →](/about/changelog)
