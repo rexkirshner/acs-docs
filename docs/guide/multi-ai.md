@@ -412,7 +412,7 @@ When this is true, multi-AI support is successful.
 
 ## Next Steps
 
-- [Installation Guide](/guide/installation) - Set up for your tool
+- [Getting Started](/guide/getting-started) - Installation instructions
 - [Commands Reference](/commands/) - See Claude Code commands
 - [Workflows](/workflows/) - Adapt workflows to your tool
 - [GitHub Repository](https://github.com/rexkirshner/ai-context-system) - Contribute integrations
