@@ -2,7 +2,7 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.1.2
+## Current Version: v5.1.3
 
 Latest patch release with nested repository detection and Claude Code settings conflict fix. 166 tests passing. [See changelog](/about/changelog) for details.
 
@@ -408,7 +408,7 @@ v3.5.0 placed CLAUDE.md in `context/claude.md`. This was changed in v3.6.0 to `.
 - Fixed version detection in zsh shells
 - Fixed zsh/bash version command compatibility
 - Fixed token limit crashes with large SESSIONS.md files
-- Fixed subdirectory context detection (searches up to 3 parent directories)
+- Fixed subdirectory context detection (searches up to 2 parent directories)
 - Fixed session count accuracy
 - Fixed upgrade path testing
 
@@ -612,7 +612,15 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.1.2 (Current)
+### v5.1.3 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Session statistics fix: `/review-context` correctly handles archived sessions
+- ✅ CHANGELOG reference fix: Install script now links to GitHub
+- ✅ Bash block labeling: Documented `ACTION:` convention for executable code blocks
+- ✅ 80 tests passing (11 modules)
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.1.2
 - ✅ No breaking changes (patch release)
 - ✅ Nested repo detection: Installer warns about nested git repositories
 - ✅ Git boundary checking: `find_context_folder()` respects git boundaries at runtime
@@ -861,7 +869,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.2"  # Update this
+  "version": "5.1.3"  # Update this
 }
 
 # Then:
@@ -906,13 +914,14 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.1.2  # Works
-v3.5.0 → v5.1.2  # Works
-v4.0.0 → v5.1.2  # Works
-v4.2.1 → v5.1.2  # Works
-v5.0.x → v5.1.2  # Works
-v5.1.0 → v5.1.2  # Works
-v5.1.1 → v5.1.2  # Works
+v2.0.0 → v5.1.3  # Works
+v3.5.0 → v5.1.3  # Works
+v4.0.0 → v5.1.3  # Works
+v4.2.1 → v5.1.3  # Works
+v5.0.x → v5.1.3  # Works
+v5.1.0 → v5.1.3  # Works
+v5.1.1 → v5.1.3  # Works
+v5.1.2 → v5.1.3  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -920,7 +929,7 @@ v5.1.1 → v5.1.2  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.1.2
+# Should show: 5.1.3
 
 # Test command
 /review-context

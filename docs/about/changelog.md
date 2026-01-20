@@ -2,6 +2,42 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.3] - 2026-01-20
+
+### Fixed - Bug Fixes & Documentation Clarity
+
+**PATCH RELEASE** - Bug fixes and improved documentation for AI agents.
+
+#### Session Statistics Fix
+
+**Problem:** `/review-context` used `grep -c` for session counting instead of the `get_max_session_number()` function from common-functions.sh, causing incorrect session counts when sessions had been archived.
+
+**Solution:** Updated review-context.md to use the common function with robust error handling:
+- Uses `get_max_session_number()` to correctly identify latest session
+- Shows both session count and max session number when they differ (indicating archived sessions)
+- Validates all values are numeric with defensive fallbacks
+
+#### CHANGELOG Reference Fix
+
+**Problem:** Install script referenced `cat CHANGELOG.md` to show release notes, but CHANGELOG.md is not included in the installed files.
+
+**Solution:** Changed to link to GitHub CHANGELOG instead.
+
+#### Documentation - Bash Block Labeling Standard
+
+Added documentation for the `ACTION:` convention in command-philosophy.md:
+1. `ACTION:` prefix = definitely execute (preferred for all executable blocks)
+2. `Usage:` prefix = reference, not execute directly
+3. `Example output:` = never execute
+4. Plain code blocks = usually example output
+
+### Testing
+
+- 80 tests passing (11 modules)
+- Session numbering tests (12/12) verify gap handling
+
+---
+
 ## [5.1.2] - 2026-01-18
 
 ### Fixed - Nested Repository Detection & Claude Code Conflict

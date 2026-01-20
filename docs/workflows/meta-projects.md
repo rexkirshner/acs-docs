@@ -121,7 +121,7 @@ cd ~/projects/portfolio/backend
 cd ~/projects/portfolio/backend/src/api
 /save  # ✅ Finds ../../../context/
 
-# Up to 3 parent levels
+# Up to 2 parent levels
 cd ~/projects/portfolio/backend/src/api/routes
 /save  # ✅ Finds ../../../../context/
 ```
