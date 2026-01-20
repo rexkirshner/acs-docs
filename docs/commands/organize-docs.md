@@ -190,5 +190,5 @@ git mv notes.md artifacts/planning/notes.md
 
 ## See Also
 
-- [Project Organization](/guide/organization) - Best practices
-- [File Structure](/guide/file-structure) - Standard layout
+- [Getting Started](/guide/getting-started) - Standard file structure
+- [Quick Start](/guide/quick-start) - Workflow best practices
