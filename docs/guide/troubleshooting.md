@@ -56,7 +56,7 @@ pwd
 # Move closer to project root
 cd /Users/you/projects/my-app
 
-# Or run from any level (system searches up to 3 parents)
+# Or run from any level (system searches up to 2 parents)
 /save  # Auto-finds context/
 ```
 
