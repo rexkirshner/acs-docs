@@ -29,7 +29,7 @@ export default {
       { text: 'Commands', link: '/commands/' },
       { text: 'Workflows', link: '/workflows/' },
       {
-        text: 'v5.1.3',
+        text: 'v5.1.4',
         items: [
           { text: 'Changelog', link: '/about/changelog' },
           { text: 'Migration Guides', link: '/about/migration' }
@@ -97,6 +97,7 @@ export default {
             { text: '/code-review-infrastructure', link: '/commands/code-review-infrastructure' },
             { text: '/code-review-typescript', link: '/commands/code-review-typescript' },
             { text: '/code-review-testing', link: '/commands/code-review-testing' },
+            { text: '/code-review-libraries', link: '/commands/code-review-libraries' },
             { text: '/build-check', link: '/commands/build-check' }
           ]
         },
