@@ -338,5 +338,5 @@ Customize thresholds in `.context-config.json`:
 
 ## See Also
 
-- [Documentation Health](/guide/doc-health) - Maintaining quality
-- [Best Practices](/guide/best-practices) - Documentation standards
+- [Session Continuity](/guide/session-continuity) - Zero context loss
+- [Daily Work Workflow](/workflows/daily-work) - Using validation in daily routine
