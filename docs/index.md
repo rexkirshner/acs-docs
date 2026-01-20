@@ -60,7 +60,7 @@ your-project/
 │   └── SESSIONS.md              # History + mental models
 ├── .claude/
 │   ├── commands/                # 22 slash commands
-│   ├── agents/                  # 13 specialist agents (v5.1)
+│   ├── agents/                  # 14 specialist agents (v5.1.4)
 │   ├── schemas/                 # 8 JSON validation schemas
 │   └── hooks/                   # Session automation
 └── scripts/                     # Helper utilities
@@ -79,19 +79,19 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.3** - Bug Fixes & Documentation Clarity
+**v5.1.4** - Library Adoption Reviewer
 
-Patch release with bug fixes and improved documentation for AI agents:
+New specialist agent for identifying homegrown code that could be replaced with battle-tested libraries:
 
-- **Session statistics fix** - `/review-context` correctly handles archived sessions using common functions
-- **CHANGELOG reference fix** - Install script now links to GitHub instead of missing local file
-- **Bash block labeling** - Documented `ACTION:` convention for executable code blocks
+- **Library adoption reviewer** - New agent detecting reinvented wheels (date utils, validation, HTTP clients)
+- **`/code-review --libraries`** - New flag for library adoption review
+- **14 specialist agents** - 9 review domains + 5 support agents
 - **80 tests passing** - All unit tests pass across 11 modules
+
+**v5.1.3** fixed session statistics in `/review-context` and CHANGELOG reference in install script.
 
 **v5.1.2** fixed nested repo detection and Claude Code settings conflict.
 
 **v5.1.1** fixed shell compatibility bugs (macOS grep, parent detection, zsh output).
-
-**v5.1.0** introduced finding deduplication, decision-aware review, and comprehensive testing infrastructure.
 
 [See full changelog →](/about/changelog)
