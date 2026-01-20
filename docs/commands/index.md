@@ -1,9 +1,9 @@
 # Commands Reference
 
-The AI Context System v5.1.3 uses an **agent-based architecture**:
+The AI Context System v5.1.4 uses an **agent-based architecture**:
 
 - **22 Slash Commands** - Entry points for all functionality
-- **13 Specialist Agents** - Domain experts (security reviewer, performance reviewer, cost-optimizer, etc.)
+- **14 Specialist Agents** - Domain experts (security reviewer, performance reviewer, library-adoption-reviewer, cost-optimizer, etc.)
 - **8 JSON Schemas** - Contract validation for all agents
 - **Session Hooks** - Automatic context health checks
 
@@ -61,6 +61,9 @@ TypeScript type safety audit. Strict mode, `any` tracking, type coverage.
 ### [/code-review-testing](/commands/code-review-testing)
 Test coverage and quality audit. Coverage metrics, test pyramid, CI integration.
 
+### [/code-review-libraries](/commands/code-review-libraries)
+Library adoption review. Identifies homegrown implementations replaceable with battle-tested libraries.
+
 ### [/build-check](/commands/build-check)
 Pre-push build gate. Sequential: lint → typecheck → tests → build.
 
@@ -95,7 +98,7 @@ Interactive documentation cleanup and organization.
 |----------|----------|
 | Setup | `/init-context`, `/migrate-context` |
 | Daily | `/save`, `/save-full`, `/review-context` |
-| Code Review | `/code-review` (orchestrator) + 8 specialized domain audits |
+| Code Review | `/code-review` (orchestrator) + 9 specialized domain audits |
 | Collaboration | `/export-context`, `/session-summary`, `/validate-context` |
 | Maintenance | `/update-context-system`, `/update-templates`, `/add-ai-header`, `/organize-docs` |
 
@@ -109,14 +112,14 @@ All commands follow these principles:
 4. **Resumable** - Safe to interrupt and restart
 5. **Helpful** - Provide guidance and next steps
 
-## Architecture (v5.1.3)
+## Architecture (v5.1.4)
 
 The system uses an agent-based architecture:
 
 ```
 .claude/
 ├── commands/    # 22 slash commands
-├── agents/      # 13 specialist agents (code reviewers, etc.)
+├── agents/      # 14 specialist agents (code reviewers, etc.)
 ├── schemas/     # 8 JSON Schema contracts
 └── hooks/       # Session automation
 ```
