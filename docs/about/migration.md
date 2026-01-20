@@ -4,7 +4,7 @@ Upgrade paths and migration instructions for AI Context System.
 
 ## Current Version: v5.1.3
 
-Latest patch release with nested repository detection and Claude Code settings conflict fix. 166 tests passing. [See changelog](/about/changelog) for details.
+Latest patch release with session statistics fix, CHANGELOG reference fix, and documentation improvements. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
