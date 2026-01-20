@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.1.3
+## Current Version: v5.1.4
 
-Latest patch release with session statistics fix, CHANGELOG reference fix, and documentation improvements. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
+Latest release with new library adoption reviewer agent for detecting homegrown code replaceable with battle-tested libraries. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -98,7 +98,7 @@ Just run `/update-context-system` - automatic migration handles everything.
 **What's New:**
 
 1. **Agent-Based Code Review Architecture**
-   - 13 specialist agents (8 review domains + 5 support agents) with self-declaring contracts
+   - 14 specialist agents (9 review domains + 5 support agents) with self-declaring contracts
    - Each agent declares: id, prefix, category, applicability, checklist, output schema
    - Commands now delegate to agents: `/code-review-security` → `security-reviewer.md`
 
@@ -612,7 +612,15 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.1.3 (Current)
+### v5.1.4 (Current)
+- ✅ No breaking changes (minor release)
+- ✅ Library adoption reviewer: New agent detecting homegrown implementations
+- ✅ `/code-review --libraries`: New flag for library adoption review
+- ✅ 14 specialist agents: 9 review domains + 5 support agents
+- ✅ 80 tests passing (11 modules)
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.1.3
 - ✅ No breaking changes (patch release)
 - ✅ Session statistics fix: `/review-context` correctly handles archived sessions
 - ✅ CHANGELOG reference fix: Install script now links to GitHub
@@ -639,7 +647,7 @@ ls -la context/
 ### v5.1.0
 - ⚠️ Code review now considers DECISIONS.md (decision-aware review)
 - ✅ Finding deduplication: Synthesis agent combines overlapping findings
-- ✅ New: cost-optimizer agent (13 total agents now)
+- ✅ New: cost-optimizer agent (was 13 total agents, now 14 in v5.1.4)
 - ✅ New: codebase-context.json schema (8 total schemas now)
 - ✅ Upgrade protection: Idempotent upgrades with automatic backup/rollback
 - ✅ Monorepo support: Multi-project configurations
@@ -655,7 +663,7 @@ ls -la context/
 - ✅ No data loss: Existing context files unchanged
 - ✅ Feedback preserved: Archived during upgrade
 - ✅ 80 tests passing
-- ✅ New features: 13 agents, contracts, hooks, schemas, profiles
+- ✅ New features: 14 agents (as of v5.1.4), contracts, hooks, schemas, profiles
 - ✅ Shell compatibility: bash, zsh, and sh across macOS and Linux
 
 ### v4.2.1
@@ -869,7 +877,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.3"  # Update this
+  "version": "5.1.4"  # Update this
 }
 
 # Then:
@@ -914,14 +922,15 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.1.3  # Works
-v3.5.0 → v5.1.3  # Works
-v4.0.0 → v5.1.3  # Works
-v4.2.1 → v5.1.3  # Works
-v5.0.x → v5.1.3  # Works
-v5.1.0 → v5.1.3  # Works
-v5.1.1 → v5.1.3  # Works
-v5.1.2 → v5.1.3  # Works
+v2.0.0 → v5.1.4  # Works
+v3.5.0 → v5.1.4  # Works
+v4.0.0 → v5.1.4  # Works
+v4.2.1 → v5.1.4  # Works
+v5.0.x → v5.1.4  # Works
+v5.1.0 → v5.1.4  # Works
+v5.1.1 → v5.1.4  # Works
+v5.1.2 → v5.1.4  # Works
+v5.1.3 → v5.1.4  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -929,7 +938,7 @@ v5.1.2 → v5.1.3  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.1.3
+# Should show: 5.1.4
 
 # Test command
 /review-context
@@ -941,7 +950,7 @@ ls -la .claude-backup-*
 
 # Check new agents exist (v5.0.0+)
 ls .claude/agents/
-# Should show 13 specialist agents
+# Should show 14 specialist agents
 
 # Check new schemas exist (v5.0.0+)
 ls .claude/schemas/
