@@ -56,7 +56,7 @@ your-project/
 │   └── SESSIONS.md              # History
 ├── .claude/
 │   ├── commands/                # 22 slash commands
-│   ├── agents/                  # 13 specialist agents
+│   ├── agents/                  # 14 specialist agents
 │   ├── schemas/                 # 8 JSON validation schemas
 │   └── hooks/                   # Session automation
 ├── scripts/                     # Helper utilities
