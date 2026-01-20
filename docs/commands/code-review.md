@@ -2,8 +2,8 @@
 
 Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
-::: tip Agent-Based Architecture (v5.1.0)
-`/code-review` coordinates **13 specialist agents** (8 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists. New in v5.1.0: Decision-aware review considers DECISIONS.md, finding deduplication combines overlapping findings, and cost-optimizer agent added.
+::: tip Agent-Based Architecture (v5.1.4)
+`/code-review` coordinates **14 specialist agents** (9 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists. New in v5.1.4: Library adoption reviewer identifies homegrown code that could be replaced with battle-tested libraries.
 :::
 
 ## Overview
@@ -27,6 +27,7 @@ The `/code-review` command is the entry point for all code quality audits:
 | Infrastructure | `/code-review-infrastructure` | Serverless costs, caching, builds |
 | TypeScript | `/code-review-typescript` | Type safety, strict mode, any usage |
 | Testing | `/code-review-testing` | Coverage, quality, CI integration |
+| Libraries | `/code-review-libraries` | Homegrown code → battle-tested libraries |
 
 ## Quick Reference
 
@@ -37,9 +38,10 @@ The `/code-review` command is the entry point for all code quality audits:
 # Run specific audits
 /code-review --security
 /code-review --performance --accessibility
+/code-review --libraries    # Library adoption recommendations
 
 # Run presets
-/code-review --all          # All 8 audits
+/code-review --all          # All 9 audits (includes libraries)
 /code-review --prelaunch    # Security + Performance + A11y + SEO
 /code-review --backend      # Security + Database + Testing
 /code-review --frontend     # Performance + Accessibility + SEO
@@ -67,6 +69,7 @@ Built-in Audits:
 6. Infrastructure- Serverless costs, caching, build times
 7. TypeScript    - Type safety, strict mode, any usage
 8. Testing       - Coverage, test quality, CI integration
+9. Libraries     - Homegrown code → battle-tested libraries
 
 Presets:
 A. All audits (comprehensive)
@@ -103,10 +106,11 @@ For UI-heavy applications:
 
 ### --all
 
-Comprehensive review running all 8 audit types. Best for:
+Comprehensive review running all 9 audit types (including library adoption). Best for:
 - Major releases
 - Annual quality audits
 - New team onboarding
+- Codebase modernization
 
 ## Report Output
 
@@ -267,5 +271,6 @@ The orchestrator uses contracts to:
 - [/code-review-security](/commands/code-review-security) - OWASP security audit
 - [/code-review-performance](/commands/code-review-performance) - Core Web Vitals
 - [/code-review-accessibility](/commands/code-review-accessibility) - WCAG 2.1 AA
+- [/code-review-libraries](/commands/code-review-libraries) - Library adoption
 - [/build-check](/commands/build-check) - Pre-push build gate
 - [/validate-context](/commands/validate-context) - Documentation health
