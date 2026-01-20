@@ -48,7 +48,7 @@ Error: Cannot find context directory
 pwd
 # Output: /Users/you/projects/my-app/src/components/auth/forms
 
-# Too deep (>3 levels from context/)
+# Too deep (>2 levels from context/)
 ```
 
 **Solution:**
