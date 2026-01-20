@@ -404,7 +404,7 @@ pwd
 /path/to/your-project/src  # Wrong!
 ```
 
-The system auto-detects context up to 3 parent directories, but works best from project root.
+The system auto-detects context up to 2 parent directories, but works best from project root.
 
 ### Nested Git Repository Warning?
 
