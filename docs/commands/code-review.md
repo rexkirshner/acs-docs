@@ -2,8 +2,10 @@
 
 Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
-::: tip Agent-Based Architecture (v5.1.4)
-`/code-review` coordinates **14 specialist agents** (9 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists. New in v5.1.4: Library adoption reviewer identifies homegrown code that could be replaced with battle-tested libraries.
+::: tip Agent-Based Architecture (v5.1.5)
+`/code-review` coordinates **14 specialist agents** (9 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists.
+
+**v5.1.5 improvements:** How to Execute section in reports, specialist verification checklist, `--verbose` flag for detailed output, and selection reasoning that explains why each specialist was chosen.
 :::
 
 ## Overview
@@ -49,6 +51,9 @@ The `/code-review` command is the entry point for all code quality audits:
 # With platform flags
 /code-review --database --prisma
 /code-review --infrastructure --vercel
+
+# Verbose output (v5.1.5)
+/code-review --verbose          # Show selection reasoning
 ```
 
 ## Interactive Mode
@@ -111,6 +116,70 @@ Comprehensive review running all 9 audit types (including library adoption). Bes
 - Annual quality audits
 - New team onboarding
 - Codebase modernization
+
+## How to Execute Section (v5.1.5)
+
+Each audit report now includes a "How to Execute" section with ready-to-run commands:
+
+```markdown
+## How to Execute
+
+### Finding SEC-001: SQL Injection in user search
+**File:** `app/api/users/route.ts:45`
+**Fix:** Use parameterized query
+
+```bash
+# Navigate to file
+code app/api/users/route.ts
+
+# Run tests after fix
+npm test -- --grep "user search"
+```
+
+### Finding SEC-002: Missing CSRF protection
+**File:** `app/api/forms/route.ts:12`
+**Fix:** Add CSRF token validation
+
+```bash
+# Install csrf library if needed
+npm install csrf
+
+# Add to route handler
+```
+```
+
+## Specialist Verification Checklist (v5.1.5)
+
+Reports now include a verification checklist to ensure thorough review:
+
+```markdown
+## Verification Checklist
+
+Before marking this audit complete, verify:
+
+- [ ] All CRITICAL findings addressed or documented as accepted risk
+- [ ] HIGH findings have tickets/issues created
+- [ ] MEDIUM findings reviewed with team
+- [ ] Re-run `/code-review --security` after fixes
+- [ ] Tests added for security-sensitive changes
+```
+
+## Selection Reasoning (v5.1.5)
+
+When using `--verbose`, the orchestrator explains why each specialist was selected:
+
+```bash
+$ /code-review --security --verbose
+
+🔍 Specialist Selection Reasoning:
+
+| Specialist | Selected | Reason |
+|------------|----------|--------|
+| security-reviewer | ✅ | Explicitly requested via --security |
+| auth-analyzer | ✅ | Detected: lib/auth.ts, middleware.ts |
+| api-auditor | ✅ | Detected: app/api/ routes |
+| crypto-reviewer | ❌ | No crypto/encryption patterns found |
+```
 
 ## Report Output
 
