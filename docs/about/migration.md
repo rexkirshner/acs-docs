@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.1.4
+## Current Version: v5.1.5
 
-Latest release with new library adoption reviewer agent for detecting homegrown code replaceable with battle-tested libraries. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
+Latest release with documentation and UX polish improvements across /update-context-system, /review-context, /save-full, and /code-review commands. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -612,7 +612,17 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.1.4 (Current)
+### v5.1.5 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Documentation and UX polish across four key commands
+- ✅ `/update-context-system`: Same-version early exit, session restart instructions
+- ✅ `/review-context`: noThreshold config support, loading strategy visibility, days-ago display
+- ✅ `/save-full`: Duration estimation, Session Index, Quick Reference checklist
+- ✅ `/code-review`: How to Execute section, verification checklist, --verbose docs
+- ✅ 80 tests passing (11 modules)
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.1.4
 - ✅ No breaking changes (minor release)
 - ✅ Library adoption reviewer: New agent detecting homegrown implementations
 - ✅ `/code-review --libraries`: New flag for library adoption review
@@ -877,7 +887,7 @@ Context: v4.0.0
 # Update context version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.4"  # Update this
+  "version": "5.1.5"  # Update this
 }
 
 # Then:
@@ -922,15 +932,16 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.1.4  # Works
-v3.5.0 → v5.1.4  # Works
-v4.0.0 → v5.1.4  # Works
-v4.2.1 → v5.1.4  # Works
-v5.0.x → v5.1.4  # Works
-v5.1.0 → v5.1.4  # Works
-v5.1.1 → v5.1.4  # Works
-v5.1.2 → v5.1.4  # Works
-v5.1.3 → v5.1.4  # Works
+v2.0.0 → v5.1.5  # Works
+v3.5.0 → v5.1.5  # Works
+v4.0.0 → v5.1.5  # Works
+v4.2.1 → v5.1.5  # Works
+v5.0.x → v5.1.5  # Works
+v5.1.0 → v5.1.5  # Works
+v5.1.1 → v5.1.5  # Works
+v5.1.2 → v5.1.5  # Works
+v5.1.3 → v5.1.5  # Works
+v5.1.4 → v5.1.5  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -938,7 +949,7 @@ v5.1.3 → v5.1.4  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.1.4
+# Should show: 5.1.5
 
 # Test command
 /review-context
