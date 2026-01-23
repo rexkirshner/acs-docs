@@ -341,6 +341,10 @@ This section is **why /save-full is essential for AI collaboration**:
 
 ## Time Investment
 
+::: tip Duration Estimation (v5.1.5)
+The command now provides duration estimates based on session complexity to help you plan your time.
+:::
+
 - **Simple session:** 10 minutes (straightforward work)
 - **Complex session:** 12 minutes (multiple decisions, gotchas)
 - **With new decision:** 15 minutes (need DECISIONS.md entry)
@@ -433,6 +437,39 @@ documented gotchas with NextResponse cookie API.
 ```markdown
 ### TL;DR
 Worked on authentication.
+```
+
+## Session Index for Large Files (v5.1.5)
+
+When SESSIONS.md grows large, the command now generates a **Session Index** at the top of the file for easy navigation:
+
+```markdown
+# Session Index (65 sessions)
+
+| # | Date | Focus |
+|---|------|-------|
+| 65 | 2025-10-23 | JWT authentication with refresh tokens |
+| 64 | 2025-10-22 | Database schema and user model |
+| 63 | 2025-10-21 | Project setup and initialization |
+| ... | ... | ... |
+```
+
+**Benefits:**
+- Quick navigation to specific sessions
+- At-a-glance project history
+- Helps `/review-context` find recent sessions efficiently
+- Automatically maintained by `/save-full`
+
+## Quick Reference Checklist (v5.1.5)
+
+Before completing, `/save-full` now validates that the Quick Reference section in STATUS.md is complete and accurate:
+
+```bash
+📋 Quick Reference Validation
+  ✅ Project name present
+  ✅ Tech stack current
+  ✅ URLs configured
+  ⚠️  Last session link outdated (updating...)
 ```
 
 ## Automatic Session Archiving
