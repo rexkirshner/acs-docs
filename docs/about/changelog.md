@@ -2,6 +2,46 @@
 
 All notable changes to the AI Context System.
 
+## [5.1.5] - 2026-01-23
+
+### Added - Documentation & UX Polish
+
+**PATCH RELEASE** - Comprehensive documentation improvements and user experience enhancements across four key commands.
+
+#### /update-context-system Improvements
+
+- **Same-version early exit** - Skip update process if already at latest version
+- **Enhanced modified files warning** - Shows file-specific context notes (settings, cache, scripts)
+- **Session restart instructions** - Clear guidance on restarting Claude Code session after update
+- **Commit path documentation** - Added commit path options for tracking updates
+
+#### /review-context Improvements
+
+- **noThreshold config support** - Staleness checks now respect `noThreshold: true` for append-only files like DECISIONS.md
+- **Loading strategy visibility** - Shows which loading strategy is being used for large SESSIONS.md files
+- **Days-ago display** - Shows how many days since last session for quick context assessment
+
+#### /save-full Improvements
+
+- **Duration estimation** - Provides time estimates based on session complexity
+- **Session Index documentation** - Generates navigation index for large SESSIONS.md files
+- **Quick Reference checklist** - Validates Quick Reference section completeness before finishing
+
+#### /code-review Improvements
+
+- **How to Execute section** - Reports now include ready-to-run commands for fixing findings
+- **Specialist verification checklist** - Ensures thorough review completion before finishing
+- **--verbose flag documentation** - Shows selection reasoning when using verbose mode
+- **Selection reasoning** - Explains why each specialist was chosen for the review
+
+#### Technical Notes
+
+- 14 specialist agents unchanged
+- 80 tests passing
+- Documentation-only release - no breaking changes
+
+---
+
 ## [5.1.4] - 2026-01-20
 
 ### Added - Library Adoption Reviewer
