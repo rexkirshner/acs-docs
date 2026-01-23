@@ -52,7 +52,7 @@ None currently
 - Order status updates
 
 🔍 System Version
-Current: v5.1.4 (latest)
+Current: v5.1.5 (latest)
 ```
 
 ### 2. Orient Yourself (1 minute)
