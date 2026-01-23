@@ -2,8 +2,10 @@
 
 View current project state and resume work (30 seconds).
 
-::: tip Automatic Health Checks (v5.0.0)
+::: tip Automatic Health Checks (v5.0.0+)
 Starting in v5.0, a **session-start hook** automatically runs when you begin a Claude Code session. It checks context health before you even type `/review-context`—warning about stale STATUS.md, missing Quick Reference, or unclosed sessions.
+
+**New in v5.1.5:** Shows days since last session, respects `noThreshold` config for append-only files (like DECISIONS.md), and displays which loading strategy is being used for large SESSIONS.md files.
 :::
 
 ## Overview
@@ -213,6 +215,20 @@ Full context: context/STATUS.md
 Session history: context/SESSIONS.md
 ```
 
+## Session Timing Display (v5.1.5)
+
+Shows how many days since your last session for quick context:
+
+```bash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 SESSION TIMING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Last session: 2025-10-23 (3 days ago)
+```
+
+**Why this matters:** Quickly gauge how much context you might need to review. A session from yesterday needs less review than one from 2 weeks ago.
+
 ## Smart Loading for Large Files
 
 If SESSIONS.md is large (>1000 lines), /review-context uses progressive loading:
@@ -230,6 +246,35 @@ If SESSIONS.md is large (>1000 lines), /review-context uses progressive loading:
 - Current state from STATUS.md
 
 **Why:** Prevents Read tool failures on large files while maintaining fast performance.
+
+::: tip Loading Strategy Visibility (v5.1.5)
+The command now shows which loading strategy is being used:
+```
+📖 Loading SESSIONS.md (strategic: 1847 lines → index + recent 500)
+```
+This helps you understand why you might see partial session data in very large files.
+:::
+
+## Staleness Checks with noThreshold Support (v5.1.5)
+
+The staleness check now respects the `noThreshold` configuration for files that are append-only by design:
+
+```json
+// In .context-config.json
+"validation": {
+  "stalenessThresholds": {
+    "DECISIONS.md": {
+      "appendOnly": true,
+      "noThreshold": true
+    }
+  }
+}
+```
+
+**What this means:**
+- Files marked with `noThreshold: true` won't trigger staleness warnings
+- Perfect for DECISIONS.md which is append-only and always "current"
+- Reduces noise in the health check output
 
 ## How It Works
 
