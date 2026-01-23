@@ -419,7 +419,7 @@ Settings Error
 
 **Symptoms:**
 ```
-⚠️  Update available: v5.1.2 (you have v5.0.x)
+⚠️  Update available: v5.1.5 (you have v5.0.x)
 ```
 
 **Solution:**
@@ -429,6 +429,11 @@ Settings Error
 # Upgrades commands and scripts from GitHub
 # Now includes automatic retry on download failures
 # Post-installation validation ensures everything works
+
+# IMPORTANT: After upgrade, start a new Claude Code session!
+# Claude Code loads command definitions once per session.
+# - In terminal: Type /exit, then run 'claude' again
+# - In VS Code: Close the Claude Code panel and reopen it
 ```
 
 ### Upgrade Fails
