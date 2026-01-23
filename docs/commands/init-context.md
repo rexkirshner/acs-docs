@@ -163,13 +163,13 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "5.1.4",
+  "version": "5.1.5",
   "project": {
     "name": "your-project",
     "type": "application",
     "tech_stack": ["Next.js", "TypeScript", "PostgreSQL"]
   },
-  "created": "2026-01-20"
+  "created": "2026-01-23"
 }
 ```
 
