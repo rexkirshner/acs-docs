@@ -14,6 +14,12 @@ Updates commands, scripts, and templates while preserving your context files:
 
 **Safe, non-destructive, automatic updates.**
 
+::: warning Session Restart Required (v5.1.5)
+After updating, you must start a **new Claude Code session** to use the updated commands. Claude Code loads command definitions once per session.
+- **In terminal:** Type `/exit`, then run `claude` again
+- **In VS Code:** Close the Claude Code panel and reopen it
+:::
+
 ## When to Use
 
 **Run when:**
@@ -105,8 +111,8 @@ $ /update-context-system
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 5.1.3
-Latest Version: 5.1.4
+Current Version: 5.1.4
+Latest Version: 5.1.5
 
 🔄 Creating backup...
    ✅ .claude/ → .claude-backup-20260108/
@@ -302,7 +308,7 @@ chmod +x scripts/*.sh
 # Manually update version
 # Edit context/.context-config.json:
 {
-  "version": "5.1.4",  # Update to current version
+  "version": "5.1.5",  # Update to current version
   ...
 }
 ```
