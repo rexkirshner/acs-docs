@@ -60,7 +60,7 @@ your-project/
 │   └── SESSIONS.md              # History + mental models
 ├── .claude/
 │   ├── commands/                # 22 slash commands
-│   ├── agents/                  # 14 specialist agents (v5.1.4)
+│   ├── agents/                  # 14 specialist agents
 │   ├── schemas/                 # 8 JSON validation schemas
 │   └── hooks/                   # Session automation
 └── scripts/                     # Helper utilities
@@ -79,14 +79,16 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.4** - Library Adoption Reviewer
+**v5.1.5** - Documentation & UX Polish
 
-New specialist agent for identifying homegrown code that could be replaced with battle-tested libraries:
+Comprehensive documentation improvements and user experience enhancements:
 
-- **Library adoption reviewer** - New agent detecting reinvented wheels (date utils, validation, HTTP clients)
-- **`/code-review --libraries`** - New flag for library adoption review
-- **14 specialist agents** - 9 review domains + 5 support agents
-- **80 tests passing** - All unit tests pass across 11 modules
+- **`/update-context-system`** - Same-version early exit, enhanced modified files warning, session restart instructions
+- **`/review-context`** - Staleness checks respect noThreshold config, loading strategy visibility, days-ago display
+- **`/save-full`** - Duration estimation guidance, Session Index documentation, Quick Reference checklist
+- **`/code-review`** - How to Execute section, specialist verification checklist, --verbose documentation
+
+**v5.1.4** added library adoption reviewer agent and `/code-review --libraries` flag.
 
 **v5.1.3** fixed session statistics in `/review-context` and CHANGELOG reference in install script.
 
