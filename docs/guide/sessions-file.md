@@ -512,6 +512,70 @@ The session template now includes an **Open Loops** section to track things that
 - Future sessions can address these unknowns
 - Provides clear follow-up items for next session
 
+## Session Index (v5.2.0)
+
+::: tip Navigation for Large Files
+When SESSIONS.md grows large (1500+ lines), a Session Index provides at-a-glance navigation.
+:::
+
+### What is Session Index?
+
+A table at the top of SESSIONS.md that summarizes all sessions:
+
+```markdown
+## Session Index
+
+| # | Date | Phase | Focus | Status |
+|---|------|-------|-------|--------|
+| 50 | 2026-01-23 | Production | Member Onboarding | Complete |
+| 49 | 2026-01-22 | Production | Client Feedback | Complete |
+| 48 | 2026-01-20 | Production | Bug Fixes | Complete |
+| 47 | 2026-01-18 | Production | Performance Tuning | Complete |
+| ... | ... | ... | ... | ... |
+
+---
+
+## Session 50 | 2026-01-23 | Member Onboarding
+[Full session content]
+```
+
+### When Session Index is Created
+
+- **Automatically:** When SESSIONS.md exceeds 1500 lines
+- **On save:** `/save-full` regenerates the index after adding a session
+- **Manually:** Run `generate_session_index "$CONTEXT_DIR/SESSIONS.md"`
+
+### Benefits
+
+1. **Quick navigation** - Jump to any session by number
+2. **At-a-glance history** - See project evolution in one table
+3. **AI efficiency** - `/review-context` uses index to find relevant sessions
+4. **Phase tracking** - See how project phases progressed
+
+### Auto-Regeneration
+
+The Session Index updates automatically when:
+- Running `/save-full` (adds new session to index)
+- Running `/validate-context` (rebuilds index if out of sync)
+- Archiving old sessions (updates index to reflect current file)
+
+### Index vs Full Content
+
+Session Index is summary only. Full session content follows the index:
+
+```markdown
+## Session Index
+[Summary table...]
+
+---
+
+## Session 50 | 2026-01-23 | Member Onboarding
+[Full 40-60 line session entry...]
+
+## Session 49 | 2026-01-22 | Client Feedback
+[Full 40-60 line session entry...]
+```
+
 ## Managing Large Session Files
 
 ::: tip Automatic Archiving
