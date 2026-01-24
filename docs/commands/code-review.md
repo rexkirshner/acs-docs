@@ -2,10 +2,12 @@
 
 Master orchestrator for agent-based code reviews. Select and run specialized audit agents.
 
-::: tip Agent-Based Architecture (v5.1.5)
+::: tip Agent-Based Architecture (v5.2.0)
 `/code-review` coordinates **14 specialist agents** (9 review domains + 5 support agents), each with self-declaring contracts. Agents declare their own capabilities via JSON Schema-validated contracts embedded in their definition files (`.claude/agents/`). The orchestrator automatically discovers agents and routes reviews to the appropriate specialists.
 
-**v5.1.5 improvements:** How to Execute section in reports, specialist verification checklist, `--verbose` flag for detailed output, and selection reasoning that explains why each specialist was chosen.
+**v5.2.0 improvements:** Synthesis-agent for finding deduplication, weighted grade calculation with severity caps, date-based audit naming (`audit-YYYY-MM-DD.md`), standardized Finding ID format (`{PREFIX}-{NUMBER}`).
+
+**v5.1.5 features:** How to Execute section in reports, specialist verification checklist, `--verbose` flag for detailed output, and selection reasoning.
 :::
 
 ## Overview
@@ -260,20 +262,22 @@ $ /code-review --security --verbose
 
 ## Report Output
 
-Each audit generates its own report in `docs/audits/`:
+All audits output to `docs/audits/` with date-based naming (v5.2.0):
 
 ```
 docs/audits/
 ├── INDEX.md                    # Audit tracking
-├── security-audit-01.md        # Individual reports
-├── performance-audit-01.md
-├── accessibility-audit-01.md
-└── combined-audit-01.md        # Summary when multiple
+├── audit-2025-01-23.md         # Report for Jan 23
+├── audit-2025-01-23.json       # Machine-readable version
+├── audit-2025-01-23-002.md     # Second audit same day
+└── audit-2025-01-20.md         # Earlier audit
 ```
+
+Multiple audits on the same day get suffixes: `-002`, `-003`, etc.
 
 ### Combined Summary
 
-When running multiple audits, a combined report is generated:
+When running multiple specialists, a synthesized report is generated:
 
 ```markdown
 # Combined Audit Report
@@ -286,20 +290,139 @@ When running multiple audits, a combined report is generated:
 | **Overall** | **B** | **3** | **6** | **10** |
 ```
 
-## Grading Weights
+## Synthesis Phase (v5.2.0)
 
-Combined grades are weighted by importance:
+After all specialists complete, the **synthesis-agent** combines their outputs:
 
-| Audit | Weight | Rationale |
-|-------|--------|-----------|
-| Security | 1.5x | Critical for production |
-| Performance | 1.0x | User experience |
-| Accessibility | 1.2x | Legal compliance |
-| SEO | 0.8x | Marketing value |
-| Database | 1.0x | Data integrity |
-| Infrastructure | 0.8x | Cost optimization |
-| TypeScript | 0.8x | Maintainability |
-| Testing | 1.0x | Quality assurance |
+### Step 1: Collect Outputs
+
+Gather findings from each specialist that ran. Each produces data conforming to `specialist-output.schema.json`.
+
+### Step 2: Deduplicate
+
+Apply two-layer deduplication:
+1. **Location-based**: Same file AND lines within 5 of each other
+2. **Pattern grouping**: Same file AND same title (case-insensitive)
+
+When merging:
+- Keep finding with **higher severity** as primary
+- If same severity, keep **alphabetically first** specialist
+- Note merged finding IDs in report
+
+### Step 3: Calculate Grade
+
+Apply the grade formula (see below) to deduplicated findings.
+
+### Step 4: Generate Report
+
+Output to `docs/audits/audit-YYYY-MM-DD.{md,json}` with:
+- Overall grade and score
+- Finding counts by severity
+- Deduplication statistics
+- Top priorities list
+- Per-specialist breakdown
+
+### Example Output
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 CODE REVIEW COMPLETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Grade: B (82/100)
+
+Findings: 23 total
+  🔴 Critical: 0
+  🟠 High: 3
+  🟡 Medium: 12
+  🟢 Low: 8
+
+Duplicates merged: 2
+
+Report saved: docs/audits/audit-2025-01-23.md
+
+Top 3 priorities:
+1. SEC-001: Add security headers
+2. TEST-002: Increase test coverage
+3. PERF-001: Optimize image loading
+```
+
+## Grade Calculation (v5.2.0)
+
+Grades use severity-based deductions with caps to prevent any single category from dominating:
+
+### Formula
+
+```
+Base Score = 100
+
+Deductions (with caps):
+  Critical: -25 each (capped at -50 total)
+  High:     -10 each (capped at -30 total)
+  Medium:   -3 each  (capped at -20 total)
+  Low:      -1 each  (capped at -10 total)
+  Info:     0 (no deduction)
+
+Final Score = max(0, Base - Deductions)
+```
+
+### Grade Thresholds
+
+| Grade | Score Range | Interpretation |
+|-------|-------------|----------------|
+| A | 90-100 | Excellent - minor issues only |
+| B | 80-89 | Good - some improvements needed |
+| C | 70-79 | Acceptable - significant work needed |
+| D | 60-69 | Poor - major issues to address |
+| F | 0-59 | Failing - critical problems |
+
+### Example Calculations
+
+| Findings | Score | Grade | Reasoning |
+|----------|-------|-------|-----------|
+| 0 of any | 100 | A | Clean codebase |
+| 1 critical | 75 | C | 100 - 25 = 75 |
+| 2 critical | 50 | F | 100 - 50 (capped) = 50 |
+| 3 high | 70 | C | 100 - 30 = 70 |
+| 10 medium | 80 | B | 100 - 20 (capped) = 80 |
+| 10 low | 90 | A | 100 - 10 (capped) = 90 |
+| 1H + 5M + 10L | 65 | D | 100 - 10 - 15 - 10 = 65 |
+
+### Deduplication Before Grading
+
+Findings are deduplicated BEFORE grade calculation:
+- **Same location**: Same file AND lines within 5 of each other
+- **Same file + title**: Same file AND same title (case-insensitive)
+
+When merging, the higher severity finding is kept as primary.
+
+## Finding ID Format (v5.2.0)
+
+All findings use a standardized ID format for tracking and reference:
+
+```
+{PREFIX}-{NUMBER}
+```
+
+Where:
+- **PREFIX**: Specialist identifier (SEC, PERF, A11Y, etc.)
+- **NUMBER**: Three-digit sequential number (001, 002, ...)
+
+### Specialist Prefixes
+
+| Specialist | Prefix | Example |
+|------------|--------|---------|
+| security-reviewer | SEC | SEC-001 |
+| performance-reviewer | PERF | PERF-003 |
+| accessibility-reviewer | A11Y | A11Y-012 |
+| seo-reviewer | SEO | SEO-002 |
+| database-reviewer | DB | DB-004 |
+| infrastructure-reviewer | INFRA | INFRA-001 |
+| type-safety-reviewer | TS | TS-007 |
+| test-coverage-reviewer | TEST | TEST-005 |
+| library-adoption-reviewer | LIB | LIB-002 |
+
+Finding IDs are preserved when findings are merged during synthesis.
 
 ## When to Use
 
