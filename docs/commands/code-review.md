@@ -122,7 +122,7 @@ Not selected:
 /code-review --libraries    # Library adoption recommendations
 
 # Run presets
-/code-review --all          # All 9 audits (includes libraries)
+/code-review --all          # All applicable specialists
 /code-review --prelaunch    # Security + Performance + A11y + SEO
 /code-review --backend      # Security + Database + Testing
 /code-review --frontend     # Performance + Accessibility + SEO
@@ -156,7 +156,7 @@ Built-in Audits:
 9. Libraries     - Homegrown code → battle-tested libraries
 
 Presets:
-A. All audits (comprehensive)
+A. All applicable specialists (comprehensive)
 P. Pre-launch (Security + Performance + Accessibility + SEO)
 B. Backend focus (Security + Database + Testing)
 F. Frontend focus (Performance + Accessibility + SEO)
@@ -190,11 +190,15 @@ For UI-heavy applications:
 
 ### --all
 
-Comprehensive review running all 9 audit types (including library adoption). Best for:
+Comprehensive review running all **applicable** specialist agents (skips those with unmet requirements). Best for:
 - Major releases
 - Annual quality audits
 - New team onboarding
 - Codebase modernization
+
+::: tip Not All Specialists Run
+`--all` doesn't literally run all 9 specialists. It runs all specialists whose requirements are met by your codebase. For example, `database-reviewer` only runs if you have a database/ORM detected.
+:::
 
 ## How to Execute Section (v5.1.5)
 
