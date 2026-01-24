@@ -2,9 +2,9 @@
 
 Upgrade paths and migration instructions for AI Context System.
 
-## Current Version: v5.2.0
+## Current Version: v5.2.1
 
-Latest release adding the flagship code review synthesis feature, Session Index for large SESSIONS.md files, and architectural improvements including `find_project_root()` working directory detection. 80 tests passing (11 modules). [See changelog](/about/changelog) for details.
+Latest patch release addressing bugs discovered during v5.2.0 deployment. Fixes session date parsing for both `|` and `-` separators, zsh arithmetic compatibility, and staleness threshold configuration. All changes backward compatible. [See changelog](/about/changelog) for details.
 
 ## Upgrade from Any Version
 
@@ -612,7 +612,16 @@ ls -la context/
 
 ## Breaking Changes by Version
 
-### v5.2.0 (Current)
+### v5.2.1 (Current)
+- ✅ No breaking changes (patch release)
+- ✅ Session date regex: Now correctly parses both `|` and `-` separators
+- ✅ zsh compatibility: Fixed arithmetic errors in config health check
+- ✅ Staleness thresholds: Reads per-file thresholds from config
+- ✅ Archive detection: Shows "gaps in numbering" when no archive exists
+- ✅ All changes backward compatible
+- ✅ Simple upgrade: `/update-context-system`
+
+### v5.2.0
 - ✅ No breaking changes (minor release)
 - ✅ Code review synthesis: Automatic deduplication and weighted grading
 - ✅ Session Index: Auto-generated navigation table for large SESSIONS.md
@@ -944,12 +953,13 @@ No deprecations currently planned for v5.x series.
 
 **Yes.** You can upgrade directly from any version to latest:
 ```bash
-v2.0.0 → v5.2.0  # Works
-v3.5.0 → v5.2.0  # Works
-v4.0.0 → v5.2.0  # Works
-v4.2.1 → v5.2.0  # Works
-v5.0.x → v5.2.0  # Works
-v5.1.x → v5.2.0  # Works
+v2.0.0 → v5.2.1  # Works
+v3.5.0 → v5.2.1  # Works
+v4.0.0 → v5.2.1  # Works
+v4.2.1 → v5.2.1  # Works
+v5.0.x → v5.2.1  # Works
+v5.1.x → v5.2.1  # Works
+v5.2.0 → v5.2.1  # Works
 ```
 
 ### How do I know if upgrade succeeded?
@@ -957,7 +967,7 @@ v5.1.x → v5.2.0  # Works
 ```bash
 # Check version
 cat VERSION
-# Should show: 5.2.0
+# Should show: 5.2.1
 
 # Test command
 /review-context
