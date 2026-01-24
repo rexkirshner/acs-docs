@@ -51,7 +51,7 @@ Contains:
 # AI Context System - Project Export
 
 **Exported:** 2026-01-08 14:30:00
-**Version:** 5.1.5
+**Version:** 5.2.0
 **Project:** my-app
 
 ## Table of Contents
@@ -111,7 +111,7 @@ Merges all content with:
 **Export Information:**
 - Date: 2025-10-23 14:30:00
 - Exporter: Claude Code
-- System Version: 5.1.5
+- System Version: 5.2.0
 - Files Included: 4
 - Total Size: 45,234 words
 ```
@@ -137,7 +137,7 @@ Share this directory with incoming AI agent or developer
 # AI Context System - my-app Export
 
 **Exported:** 2026-01-08 14:30:00 UTC
-**Version:** 5.1.5
+**Version:** 5.2.0
 **Project:** my-app (Next.js application)
 **Phase:** MVP Development - Authentication Sprint
 
@@ -240,7 +240,7 @@ Exports as structured JSON for programmatic access:
 ```json
 {
   "exported": "2026-01-17T14:30:00Z",
-  "version": "5.1.5",
+  "version": "5.2.0",
   "project": {
     "name": "my-app",
     "phase": "MVP Development"
