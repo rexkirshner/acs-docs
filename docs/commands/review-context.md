@@ -313,7 +313,51 @@ Checks:
 - **Session count** accuracy in SESSIONS.md
 - Warns about discrepancies with specific, actionable messages
 
-### Step 4.5: Documentation Health Check
+### Step 4.5: Configuration Health Check (v5.2.0)
+
+Checks `.context-config.json` for stale or placeholder values:
+
+```bash
+🔧 Configuration Health
+━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Configuration has 5 unconfigured fields:
+
+   • 2 fields set to 'TBD'
+   • 1 empty fields
+   • 2 placeholder values
+
+   Consider updating with actual values for better AI context.
+```
+
+**What this checks:**
+- TBD placeholder values (lazy initialization)
+- Empty string fields (incomplete setup)
+- Placeholder URLs (example.com, your-project)
+- Common placeholder patterns (YOUR_, placeholder)
+
+**Why this matters:** Accurate config improves Quick Reference generation and AI understanding.
+
+### Step 4.6: Session Continuity Check (v5.2.0)
+
+Verifies that referenced sessions are properly documented:
+
+```bash
+🔴 CRITICAL: Session Continuity Gap Detected
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Session 15 referenced in STATUS.md
+   but NOT documented in SESSIONS.md
+
+   Impact: Context continuity broken
+   AI agents cannot review what happened in Session 15
+
+   Action Required:
+   → Run /save-full to document Session 15
+   → Do this BEFORE starting new work
+```
+
+**Why this matters:** Undocumented sessions break AI handoffs and reduce confidence score by 15 points.
+
+### Step 4.7: Documentation Health Check
 
 ::: tip Documentation Health
 Comprehensive documentation health analysis.
