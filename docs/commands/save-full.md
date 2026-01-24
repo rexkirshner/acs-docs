@@ -247,6 +247,30 @@ using the auto-detected information above as a starting point.
 
 This ensures context files contain actual project information instead of placeholder text.
 
+## Context Restoration Section (v5.2.0)
+
+The **Context Restoration** section helps future agents (or you) quickly resume work without reading the entire history:
+
+```markdown
+### Context Restoration (v5.2.0)
+
+**To resume this work, read:**
+1. `context/STATUS.md` - Current state and priorities
+2. `lib/auth.ts` - JWT implementation
+3. `middleware.ts` - Authentication check flow
+
+**Key concepts to understand:**
+- Auth flow uses JWT with refresh tokens in httpOnly cookies
+- Database uses soft deletes (deleted_at column)
+- Edge Runtime requires jose (no native crypto)
+
+**Ready to continue with:**
+- [ ] Fix production CORS issue
+- [ ] Add password reset flow
+```
+
+**Why this matters:** New agents can read just these 3 files instead of scanning the entire codebase. Mental models are summarized for instant understanding.
+
 ## Mental Models Section (Critical!)
 
 This section is **why /save-full is essential for AI collaboration**:
