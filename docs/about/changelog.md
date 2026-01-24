@@ -2,6 +2,107 @@
 
 All notable changes to the AI Context System.
 
+## [5.2.0] - 2026-01-23
+
+### Added - Code Review Synthesis, Session Index, Architectural Improvements
+
+**MINOR RELEASE** - Adds the flagship code review synthesis feature, improves SESSIONS.md scalability, enables commands to work from subdirectories, and includes numerous architectural improvements.
+
+#### Code Review Synthesis
+
+The new **synthesis-agent** automatically combines findings from all specialist agents:
+
+- **Two-layer deduplication** - Location-based (same file:line) + pattern grouping (similar issues)
+- **Weighted grading** - A-F scale with severity caps to prevent single category dominating
+- **Merged findings** - Preserve highest severity, track all detecting agents
+- **Date-based reports** - Output to `docs/audits/audit-YYYY-MM-DD.{md,json}`
+
+```
+Grade Calculation:
+  Base Score = 100
+  Critical: -25 each (capped at -50)
+  High: -10 each (capped at -30)
+  Medium: -3 each (capped at -20)
+  Low: -1 each (capped at -10)
+```
+
+#### Session Index
+
+New scalability features for SESSIONS.md:
+
+- **Quick navigation table** - Index at top of SESSIONS.md for fast jumping
+- **Auto-archival prompt** - Triggers when file exceeds 2000 lines
+- **Migration script** - `scripts/migrate-sessions-index.sh` for existing projects
+- **20,000 token limit** - Keeps SESSIONS.md under AI context limits
+
+#### Working Directory Detection
+
+Commands now work from any subdirectory:
+
+- **`find_project_root()`** - Searches up to 5 parent directories
+- **Looks for** - `context/.context-config.json` to identify project root
+- **Clear errors** - Helpful message when not in an ACS project
+
+#### Context Restoration
+
+New session template section for AI handoffs:
+
+```markdown
+### Context Restoration
+**To resume this work, read:**
+1. `context/STATUS.md` - Current state
+2. [Key files from this session]
+
+**Key concepts to understand:**
+- [Mental model 1]
+- [Mental model 2]
+```
+
+#### Expanded Tech Stack Detection
+
+7 new technologies detected:
+
+- Tailwind CSS, Turso, NextAuth.js, Auth.js, TanStack Query, tRPC, Zod
+
+#### Config Drift Detection
+
+`/review-context` now detects placeholder values:
+
+- TBD values in `.context-config.json`
+- Empty strings
+- Placeholder URLs (example.com)
+
+#### Shell Execution Model
+
+New documentation for command execution:
+
+- **Isolated shells** - Each bash block runs independently
+- **Self-contained blocks** - Must source dependencies in each block
+- **Inline fallbacks** - Commands work even if common-functions.sh unavailable
+
+### Changed
+
+- **Specialist output format** - All 9 specialists output consistent JSON (specialist-output.schema.json)
+- **Finding ID format** - Standardized to `{PREFIX}-{NUMBER}` (e.g., SEC-001, PERF-003)
+- **Audit report naming** - Date-based (`audit-YYYY-MM-DD.md`) instead of numeric
+- **Missing session severity** - Elevated to CRITICAL with 15-point confidence deduction
+- **Session examples** - Template examples use `[EXAMPLE]` prefix, ignored by counting
+
+### Fixed
+
+- **Maturity check** - Excludes ACS-created directories (`docs/audits/`, `context/`)
+- **Quick Reference** - Clarified as auto-generated (removed conflicting edit instructions)
+- **Code review false positives** - Improved detection for conditional `test.skip()` and `outline:none` with focus alternatives
+- **Turso detection** - Fixed missing closing quote in package.json detection
+
+### Technical Notes
+
+- All changes backward compatible
+- Unit tests added for find_project_root, tech stack, session index, synthesis
+- Planning document: `docs/planning/v5.2/v5.2.0-planning-final.md`
+
+---
+
 ## [5.1.5] - 2026-01-23
 
 ### Added - Documentation & UX Polish
