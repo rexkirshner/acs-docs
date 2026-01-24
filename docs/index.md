@@ -79,20 +79,17 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.2.0** - Code Review Synthesis, Session Index, Architectural Improvements
+**v5.2.1** - Bug Fixes from Real-World Feedback
 
-Major feature release adding the flagship code review synthesis capability:
+Patch release addressing bugs discovered during v5.2.0 deployment across 3 projects:
 
-- **Code Review Synthesis** - `synthesis-agent` combines findings with two-layer deduplication, weighted grading (A-F with severity caps), and standardized Finding IDs (`SEC-001`, `PERF-003`)
-- **Session Index** - Auto-generated navigation table for large SESSIONS.md files (1500+ lines), auto-archiving at 2000 lines
-- **Working Directory Detection** - `find_project_root()` searches up to 5 parent directories
-- **Context Restoration** - New session template section for quick resumption
-- **Configuration Health Check** - Detects TBD values, empty fields, placeholder URLs
-- **Tech Stack Detection** - Auto-detects frameworks, databases, hosting
-- **Date-Based Audit Naming** - Reports use `audit-YYYY-MM-DD.md` format
+- **Session Date Parsing** - Now correctly handles both `|` and `-` separators in session headers
+- **zsh Compatibility** - Fixed arithmetic errors in config health check
+- **Staleness Thresholds** - Reads per-file thresholds from config (e.g., CONTEXT.md green=90 days)
+- **Archive Detection** - Shows "gaps in numbering" when no archive directory exists
+
+**v5.2.0** added code review synthesis, session index, and working directory detection.
 
 **v5.1.5** added documentation polish and UX improvements.
-
-**v5.1.4** added library adoption reviewer agent.
 
 [See full changelog →](/about/changelog)

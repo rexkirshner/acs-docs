@@ -2,6 +2,35 @@
 
 All notable changes to the AI Context System.
 
+## [5.2.1] - 2026-01-24
+
+### Fixed - Bug Fixes from Real-World Feedback
+
+**PATCH RELEASE** - Addresses bugs discovered during v5.2.0 deployment across 3 projects (Project Alpha, Project Beta, Project Gamma). All fixes are low-risk, targeted improvements.
+
+#### Critical Bugs
+
+- **Session date regex** (BUG-001): `/review-context` and `/save-full` now correctly parse session headers with both `|` and `-` separators
+- **zsh arithmetic compatibility** (BUG-002): Config health check no longer crashes on zsh due to whitespace in grep output
+
+#### Moderate Bugs
+
+- **CLAUDE.md case sensitivity** (BUG-003): `/update-context-system` now correctly checks for `context/CLAUDE.md` (uppercase) for Linux compatibility
+- **Duplicate checkmarks** (BUG-004): `log_success()` now strips leading checkmark if caller included one, preventing `✅ ✅` duplication
+- **Staleness threshold config** (BUG-005): `/review-context` now reads per-file thresholds from `.context-config.json` with integer validation (e.g., CONTEXT.md green=90, yellow=180)
+- **Archive message accuracy** (BUG-006): Shows "gaps in numbering" instead of "archived" when no `.sessions-archive/` directory exists
+
+#### Documentation
+
+- **--all flag clarification**: Updated code-review documentation to clarify `--all` runs "all applicable specialists"
+
+#### Technical Notes
+
+- All changes backward compatible
+- Planning document: `docs/planning/v5.2/v5.2.1-planning.md`
+
+---
+
 ## [5.2.0] - 2026-01-23
 
 ### Added - Code Review Synthesis, Session Index, Architectural Improvements
