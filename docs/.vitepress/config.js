@@ -29,7 +29,7 @@ export default {
       { text: 'Commands', link: '/commands/' },
       { text: 'Workflows', link: '/workflows/' },
       {
-        text: 'v5.2.0',
+        text: 'v5.2.1',
         items: [
           { text: 'Changelog', link: '/about/changelog' },
           { text: 'Migration Guides', link: '/about/migration' }
