@@ -419,7 +419,7 @@ Settings Error
 
 **Symptoms:**
 ```
-⚠️  Update available: v5.2.0 (you have v5.1.x)
+⚠️  Update available: v5.2.1 (you have v5.x.x)
 ```
 
 **Solution:**
