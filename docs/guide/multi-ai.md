@@ -345,7 +345,7 @@ curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/in
 
 ### Claude Code + Cursor Handoff
 
-**Project:** portfolio-tracker (10-day development)
+**Project:** project-gamma (10-day development)
 
 **Workflow:**
 1. Claude Code: Initial development + architecture
