@@ -2,6 +2,10 @@
 
 Check documentation health and completeness.
 
+::: tip v5.2.0 Improvements
+Now includes **Configuration Health Check** that detects TBD values, empty fields, and placeholder URLs in `.context-config.json`. Also respects `noThreshold` config for append-only files like DECISIONS.md.
+:::
+
 ## Overview
 
 Comprehensive health check for your context documentation:
@@ -60,6 +64,46 @@ Comprehensive health check for your context documentation:
 - STATUS.md not updated in 7 days
 - No SESSIONS.md entry in 14 days
 - Work In Progress empty for active project
+
+### Configuration Health Check (v5.2.0)
+
+Checks `.context-config.json` for incomplete setup:
+
+**Detects:**
+- TBD placeholder values
+- Empty string fields
+- Placeholder URLs (example.com, your-project)
+- Common patterns (YOUR_, placeholder)
+
+```
+🔧 Configuration Health
+━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Configuration has 3 unconfigured fields:
+
+   • 2 fields set to 'TBD'
+   • 1 placeholder values
+
+   Consider updating with actual values for better AI context.
+```
+
+### noThreshold Support (v5.1.5)
+
+Files marked with `noThreshold: true` in config skip staleness warnings:
+
+```json
+{
+  "validation": {
+    "stalenessThresholds": {
+      "DECISIONS.md": {
+        "appendOnly": true,
+        "noThreshold": true
+      }
+    }
+  }
+}
+```
+
+**Use for:** Append-only files like DECISIONS.md that don't need regular updates.
 
 ### Health Score Calculation
 
