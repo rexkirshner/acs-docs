@@ -79,21 +79,20 @@ AI reasoning is invisible. Context is lost between sessions. Decisions lack rati
 
 ## Current Version
 
-**v5.1.5** - Documentation & UX Polish
+**v5.2.0** - Code Review Synthesis, Session Index, Architectural Improvements
 
-Comprehensive documentation improvements and user experience enhancements:
+Major feature release adding the flagship code review synthesis capability:
 
-- **`/update-context-system`** - Same-version early exit, enhanced modified files warning, session restart instructions
-- **`/review-context`** - Staleness checks respect noThreshold config, loading strategy visibility, days-ago display
-- **`/save-full`** - Duration estimation guidance, Session Index documentation, Quick Reference checklist
-- **`/code-review`** - How to Execute section, specialist verification checklist, --verbose documentation
+- **Code Review Synthesis** - `synthesis-agent` combines findings with two-layer deduplication, weighted grading (A-F with severity caps), and standardized Finding IDs (`SEC-001`, `PERF-003`)
+- **Session Index** - Auto-generated navigation table for large SESSIONS.md files (1500+ lines), auto-archiving at 2000 lines
+- **Working Directory Detection** - `find_project_root()` searches up to 5 parent directories
+- **Context Restoration** - New session template section for quick resumption
+- **Configuration Health Check** - Detects TBD values, empty fields, placeholder URLs
+- **Tech Stack Detection** - Auto-detects frameworks, databases, hosting
+- **Date-Based Audit Naming** - Reports use `audit-YYYY-MM-DD.md` format
 
-**v5.1.4** added library adoption reviewer agent and `/code-review --libraries` flag.
+**v5.1.5** added documentation polish and UX improvements.
 
-**v5.1.3** fixed session statistics in `/review-context` and CHANGELOG reference in install script.
-
-**v5.1.2** fixed nested repo detection and Claude Code settings conflict.
-
-**v5.1.1** fixed shell compatibility bugs (macOS grep, parent detection, zsh output).
+**v5.1.4** added library adoption reviewer agent.
 
 [See full changelog →](/about/changelog)
