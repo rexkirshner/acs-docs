@@ -163,7 +163,7 @@ Creates files customized to your project:
 Creates `.context-config.json` with:
 ```json
 {
-  "version": "5.2.0",
+  "version": "5.2.1",
   "project": {
     "name": "your-project",
     "type": "application",
