@@ -1,6 +1,6 @@
 # Commands Reference
 
-The AI Context System v6.0 uses **7 slash commands** — pure prompts with no scripts or machinery.
+The AI Context System v6.0 uses **8 slash commands** — pure prompts with no scripts or machinery.
 
 ## Command Overview
 
@@ -13,6 +13,7 @@ The AI Context System v6.0 uses **7 slash commands** — pure prompts with no sc
 | `/review-performance` | Performance check | Before deployment |
 | `/review-accessibility` | Accessibility audit | Before deployment |
 | `/review-seo` | SEO review | Before deployment |
+| `/review-cost` | Cost optimization | When optimizing spend |
 
 ## Core Commands
 
@@ -102,6 +103,16 @@ Technical SEO review. Checks:
 - URL structure
 - Canonical URLs
 
+### /review-cost
+
+Cost optimization review. Checks:
+- Over-provisioned cloud resources
+- Inefficient database queries
+- Unnecessary API calls
+- Storage optimization
+- Serverless function costs
+- Missing caching layers
+
 ## Command Philosophy
 
 v6.0 commands are:
@@ -115,14 +126,15 @@ v6.0 commands are:
 
 ```
 .claude/
-├── commands/           # 7 slash command files
+├── commands/           # 8 slash command files
 │   ├── init-context.md
 │   ├── save.md
 │   ├── update-context-system.md
 │   ├── review-security.md
 │   ├── review-performance.md
 │   ├── review-accessibility.md
-│   └── review-seo.md
+│   ├── review-seo.md
+│   └── review-cost.md
 └── VERSION             # Current version (6.0.0)
 ```
 

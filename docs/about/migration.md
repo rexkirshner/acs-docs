@@ -8,7 +8,7 @@ v6.0 is a **radical simplification**:
 
 | Aspect | v5.x | v6.0 |
 |--------|------|------|
-| Commands | 22 | 7 |
+| Commands | 22 | 8 |
 | Agents | 14 | 0 |
 | Scripts | 150KB+ | 0 |
 | Schemas | 8 | 0 |
@@ -32,7 +32,7 @@ rm -rf ai-context-system
 
 # 3. Verify
 ls .claude/commands/
-# Should show 7 files
+# Should show 8 files
 ```
 
 ## Migrating from v5.x
@@ -122,7 +122,7 @@ cat .claude/VERSION
 
 # List commands
 ls .claude/commands/
-# Should show 7 files
+# Should show 8 files
 
 # Test the Session Loop
 # Read context/STATUS.md
@@ -135,7 +135,7 @@ ls .claude/commands/
 
 | Feature | Why Removed |
 |---------|-------------|
-| 22 commands → 7 | Most were rarely used |
+| 22 commands → 8 | Most were rarely used |
 | 14 agents | Over-engineered for most projects |
 | JSON schemas | Mechanical validation unnecessary |
 | Session hooks | Added complexity without value |

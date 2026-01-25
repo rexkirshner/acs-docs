@@ -5,7 +5,7 @@ Updates command files to the latest version from GitHub.
 ## Overview
 
 Downloads the latest commands while preserving your context files:
-- Updates `.claude/commands/` (7 command files)
+- Updates `.claude/commands/` (8 command files)
 - Updates `.claude/VERSION`
 - **Preserves `context/` directory** (your documentation)
 - **Preserves `CLAUDE.md`** (your project entry point)
@@ -25,7 +25,7 @@ Downloads the latest commands while preserving your context files:
 
 | Directory | Contents |
 |-----------|----------|
-| `.claude/commands/` | 7 command files |
+| `.claude/commands/` | 8 command files |
 | `.claude/VERSION` | Version number |
 
 ### Preserved (Not Changed)
@@ -62,7 +62,7 @@ Downloads the latest commands while preserving your context files:
 
 ```bash
 🔄 Updating files...
-   ✅ .claude/commands/ (7 files)
+   ✅ .claude/commands/ (8 files)
    ✅ .claude/VERSION
 ```
 
@@ -89,7 +89,7 @@ Latest Version: 6.0.1
    ✅ Downloaded from GitHub
 
 🔄 Updating files...
-   ✅ .claude/commands/ (7 files updated)
+   ✅ .claude/commands/ (8 files updated)
    ✅ .claude/VERSION
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -97,7 +97,7 @@ Latest Version: 6.0.1
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Updated:
-  ✅ Commands (7 files)
+  ✅ Commands (8 files)
   ✅ VERSION
 
 Preserved:

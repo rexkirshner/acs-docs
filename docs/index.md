@@ -4,7 +4,7 @@ layout: home
 hero:
   name: AI Context System
   text: Externalize AI context. Enable session continuity.
-  tagline: 3 files. 7 commands. Zero scripts. Built for Claude Code.
+  tagline: 3 files. 8 commands. Zero scripts. Built for Claude Code.
   actions:
     - theme: brand
       text: Get Started
@@ -18,7 +18,7 @@ features:
     details: Resume exactly where you left off. The Session Loop pattern ensures context persists across sessions and AI-to-AI handoffs.
 
   - title: Radical Simplicity
-    details: v6.0 cut 22 commands to 7, 14 agents to 0, and 150KB of scripts to zero. Pure prompts, no machinery.
+    details: v6.0 cut 22 commands to 8, 14 agents to 0, and 150KB of scripts to zero. Pure prompts, no machinery.
 
   - title: Working Set Boundary
     details: 3-7 files you're actively touching. Simple containment without complex validation.
@@ -50,7 +50,7 @@ your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
 │   ├── VERSION            # Installed version (6.0.0)
-│   └── commands/          # 7 slash commands
+│   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
     └── DECISIONS.md       # Decision log (why)
@@ -77,13 +77,14 @@ That's it. No complex workflows. No validation machinery.
 | `/review-performance` | Performance review (report only) |
 | `/review-accessibility` | Accessibility review (report only) |
 | `/review-seo` | SEO review (report only) |
+| `/review-cost` | Cost optimization review (report only) |
 
 ## Current Version
 
 **v6.0.0** — Radical Simplification
 
 - **3 files** instead of 8
-- **7 commands** instead of 22
+- **8 commands** instead of 22
 - **0 scripts** — Claude handles logic
 - **Advisory, not mechanical** — Guidelines, not enforcement
 

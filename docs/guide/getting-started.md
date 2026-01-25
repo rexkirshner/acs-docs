@@ -23,7 +23,7 @@ rm -rf ai-context-system
 
 ```bash
 ls .claude/commands/
-# Should show 7 files:
+# Should show 8 files:
 # init-context.md, save.md, update-context-system.md,
 # review-security.md, review-performance.md,
 # review-accessibility.md, review-seo.md
@@ -119,6 +119,7 @@ Every session follows this loop. That's the entire system.
 | `/review-performance` | Performance review (report only) |
 | `/review-accessibility` | Accessibility review (report only) |
 | `/review-seo` | SEO review (report only) |
+| `/review-cost` | Cost optimization review (report only) |
 
 ## Requirements
 

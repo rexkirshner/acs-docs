@@ -6,7 +6,7 @@ All notable changes to the AI Context System.
 
 ### Changed - Radical Simplification
 
-**MAJOR RELEASE** - Complete redesign focused on simplicity. Reduced from 22 commands to 7, eliminated all scripting, removed agents and schemas.
+**MAJOR RELEASE** - Complete redesign focused on simplicity. Reduced from 22 commands to 8, eliminated all scripting, removed agents and schemas.
 
 #### Philosophy Shift
 

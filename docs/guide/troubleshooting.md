@@ -14,10 +14,10 @@ Common issues and solutions for AI Context System v6.0.
 **Check:**
 ```bash
 ls .claude/commands/
-# Should show 7 files:
+# Should show 8 files:
 # init-context.md, save.md, update-context-system.md,
 # review-security.md, review-performance.md,
-# review-accessibility.md, review-seo.md
+# review-accessibility.md, review-seo.md, review-cost.md
 ```
 
 **Solution:**
