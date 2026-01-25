@@ -1,169 +1,120 @@
 # Session Continuity
 
-Never lose context between AI sessions. Pick up exactly where you left off—days, weeks, or months later—without re-explaining anything.
+Pick up exactly where you left off—days, weeks, or months later—without re-explaining anything.
 
 ## The Problem
 
-Traditional AI coding sessions have a critical flaw: **context loss**.
+AI sessions have a critical flaw: **context loss**.
 
-When you end a session and return later, you face:
-- Re-explaining the entire project
-- Reminding the AI of past decisions
-- Rebuilding the mental model
-- Losing track of work in progress
-- Forgetting why choices were made
+When you end a session and return later:
+- You re-explain the project
+- You remind the AI of past decisions
+- You lose track of work in progress
+- You forget why choices were made
 
 This isn't just inconvenient—it's a productivity killer.
 
 ## The Solution
 
-The AI Context System solves this through **structured documentation** that preserves:
+The AI Context System solves this with three files and a simple loop:
 
-### 1. Current State (STATUS.md)
-
-**What's happening right now:**
-- Active tasks and their status
-- Current blockers
-- Next session start point
-- Auto-generated Quick Reference
-
-**Example:**
-```markdown
-## Work In Progress
-
-**Current Task:** Implementing user authentication
-- ✅ Set up database schema
-- ✅ Created User model
-- 🔄 Building login endpoint (in progress)
-- ⏳ Add password hashing (next)
-
-**Blocker:** Need to decide between JWT and session-based auth
+```
+Session Loop:
+1. Start → Read STATUS.md
+2. Work → Edit Working Set files
+3. End → Run /save
 ```
 
-When you return, `/review-context` shows this immediately.
+### STATUS.md Captures Current State
 
-### 2. Session History (SESSIONS.md)
-
-**What happened and why:**
-- Session-by-session timeline
-- AI mental models at each point
-- Problem-solving approaches
-- What changed and why
-- Git operations logged automatically
-
-**Example:**
 ```markdown
-## Session 3 | 2025-10-22 | Authentication Implementation
+# Status
 
-**TL;DR:** Implemented JWT-based authentication with refresh tokens
+SchemaVersion: 1
+LastUpdated: 2026-01-24
+HeadCommit: a1b2c3d
+Objective: Implement user authentication
 
-### Mental Models
-**Current understanding:**
-- Using JWT for stateless auth (decision: prefer horizontal scaling)
-- Refresh tokens stored in Redis (7-day expiry)
-- Access tokens short-lived (15 min)
-- HTTPS-only cookies for security
+## Working Set
 
-### Problem-Solving Approach
-- Researched JWT vs sessions (sessions require sticky sessions)
-- Decided on JWT for better load balancing
-- Implemented refresh token rotation for security
+- src/auth/login.ts
+- src/auth/session.ts
+- tests/auth.test.ts
+
+## Next Actions
+
+- Add password hashing
+- Implement JWT tokens
+- Write integration tests
+
+## Blocked On
+
+- (None)
 ```
 
-### 3. Decision Rationale (DECISIONS.md)
+### DECISIONS.md Captures Rationale
 
-**Why choices were made:**
-- Technical decisions with reasoning
-- Alternatives considered
-- Constraints and tradeoffs
-- When to reconsider
-
-**Example:**
 ```markdown
-## DEC-003: Use JWT for Authentication
+## 2026-01-24: [Auth] Use JWT over session-based auth
+Why: Need horizontal scaling, stateless auth simplifies load balancing
+Tradeoff: More complex token refresh, can't invalidate instantly
+RevisitWhen: If we need instant token revocation for security
+```
 
-**Decision:** Implement JWT-based authentication instead of session-based
+### CLAUDE.md Provides Entry Point
 
-**Context:** Building API that will scale horizontally with multiple servers
-
-**Options Considered:**
-1. Session-based auth (requires sticky sessions or shared session store)
-2. JWT with refresh tokens (stateless, better for horizontal scaling)
-
-**Decision:** JWT with refresh tokens
-
-**Rationale:**
-- Horizontal scaling without sticky sessions
-- Stateless auth = simpler load balancing
-- Refresh token rotation provides security
-- Industry standard for APIs
+```markdown
+> **Session Loop**
+> 1. Start → Read `context/STATUS.md`
+> 2. End → Run `/save`
 ```
 
 ## How It Works
 
-### Automatic Health Checks
+### Starting a Session
 
-::: tip New in v5.0.0
-Session-start hooks automatically check context health when you begin a Claude Code session.
-:::
+1. Claude Code auto-loads `CLAUDE.md`
+2. You see the Session Loop instructions
+3. Read `context/STATUS.md` for current state
+4. Check if `HeadCommit` matches current HEAD (staleness detection)
+5. You know exactly where to pick up
 
-When you start a Claude Code session, the system automatically:
-- Checks if STATUS.md is stale (>7 days old)
-- Validates Quick Reference presence
-- Detects unclosed session markers
-- Shows context health summary
+### During Work
 
-This happens **before** you even type `/review-context`, so you know immediately if something needs attention.
+Work normally. The Working Set in STATUS.md lists the files you're touching.
 
-### Daily Workflow
+If you need to edit files outside the Working Set, add them first.
 
-**Start of session:**
-```bash
-/review-context
+### Ending a Session
+
+Run `/save`:
+
+```
+/save
 ```
 
-Shows:
-- Quick Reference (project overview)
-- Current work in progress
-- Recent decisions
-- Documentation health warnings (if any)
+This updates STATUS.md with:
+- Today's date
+- Current git commit
+- Updated objective (if changed)
+- Current Working Set
+- Next actions
+- Blockers
 
-**During work:**
-```bash
-/save  # Every 30-60 minutes (2-3 min)
-```
-
-Updates:
-- STATUS.md with current state
-- Auto-generated Quick Reference
-- Work in progress
-
-**End of session:**
-```bash
-/save-full  # Before breaks (10-15 min)
-```
-
-Creates:
-- Complete SESSIONS.md entry
-- Mental model capture
-- Decision rationale
-- Git operation log
+It also asks about decisions:
+- "Any decisions worth recording?"
+- If yes, appends to DECISIONS.md
 
 ### Resuming Later
 
-**Days, weeks, or months later:**
+Days, weeks, or months later:
 
-```bash
-/review-context
-```
+1. Open the project in Claude Code
+2. `CLAUDE.md` auto-loads, showing Session Loop
+3. Read `STATUS.md` — see objective, Working Set, next actions
+4. Continue exactly where you left off
 
-**What you see:**
-1. **Quick Reference** - Project at a glance
-2. **Last session summary** - What happened
-3. **Work in progress** - Where to pick up
-4. **Recent decisions** - Context for current work
-
-**Result:** You're oriented in 2-3 minutes instead of 20-30 minutes.
+**Orientation time: 30 seconds.**
 
 ## Real-World Example
 
@@ -184,85 +135,115 @@ Creates:
 ### With Session Continuity
 
 **Day 1:** Implement authentication
-```bash
-/save-full  # 10 minutes
+
+```
+/save
 ```
 
 **Day 8:** Resume work
-```bash
-/review-context  # 2 minutes
+
+Read STATUS.md:
+```markdown
+Objective: Implement user authentication
+
+## Working Set
+- src/auth/login.ts
+- src/auth/session.ts
+
+## Next Actions
+- Add password hashing
+- Implement refresh tokens
+
+## Blocked On
+- (None)
 ```
 
-**Sees:**
-- Current: "Building login endpoint (in progress)"
-- Blocker: "Need to decide between JWT and sessions"
-- Decision: "DEC-003: Use JWT (horizontal scaling)"
-- Mental model: Complete auth strategy
+Read DECISIONS.md:
+```markdown
+## 2026-01-17: [Auth] Use JWT for authentication
+Why: Need horizontal scaling, stateless auth preferred
+...
+```
 
-**Result:** Pick up exactly where you left off.
+**Result:** Pick up exactly where you left off in 30 seconds.
 
 ## Key Benefits
 
-### 1. Zero Context Loss
-- AI remembers everything
+### Zero Context Loss
+- AI remembers everything via files
 - No re-explaining
 - Consistent decision-making
 
-### 2. Fast Resume
-- 2-3 minute orientation
-- Clear start point
-- Full context available
+### Fast Resume
+- 30-second orientation
+- Clear starting point
+- Full context in STATUS.md
 
-### 3. Long-Term Projects
+### Long-Term Projects
 - Works across months
 - Handles complexity
-- Maintains consistency
+- Maintains consistency via DECISIONS.md
 
-### 4. Multiple AI Agents
-- Seamless handoffs
-- Peer review with context
-- Collaborative development
+### AI-to-AI Handoffs
+- New agent reads same files
+- Perfect context transfer
+- No information loss
+
+## The Session Loop
+
+This is the entire system:
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│   Start → Read STATUS.md            │
+│     ↓                               │
+│   Work → Edit Working Set files     │
+│     ↓                               │
+│   End → Run /save                   │
+│     ↓                               │
+│   (Next session)                    │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+Follow this loop consistently and context persists naturally.
 
 ## Best Practices
 
-### Save Frequently
-```bash
-/save  # Every 30-60 minutes
-```
-- Captures incremental progress
-- Safety net for unexpected interruptions
-- Quick (2-3 minutes)
+### Save at Session End
 
-### Full Saves at Boundaries
-```bash
-/save-full  # Before breaks, handoffs
 ```
-- Comprehensive mental model
-- Decision rationale
-- Complete session record
-
-### Review at Start
-```bash
-/review-context  # Every session start
+/save
 ```
-- Instant orientation
-- Verifies documentation current
-- Checks for updates
 
-### Trust the System
-- Document even "obvious" decisions
-- Capture mental models honestly
-- Future you will thank present you
+Always run before ending a session. Captures current state.
+
+### Keep Working Set Current
+
+Update it when focus shifts. 3-7 items is ideal.
+
+### Record Meaningful Decisions
+
+When you make a choice with tradeoffs, record it:
+
+```
+/save
+# "Any decisions worth recording?" → Yes
+```
+
+### Trust the Loop
+
+The system is simple by design. Follow it consistently.
 
 ## Success Metric
 
-> **"I can end any session abruptly, start days later, run /review-context, and continue exactly where I left off."**
+> **"I can end any session, return days later, read STATUS.md, and continue exactly where I left off."**
 
-When this is true, you have perfect session continuity.
+When this is true, you have session continuity.
 
 ## Next Steps
 
-- [Externalized Context](/guide/externalized-context) - Make AI reasoning visible
-- [Mental Models](/guide/mental-models) - Capture AI understanding
-- [STATUS.md Guide](/guide/status-file) - Current state documentation
-- [SESSIONS.md Guide](/guide/sessions-file) - Session history
+- [STATUS.md Guide](/guide/status-file) — Current state documentation
+- [DECISIONS.md Guide](/guide/decisions-file) — Decision rationale
+- [/save Command](/commands/save) — How context gets persisted
