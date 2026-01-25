@@ -183,7 +183,7 @@ Capture the decision immediately. Rationale fades quickly.
 
 ```
 /save
-# "Any decisions worth recording?" → Yes
+# AI autonomously records significant decisions
 ```
 
 ### Be Honest About Tradeoffs
