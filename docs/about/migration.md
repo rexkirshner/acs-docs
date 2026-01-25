@@ -2,7 +2,7 @@
 
 How to upgrade to AI Context System v6.0.
 
-## Current Version: v6.0.0
+## Current Version: v6.0.1
 
 v6.0 is a **radical simplification**:
 
@@ -118,7 +118,7 @@ Remove these sections (no longer used):
 ```bash
 # Check version
 cat .claude/VERSION
-# Should show: 6.0.0
+# Should show: 6.0.1
 
 # List commands
 ls .claude/commands/
