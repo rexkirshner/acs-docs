@@ -1,6 +1,6 @@
 export default {
   title: 'AI Context System',
-  description: 'Externalize AI context. Enable human-AI collaboration. Perfect session continuity.',
+  description: 'Session continuity for AI coding. Pick up exactly where you left off.',
 
   ignoreDeadLinks: true,
 
@@ -17,7 +17,7 @@ export default {
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
     ['meta', { property: 'og:title', content: 'AI Context System' }],
-    ['meta', { property: 'og:description', content: 'Externalize AI reasoning. Enable perfect session continuity.' }],
+    ['meta', { property: 'og:description', content: 'Session continuity for AI coding. Pick up exactly where you left off.' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: 'https://acs-docs.pages.dev/og-image.png' }]
   ],
@@ -29,10 +29,10 @@ export default {
       { text: 'Commands', link: '/commands/' },
       { text: 'Workflows', link: '/workflows/' },
       {
-        text: 'v5.2.1',
+        text: 'v6.0.0',
         items: [
           { text: 'Changelog', link: '/about/changelog' },
-          { text: 'Migration Guides', link: '/about/migration' }
+          { text: 'Migration Guide', link: '/about/migration' }
         ]
       }
     ],
@@ -42,93 +42,59 @@ export default {
         {
           text: 'Getting Started',
           items: [
-            { text: 'Introduction', link: '/guide/' },
-            { text: 'Installation', link: '/guide/installation' },
-            { text: 'Quick Start', link: '/guide/quick-start' },
-            { text: 'Your First Session', link: '/guide/first-session' }
+            { text: 'Installation', link: '/guide/getting-started' }
           ]
         },
         {
           text: 'Core Concepts',
           items: [
             { text: 'Session Continuity', link: '/guide/session-continuity' },
-            { text: 'Externalized Context', link: '/guide/externalized-context' },
-            { text: 'Mental Models', link: '/guide/mental-models' },
             { text: 'Multi-AI Support', link: '/guide/multi-ai' }
           ]
         },
         {
-          text: 'Documentation Files',
+          text: 'Context Files',
           items: [
-            { text: 'CONTEXT.md', link: '/guide/context-file' },
+            { text: 'CLAUDE.md', link: '/guide/claude-md' },
             { text: 'STATUS.md', link: '/guide/status-file' },
-            { text: 'DECISIONS.md', link: '/guide/decisions-file' },
-            { text: 'SESSIONS.md', link: '/guide/sessions-file' }
+            { text: 'DECISIONS.md', link: '/guide/decisions-file' }
+          ]
+        },
+        {
+          text: 'Help',
+          items: [
+            { text: 'Troubleshooting', link: '/guide/troubleshooting' }
           ]
         }
       ],
 
       '/commands/': [
         {
-          text: 'Setup Commands',
+          text: 'Commands',
           items: [
             { text: 'Overview', link: '/commands/' },
             { text: '/init-context', link: '/commands/init-context' },
-            { text: '/migrate-context', link: '/commands/migrate-context' }
-          ]
-        },
-        {
-          text: 'Daily Use',
-          items: [
             { text: '/save', link: '/commands/save' },
-            { text: '/save-full', link: '/commands/save-full' },
-            { text: '/review-context', link: '/commands/review-context' }
-          ]
-        },
-        {
-          text: 'Code Review',
-          items: [
-            { text: '/code-review', link: '/commands/code-review' },
-            { text: '/code-review-security', link: '/commands/code-review-security' },
-            { text: '/code-review-performance', link: '/commands/code-review-performance' },
-            { text: '/code-review-accessibility', link: '/commands/code-review-accessibility' },
-            { text: '/code-review-seo', link: '/commands/code-review-seo' },
-            { text: '/code-review-database', link: '/commands/code-review-database' },
-            { text: '/code-review-infrastructure', link: '/commands/code-review-infrastructure' },
-            { text: '/code-review-typescript', link: '/commands/code-review-typescript' },
-            { text: '/code-review-testing', link: '/commands/code-review-testing' },
-            { text: '/code-review-libraries', link: '/commands/code-review-libraries' },
-            { text: '/build-check', link: '/commands/build-check' }
-          ]
-        },
-        {
-          text: 'Collaboration',
-          items: [
-            { text: '/export-context', link: '/commands/export-context' },
-            { text: '/session-summary', link: '/commands/session-summary' }
-          ]
-        },
-        {
-          text: 'Maintenance',
-          items: [
-            { text: '/validate-context', link: '/commands/validate-context' },
-            { text: '/update-context-system', link: '/commands/update-context-system' },
-            { text: '/update-templates', link: '/commands/update-templates' },
-            { text: '/add-ai-header', link: '/commands/add-ai-header' },
-            { text: '/organize-docs', link: '/commands/organize-docs' }
+            { text: '/update-context-system', link: '/commands/update-context-system' }
           ]
         }
       ],
 
       '/workflows/': [
         {
-          text: 'Common Workflows',
+          text: 'Workflows',
           items: [
-            { text: 'Overview', link: '/workflows/' },
-            { text: 'Daily Work', link: '/workflows/daily-work' },
-            { text: 'AI-to-AI Handoff', link: '/workflows/ai-handoff' },
-            { text: 'Human Review', link: '/workflows/human-review' },
-            { text: 'Meta-Projects', link: '/workflows/meta-projects' }
+            { text: 'Overview', link: '/workflows/' }
+          ]
+        }
+      ],
+
+      '/about/': [
+        {
+          text: 'About',
+          items: [
+            { text: 'Changelog', link: '/about/changelog' },
+            { text: 'Migration Guide', link: '/about/migration' }
           ]
         }
       ]
@@ -143,7 +109,7 @@ export default {
     },
 
     footer: {
-      copyright: '© 2025 AI Context System. A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Project.'
+      copyright: '© 2026 AI Context System. A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Project.'
     }
   }
 }
