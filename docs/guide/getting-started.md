@@ -26,7 +26,7 @@ ls .claude/commands/
 # Should show 8 files:
 # init-context.md, save.md, update-context-system.md,
 # review-security.md, review-performance.md,
-# review-accessibility.md, review-seo.md
+# review-accessibility.md, review-seo.md, review-cost.md
 ```
 
 ## Initialize Context
@@ -74,7 +74,7 @@ This updates STATUS.md with:
 - Next actions
 - Any blockers
 
-It also asks: "Any decisions worth recording?" If yes, appends to DECISIONS.md.
+It also autonomously evaluates the session and records any significant decisions to DECISIONS.md.
 
 ## The Session Loop
 
