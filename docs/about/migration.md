@@ -156,7 +156,7 @@ ls .claude/commands/
 | /init-context | Still needed for setup |
 | /save | Core of Session Loop |
 | /update-context-system | Needed for updates |
-| 4 review commands | Useful audits |
+| 5 review commands | Useful audits |
 
 ### Added
 
