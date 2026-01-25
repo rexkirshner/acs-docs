@@ -122,11 +122,11 @@ Always. Every time. Build the habit.
 
 ### Record Meaningful Decisions
 
-When you make a choice with tradeoffs:
+When you make a choice with tradeoffs, the AI records it automatically:
 
 ```bash
 /save
-# "Any decisions worth recording?" → Yes
+# AI autonomously records significant decisions
 ```
 
 ### Read Before Starting
