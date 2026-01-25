@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: AI Context System
-  text: Externalize AI reasoning. Enable perfect session continuity.
-  tagline: Built for all AI coding assistants. Optimized for Claude Code.
+  text: Externalize AI context. Enable session continuity.
+  tagline: 3 files. 7 commands. Zero scripts. Built for Claude Code.
   actions:
     - theme: brand
       text: Get Started
@@ -15,81 +15,84 @@ hero:
 
 features:
   - title: Session Continuity
-    details: Resume exactly where you left off—days, weeks, or months later—without re-explaining anything.
+    details: Resume exactly where you left off. The Session Loop pattern ensures context persists across sessions and AI-to-AI handoffs.
 
-  - title: Externalized Context
-    details: Make AI thoughts, decisions, and mental models visible to humans in structured documentation.
+  - title: Radical Simplicity
+    details: v6.0 cut 22 commands to 7, 14 agents to 0, and 150KB of scripts to zero. Pure prompts, no machinery.
 
-  - title: Human-AI Collaboration
-    details: Full visibility into AI reasoning enables programmers to work alongside AI agents effectively.
+  - title: Working Set Boundary
+    details: 3-7 files you're actively touching. Simple containment without complex validation.
 
-  - title: AI-to-AI Collaboration
-    details: Facilitate peer review, project handoffs, and collaborative development between AI agents.
-
-  - title: Fast & Simple
-    details: Quick saves (2-3 min) for daily work. Comprehensive saves (10-15 min) before breaks.
-
-  - title: Multi-AI Support
-    details: Universal file structure works with Claude Code, Cursor, Aider, GitHub Codex, and more.
+  - title: Decision Memory
+    details: DECISIONS.md captures why choices were made. The only file that preserves rationale for future reference.
 ---
 
 ## Quick Start
 
 ```bash
-# One-command install
-curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
+# Clone and copy to your project
+git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
+mkdir -p /path/to/your/project/.claude
+cp -r ai-context-system/.claude/commands /path/to/your/project/.claude/
+cp ai-context-system/.claude/VERSION /path/to/your/project/.claude/
+rm -rf ai-context-system
 
-# Initialize context
+# In Claude Code, initialize
 /init-context
-
-# Daily workflow
-/review-context  # Start of session (30 sec)
-/save            # Quick update (2-3 min)
-/save-full       # Comprehensive save (10-15 min)
 ```
+
+This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 
 ## What Gets Created
 
 ```
 your-project/
-├── CLAUDE.md                    # ← Auto-loaded by Claude Code
-├── context/                     # Externalized AI context
-│   ├── CONTEXT.md               # Project orientation
-│   ├── STATUS.md                # Current state + Quick Reference
-│   ├── DECISIONS.md             # Decision log (WHY)
-│   └── SESSIONS.md              # History + mental models
+├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── commands/                # 22 slash commands
-│   ├── agents/                  # 14 specialist agents
-│   ├── schemas/                 # 8 JSON validation schemas
-│   └── hooks/                   # Session automation
-└── scripts/                     # Helper utilities
+│   ├── VERSION            # Installed version (6.0.0)
+│   └── commands/          # 7 slash commands
+└── context/
+    ├── STATUS.md          # Current state + Working Set
+    └── DECISIONS.md       # Decision log (why)
 ```
 
-## Core Philosophy
+## The Session Loop
 
-AI reasoning is invisible. Context is lost between sessions. Decisions lack rationale. Humans can't review AI's thinking.
+Every session follows this pattern:
 
-**The solution:** Externalize AI context into structured, visible documentation that serves four purposes:
+1. **Start** → Read `context/STATUS.md`
+2. **Work** → Edit files in Working Set
+3. **End** → Run `/save`
 
-1. **Session Continuity** - Pick up exactly where you left off
-2. **Externalized Context** - Make AI reasoning visible to humans
-3. **Human-AI Collaboration** - Full visibility into AI thinking
-4. **AI-to-AI Collaboration** - Perfect handoffs and peer review
+That's it. No complex workflows. No validation machinery.
+
+## Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/init-context` | Create context files (safe, never overwrites) |
+| `/save` | Update STATUS.md, optionally record decisions |
+| `/update-context-system` | Update to latest version |
+| `/review-security` | Security audit (report only) |
+| `/review-performance` | Performance review (report only) |
+| `/review-accessibility` | Accessibility review (report only) |
+| `/review-seo` | SEO review (report only) |
 
 ## Current Version
 
-**v5.2.1** - Bug Fixes from Real-World Feedback
+**v6.0.0** — Radical Simplification
 
-Patch release addressing bugs discovered during v5.2.0 deployment across 3 projects:
-
-- **Session Date Parsing** - Now correctly handles both `|` and `-` separators in session headers
-- **zsh Compatibility** - Fixed arithmetic errors in config health check
-- **Staleness Thresholds** - Reads per-file thresholds from config (e.g., CONTEXT.md green=90 days)
-- **Archive Detection** - Shows "gaps in numbering" when no archive directory exists
-
-**v5.2.0** added code review synthesis, session index, and working directory detection.
-
-**v5.1.5** added documentation polish and UX improvements.
+- **3 files** instead of 8
+- **7 commands** instead of 22
+- **0 scripts** — Claude handles logic
+- **Advisory, not mechanical** — Guidelines, not enforcement
 
 [See full changelog →](/about/changelog)
+
+## Philosophy
+
+> **The value is in the subtraction.**
+
+v5.x had 22 commands, 14 agents, and 150KB of shell scripts. It was overengineered.
+
+v6.0 asks: what's the minimum needed for session continuity? Three files and a simple loop.
