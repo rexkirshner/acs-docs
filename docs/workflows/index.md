@@ -1,6 +1,18 @@
 # Common Workflows
 
-Learn how to use the AI Context System for real-world scenarios.
+The AI Context System is built around one core workflow: **The Session Loop**.
+
+## The Session Loop
+
+Every development session follows this pattern:
+
+```
+Start → Read STATUS.md
+Work → Edit Working Set files
+End → Run /save
+```
+
+That's it. Follow this loop consistently and context persists naturally.
 
 ## Daily Work
 
@@ -8,39 +20,33 @@ Your typical development session:
 
 ```bash
 # 1. Start session
-/review-context
+# Read context/STATUS.md for current state
+# See: Objective, Working Set, Next Actions
 
 # 2. Work on your project
 # ... coding, debugging, refactoring ...
 
-# 3. Save frequently (2-3 min)
+# 3. End session
 /save
-
-# 4. Before lunch/break (10-15 min)
-/save-full
 ```
-
-[Learn more →](/workflows/daily-work)
 
 ## AI-to-AI Handoff
 
 Transfer project to another AI agent:
 
 ```bash
-# 1. Capture current state
-/save-full
+# 1. End current session
+/save
 
-# 2. Validate completeness
-/validate-context
+# 2. New AI reads same files
+# - CLAUDE.md (project overview)
+# - context/STATUS.md (current state)
+# - context/DECISIONS.md (past decisions)
 
-# 3. Package everything
-/export-context
-
-# 4. Share export with new AI
-# New AI reads context/ folder
+# Result: Perfect context transfer
 ```
 
-[Learn more →](/workflows/ai-handoff)
+The new AI picks up exactly where the previous one left off.
 
 ## Human Review of AI Work
 
@@ -48,99 +54,98 @@ Verify AI understood your project:
 
 ```bash
 # 1. Check AI's reasoning
-# Read context/DECISIONS.md (see WHY)
+# Read context/DECISIONS.md
+# Understand WHY choices were made
 
-# 2. Review mental models
-# Check context/SESSIONS.md
+# 2. Review current state
+# Read context/STATUS.md
+# See what's being worked on
 
-# 3. Understand current state
-# Review context/STATUS.md
-
-# 4. Verify constraints
-# Ensure AI understood your requirements
+# 3. Check Working Set
+# Ensure AI is touching the right files
 ```
-
-[Learn more →](/workflows/human-review)
-
-## Meta-Projects
-
-Managing parent directory with multiple sub-repositories:
-
-```bash
-# 1. Install in parent directory
-curl -sL https://... | bash
-
-# 2. Configure as meta-project
-# .context-config.json: "projectType": "meta-project"
-
-# 3. Use from any subdirectory
-cd sub-repo-1/backend/
-/save  # Auto-detects context folder
-
-# 4. Track cross-repo decisions
-# DECISIONS.md captures architecture choices
-```
-
-[Learn more →](/workflows/meta-projects)
 
 ## New Project Setup
 
 Starting from scratch:
 
 ```bash
-# 1. Install system
-curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
+# 1. Install
+git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
+mkdir -p .claude
+cp -r ai-context-system/.claude/commands .claude/
+cp ai-context-system/.claude/VERSION .claude/
+rm -rf ai-context-system
 
 # 2. Initialize
 /init-context
 
-# 3. Fill out core files
-# Edit context/CONTEXT.md (project orientation)
-# Edit context/STATUS.md (current goals)
+# 3. Customize
+# Edit CLAUDE.md with project details
+# Fill in context/STATUS.md
 
-# 4. Start coding
-# /save frequently
-# /save-full before breaks
+# 4. Start working
+# Follow the Session Loop
 ```
 
-## Existing Project Migration
+## Switching Between Tools
 
-Adding to mature project:
+Using multiple AI tools (Claude Code, Cursor, Aider, etc.):
 
 ```bash
-# 1. Install system
-curl -sL https://... | bash
+# All tools read the same files:
+# - CLAUDE.md
+# - context/STATUS.md
+# - context/DECISIONS.md
 
-# 2. Migrate existing docs
-/migrate-context
+# Claude Code users:
+/save
 
-# 3. Review consolidation
-# Check context/ folder
-# Verify all docs preserved
-
-# 4. Continue work
-# Use /save and /save-full
+# Other tools:
+# Manually update STATUS.md
+# Or ask the AI to update it
 ```
 
 ## Best Practices
 
-1. **Save often** - Run `/save` every 30-60 minutes
-2. **Full saves at boundaries** - Always `/save-full` before breaks
-3. **Review at start** - Always `/review-context` when opening project
-4. **Validate before handoffs** - Run `/validate-context` before sharing
-5. **Read externalized context** - Review DECISIONS.md and SESSIONS.md regularly
-6. **Trust the system** - It captures more than you think
+### Save at Session End
+
+```bash
+/save
+```
+
+Always. Every time. Build the habit.
+
+### Keep Working Set Current
+
+3-7 items is ideal. Update when focus shifts.
+
+### Record Meaningful Decisions
+
+When you make a choice with tradeoffs:
+
+```bash
+/save
+# "Any decisions worth recording?" → Yes
+```
+
+### Read Before Starting
+
+Before diving into work, read STATUS.md:
+- What's the current Objective?
+- What files are in the Working Set?
+- What are the Next Actions?
+- Are there any Blockers?
 
 ## Success Metrics
 
 **Session Continuity:**
-> "I can end abruptly, start days later, run /review-context, and continue exactly where I left off."
+> "I can end any session, return days later, read STATUS.md, and continue exactly where I left off."
 
-**Externalized Context:**
-> "I can read DECISIONS.md and understand exactly what the AI was thinking."
+**Decision Clarity:**
+> "I can read DECISIONS.md and understand why choices were made."
 
-**Human-AI Collaboration:**
-> "I can verify the AI understood my constraints by reading its reasoning."
+**AI Handoffs:**
+> "A new AI agent can read the context files and understand the entire project."
 
-**AI-to-AI Collaboration:**
-> "A new AI agent can read context/ and understand the entire project."
+When these are true, the system is working.
