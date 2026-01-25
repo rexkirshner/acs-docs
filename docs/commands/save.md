@@ -174,7 +174,7 @@ When you hit a blocker:
 
 ### Record Meaningful Decisions
 
-When prompted, capture decisions that:
+The AI autonomously captures decisions that:
 - Affect future development
 - Have meaningful tradeoffs
 - Someone might ask "why did we do it this way?"
