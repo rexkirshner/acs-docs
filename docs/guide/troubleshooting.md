@@ -265,11 +265,7 @@ The `/save` command prompts you to confirm or update the Working Set.
 - Made important decision yesterday
 - No record in DECISIONS.md
 
-**Prevention:**
-```bash
-# When prompted by /save:
-# "Any decisions worth recording?" → Yes
-```
+**Note:** `/save` now records decisions autonomously. If a decision wasn't captured, you can add it manually.
 
 **Manual entry:**
 Add to `context/DECISIONS.md`:
