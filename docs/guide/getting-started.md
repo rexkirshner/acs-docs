@@ -162,7 +162,7 @@ The Session Loop is simple by design. Follow it consistently and context persist
 
 **Commands not working?**
 - Make sure you're in the project root
-- Check that `.claude/commands/` exists with 7 files
+- Check that `.claude/commands/` exists with 8 files
 
 **Need help?**
 - [Troubleshooting Guide](/guide/troubleshooting)
