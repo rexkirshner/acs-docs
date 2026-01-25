@@ -257,7 +257,7 @@ ls -lt src/
 /save
 ```
 
-The `/save` command prompts you to confirm or update the Working Set.
+The `/save` command updates the Working Set based on the session's work.
 
 ### Decisions Not Captured
 
