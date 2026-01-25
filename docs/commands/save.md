@@ -21,13 +21,16 @@ Updates all fields:
 | `Next Actions` | Concrete next steps |
 | `Blocked On` | Any blockers (or "None") |
 
-### DECISIONS.md (Optional)
+### DECISIONS.md (Autonomous)
 
-After updating STATUS.md, the command asks:
+After updating STATUS.md, the command autonomously evaluates the session for recordable decisions. No prompting—the AI uses its judgment based on session context.
 
-> "Any decisions worth recording?"
+**Records a decision if it:**
+- Explains why something is implemented a certain way
+- Involves tradeoffs that future developers might question
+- Affects how future work should be approached
 
-If yes, appends a new entry to DECISIONS.md:
+If a decision is worth recording, appends a new entry to DECISIONS.md:
 
 ```markdown
 ---
@@ -121,15 +124,15 @@ End → Run /save  ← You are here
 
 Follow this loop consistently and context persists naturally.
 
-## What /save Asks
+## What /save Does
 
-The command prompts for:
+The command evaluates and updates:
 
-1. **Objective** — Is the current objective still accurate?
-2. **Working Set** — What files are you actively touching?
-3. **Next Actions** — What should happen next session?
-4. **Blockers** — Anything preventing progress?
-5. **Decisions** — Any decisions worth recording?
+1. **Objective** — Updates if focus shifted during session
+2. **Working Set** — Reflects files actually touched (3-7 items)
+3. **Next Actions** — Concrete next steps for next session
+4. **Blockers** — Any external dependencies or questions
+5. **Decisions** — Autonomously records significant decisions
 
 ## Best Practices
 
@@ -183,34 +186,15 @@ When prompted, capture decisions that:
 
 📝 Updating STATUS.md...
 
-Objective: Implement user authentication
-(Press Enter to keep, or type new objective)
->
+✅ Updated STATUS.md
+   - LastUpdated: 2026-01-25
+   - HeadCommit: f4e5d6c
+   - Working Set: 4 files
+   - Next Actions: 3 items
 
-Working Set:
-- src/auth/login.ts
-- src/auth/session.ts
-Add/remove files? (Enter to keep)
-> + src/auth/jwt.ts
+✅ Added decision: [Auth] Use httpOnly cookies for JWT storage
 
-Next Actions:
-> Add refresh token rotation
-> Write integration tests
-> (blank to finish)
-
-Blocked On:
-> (None)
-
-Any decisions worth recording? (y/N)
-> y
-
-Decision: [Auth] Use httpOnly cookies for JWT storage
-Why: Prevents XSS token theft
-Tradeoff: Can't access token from JavaScript
-RevisitWhen: If we need client-side token access
-
-✅ STATUS.md updated
-✅ DECISIONS.md updated (1 new entry)
+Done. Context saved for next session.
 ```
 
 ## See Also
