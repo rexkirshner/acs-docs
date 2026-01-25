@@ -41,7 +41,7 @@ From mechanical validation to advisory prompts:
 | /init-context | Setup |
 | /save | Session end |
 | /update-context-system | Updates |
-| 4 review commands | Audits |
+| 5 review commands | Audits |
 
 #### New Features
 
