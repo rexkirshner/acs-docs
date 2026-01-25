@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues and solutions for AI Context System.
+Common issues and solutions for AI Context System v6.0.
 
 ## Commands Not Working
 
@@ -11,657 +11,352 @@ Common issues and solutions for AI Context System.
 - No command suggestions when typing `/`
 - Commands not recognized
 
+**Check:**
+```bash
+ls .claude/commands/
+# Should show 7 files:
+# init-context.md, save.md, update-context-system.md,
+# review-security.md, review-performance.md,
+# review-accessibility.md, review-seo.md
+```
+
+**Solution:**
+```bash
+# If missing, reinstall:
+git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
+cp -r ai-context-system/.claude/commands .claude/
+cp ai-context-system/.claude/VERSION .claude/
+rm -rf ai-context-system
+
+# Then restart Claude Code session
+```
+
+### Multiple .claude Directories
+
+**Symptoms:**
+- Commands execute but affect wrong project
+- Context files appear in wrong location
+
 **Cause:** Multiple `.claude` directories in parent folders.
 
 **Check:**
 ```bash
-# Search for all .claude directories
-find ~ -name ".claude" -type d 2>/dev/null
-
-# Output (problematic):
-/Users/you/projects/.claude           # Parent
-/Users/you/projects/my-app/.claude     # Your project
+find ~ -name ".claude" -type d 2>/dev/null | head -20
 ```
 
 **Solution:**
 ```bash
 # Remove .claude from parent directories
-rm -rf /Users/you/projects/.claude
+rm -rf /path/to/parent/.claude
 
 # Keep only your project's .claude
-# Keep: /Users/you/projects/my-app/.claude
-```
-
-**Exception:** Meta-projects intentionally have `.claude` in parent. This is normal if configured as meta-project in `.context-config.json`.
-
-### Commands Can't Find Context Files
-
-**Symptoms:**
-```
-Error: Cannot find context directory
-```
-
-**Cause:** Running commands from too deep in directory tree.
-
-**Check:**
-```bash
-pwd
-# Output: /Users/you/projects/my-app/src/components/auth/forms
-
-# Too deep (>2 levels from context/)
-```
-
-**Solution:**
-```bash
-# Move closer to project root
-cd /Users/you/projects/my-app
-
-# Or run from any level (system searches up to 2 parents)
-/save  # Auto-finds context/
 ```
 
 ## Context Files
 
-### Quick Reference Not Generated
+### Missing Context Files
 
 **Symptoms:**
-- STATUS.md has empty Quick Reference section
-- "Quick Reference" header exists but no content below
-
-**Cause:** Missing or invalid `.context-config.json`
-
-**Check:**
-```bash
-cat context/.context-config.json
-
-# Should see JSON with project info
-```
+- `context/STATUS.md` doesn't exist
+- `/save` fails to update status
 
 **Solution:**
 ```bash
-# If file missing, reinitialize
+# Initialize context files
 /init-context
-
-# If file exists but invalid, check JSON syntax
-# Then regenerate Quick Reference
-/save
 ```
 
-### SESSIONS.md Growing Too Large
+This creates:
+- `CLAUDE.md` — Entry point (at project root)
+- `context/STATUS.md` — Current state
+- `context/DECISIONS.md` — Decision log
+
+### Context Files Exist But Wrong Format
 
 **Symptoms:**
-- SESSIONS.md exceeds 2000 lines
-- File takes long to read
-- Token limit warnings
+- Files have v5.x format (SESSIONS.md, Quick Reference, etc.)
+- `/save` behaves unexpectedly
 
-**Cause:** Many sessions accumulated over time (normal for active projects).
+**Solution:**
 
-**Solution:** The system includes automatic archiving:
+The system may have been set up with a previous version. You can either:
 
-**Automatic Archiving (Recommended):**
-- `/save-full` prompts when SESSIONS.md > 2000 lines
-- One-command archiving: Accept prompt with `Y`
-- Old sessions moved to `context/SESSIONS-archive-YYYY.md`
-- Last 10 sessions kept in main file
-- Backup created automatically
-- Zero data loss
+1. **Migrate manually:** Update STATUS.md to v6.0 format:
+   ```markdown
+   # Status
 
-**Manual Archiving:**
-```bash
-bash scripts/archive-sessions-helper.sh --keep 10
-```
+   SchemaVersion: 1
+   LastUpdated: YYYY-MM-DD
+   HeadCommit: [git SHA or N/A]
+   Objective: [current goal]
 
-**Smart Loading (Automatic):**
-System automatically loads SESSIONS.md intelligently during `/review-context`:
-- **<1000 lines:** Reads full file
-- **1000-5000 lines:** Strategic loading (index + recent 500 lines)
-- **>5000 lines:** Minimal loading (index + recent 300 lines)
-- **Result:** Can handle 50,000+ line files without crashes
+   ## Working Set
+
+   - [files you're touching]
+
+   ## Next Actions
+
+   - [concrete next steps]
+
+   ## Blocked On
+
+   - (None)
+   ```
+
+2. **Start fresh:** Back up and reinitialize:
+   ```bash
+   mv context context-backup
+   /init-context
+   ```
 
 ## Git Integration
 
-### Git Status Blank
+### HeadCommit Shows N/A
 
 **Symptoms:**
-```
-ℹ️  Not a git repository (skipping git data)
-```
-
-**But you have a .git directory:**
-```bash
-ls -la .git/  # Exists!
+```markdown
+HeadCommit: N/A
 ```
 
-**Cause 1:** Running from subdirectory of non-git parent.
+**Cause:** Not a git repository, or running from subdirectory.
 
 **Check:**
 ```bash
-pwd
-# /Users/you/projects/my-app/backend
-
-git rev-parse --git-dir
-# .git  # Git repo exists here
-```
-
-**Solution:** This is expected if parent is meta-project. See meta-project documentation.
-
-**Cause 2:** `.git` file instead of directory (submodule).
-
-**Check:**
-```bash
-cat .git
-# Output: gitdir: ../.git/modules/my-app
-```
-
-**Solution:** This is a git submodule. Commands work but git status handled differently.
-
-### Git Operations Not Auto-Logged
-
-**Symptoms:**
-- Run `/save-full`
-- SESSIONS.md has no "Git Operations" section
-- Recent commits not listed
-
-**Cause:** No commits since last session.
-
-**Check:**
-```bash
-git log --since="1 day ago"
-# Shows recent commits
-
-# If empty, no commits to log
-```
-
-**Solution:** This is expected if you haven't committed yet. Git operations only logged if commits exist since last session.
-
-## Installation Issues
-
-### Install Script Fails
-
-**Symptoms:**
-```
-curl: (404) Not Found
-```
-
-**Cause:** Trying to install from wrong URL or network issue.
-
-**Solution:**
-```bash
-# Use correct URL:
-curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
-
-# Or download and inspect first:
-curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh -o install.sh
-bash install.sh
-```
-
-### Commands Installed But Not Available
-
-**Symptoms:**
-- `.claude/commands/` directory exists
-- Files like `save.md` are there
-- But `/save` doesn't work
-
-**Cause:** Claude Code not detecting commands.
-
-**Solution:**
-```bash
-# Restart Claude Code session
-# Exit and reopen project
-
-# Or:
-# Open Claude Code settings
-# Verify custom commands path is .claude/commands/
-```
-
-## Performance Issues
-
-### /save-full Takes Too Long
-
-**Symptoms:**
-- `/save-full` takes >20 minutes
-- Should be 10-15 minutes
-
-**Cause:** Helper script analyzing too many files.
-
-**Check:**
-```bash
-# See what files changed
-git status
-
-# If hundreds of files:
-# - Large refactor?
-# - node_modules/ not in .gitignore?
+git rev-parse --short HEAD
 ```
 
 **Solution:**
-```bash
-# Add to .gitignore:
-node_modules/
-.next/
-dist/
-build/
-coverage/
+- If not a git repo, this is expected behavior
+- If git repo, ensure you're running from project root
 
-# Commit .gitignore
-git add .gitignore
-git commit -m "Add gitignore"
-
-# Then /save-full should be faster
-```
-
-### /review-context Slow
+### HeadCommit Stale (Different from Current HEAD)
 
 **Symptoms:**
-- `/review-context` takes >30 seconds
-- Should be 2-3 seconds
+- STATUS.md shows `HeadCommit: abc123`
+- But `git rev-parse --short HEAD` shows `def456`
 
-**Cause:** SESSIONS.md too large (see above).
-
-**Solution:** System auto-handles with progressive loading. If still slow, archive old sessions manually.
-
-## Configuration Issues
-
-### Wrong Project Name in Quick Reference
-
-**Symptoms:**
-```
-Project: example-project
-```
-
-**But your project is called "my-app"**.
-
-**Cause:** `.context-config.json` has wrong project name.
+**Cause:** Commits were made outside the context system (by another tool, team member, or CI).
 
 **Solution:**
+This is a warning that STATUS.md might be outdated. Review before continuing:
+
 ```bash
-# Edit config
-nano context/.context-config.json
+# See what changed
+git log abc123..HEAD --oneline
 
-# Update:
-{
-  "project": {
-    "name": "my-app",  # Change this
-    ...
-  }
-}
-
-# Regenerate Quick Reference
+# Then update
 /save
 ```
 
-### Commands Using Wrong Paths
+## Installation Issues
+
+### Clone Fails
 
 **Symptoms:**
-- Commands can't find files
-- Errors about missing directories
-
-**Cause:** Working directory changed or project moved.
+```
+fatal: could not create work tree dir
+```
 
 **Check:**
 ```bash
-# From project root:
-ls -la context/
-ls -la .claude/
-ls -la scripts/
+# Verify you have write permission
+ls -la .
 
-# All should exist
+# Check disk space
+df -h
 ```
+
+**Solution:**
+- Ensure you have write permissions to current directory
+- Free up disk space if needed
+
+### Commands Not Recognized After Install
+
+**Symptoms:**
+- Files exist in `.claude/commands/`
+- But `/save` doesn't work
 
 **Solution:**
 ```bash
-# Ensure you're in project root
-cd /path/to/your/project
-
-# Verify structure
-pwd  # Should be project root
+# Exit and restart Claude Code
+exit
+claude
 ```
 
-## Nested Repository Issues
-
-### Nested Git Repositories Causing Context Confusion
-
-**Symptoms:**
-- Context files appear in wrong location
-- `/save` saves to parent project
-- Duplicate context folders
-- `find_context_folder` finds wrong context
-
-**Cause:** You have nested git repositories where both parent and child have (or should have) separate context systems.
-
-**Example structure:**
-```
-parent-project/           # Has .git/ and context/
-├── .git/
-├── context/
-│   └── STATUS.md         # Parent's context
-└── child-app/            # Also has .git/ (separate repo)
-    └── .git/
-    └── context/
-        └── STATUS.md     # Child's context (may be orphaned)
-```
-
-**Solution:**
-
-1. **Install ACS in each repository separately:**
-   ```bash
-   # In parent
-   cd parent-project
-   curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
-
-   # In child (separate installation)
-   cd parent-project/child-app
-   curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
-   ```
-
-2. **Or use only the parent's context system:**
-   - Remove any manually-created `context/` folders in child directories
-   - All context files will be managed at the parent level
-
-3. **Fix orphaned context folders:**
-   If you have `context/STATUS.md` without `.context-config.json`:
-   ```bash
-   # Run /init-context to properly initialize, or
-   # Delete the orphaned context/ folder if not needed
-   rm -rf context/
-   ```
-
-**Prevention:** The v5.1.2 installer detects nested repos and warns before installation.
-
-**Added in:** v5.1.2
-
----
-
-### Claude Code Shows "Settings Error" for .claude/settings.json
-
-**Symptoms:**
-```
-Settings Error
-.claude/settings.json
-  ├ $schema: Invalid value. Expected one of:
-  │ "https://json.schemastore.org/claude-code-settings.json"
-  └ hooks
-    ├ enabled: Invalid key in record
-    ├ onFailure: Invalid key in record
-    └ timeout: Invalid key in record
-```
-
-**Cause:** Older versions of ACS (pre-v5.1.2) created `.claude/settings.json` with a custom schema that conflicts with Claude Code's reserved schema for that filename.
-
-**Impact:** Claude Code ignores ALL project settings when this file is present.
-
-**Solution:**
-
-1. **Upgrade ACS (recommended):**
-   ```bash
-   /update-context-system
-   ```
-   The v5.1.2 upgrade automatically removes the conflicting file.
-
-2. **Manual removal:**
-   ```bash
-   # First check if it's the ACS file (has our schema)
-   grep "acs.rexkirshner.com" .claude/settings.json
-
-   # If it shows a match, remove it
-   rm .claude/settings.json
-   ```
-
-**Note:** v5.1.2+ uses `.claude/acs-settings.json` instead, which doesn't conflict with Claude Code.
-
-**Fixed in:** v5.1.2
-
----
+Claude Code loads command definitions once per session. After installation, you need to start a new session.
 
 ## Version Issues
 
-### System Version Outdated
+### Need to Update
 
-**Symptoms:**
-```
-⚠️  Update available: v5.2.1 (you have v5.x.x)
+**Check current version:**
+```bash
+cat .claude/VERSION
 ```
 
-**Solution:**
+**Update to latest:**
 ```bash
 /update-context-system
-
-# Upgrades commands and scripts from GitHub
-# Now includes automatic retry on download failures
-# Post-installation validation ensures everything works
-
-# IMPORTANT: After upgrade, start a new Claude Code session!
-# Claude Code loads command definitions once per session.
-# - In terminal: Type /exit, then run 'claude' again
-# - In VS Code: Close the Claude Code panel and reopen it
 ```
 
-### Upgrade Fails
-
-**Symptoms:**
-```
-❌ Installation failed
-🔄 Restoring from backup...
-```
-
-**Cause:** Network issue, wrong URL, or validation failure.
-
-**Check:**
+Or manually:
 ```bash
-# Check network
-ping github.com
-
-# Check backup exists
-ls -la .claude-backup-*
+git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
+cp -r ai-context-system/.claude/commands .claude/
+cp ai-context-system/.claude/VERSION .claude/
+rm -rf ai-context-system
 ```
 
-**Solution:**
-```bash
-# If backup exists, system auto-restored
-# Try upgrade again with better network
+### Migrating from v5.x
 
-# Or manually upgrade:
-git clone https://github.com/rexkirshner/ai-context-system.git
-cp -r ai-context-system/.claude/* .claude/
-cp -r ai-context-system/scripts/* scripts/
-```
+If you have v5.x installed (22 commands, agents, scripts), see [Migration Guide](/about/migration).
+
+Key changes:
+- Delete `.claude/agents/`, `.claude/docs/`, `.claude/schemas/`, `.claude/hooks/`
+- Delete `scripts/` and `templates/`
+- Remove SESSIONS.md (no longer used)
+- Update STATUS.md to v6.0 format
+- Simplify CLAUDE.md with Session Loop blockquote
 
 ## Common Workflow Issues
 
 ### Can't Resume After Break
 
 **Symptoms:**
-- Run `/review-context`
 - Don't know where to start
 - Last session unclear
 
-**Cause:** Didn't run `/save-full` before break.
-
-**Solution:**
-```bash
-# Always before breaks:
-/save-full
-
-# This creates comprehensive SESSIONS.md entry
-# With "Next Session" section
-```
-
-### Lost Work
-
-**Symptoms:**
-- Made changes yesterday
-- STATUS.md doesn't reflect them
-- Can't remember what was done
-
-**Cause:** Didn't save before ending session.
+**Cause:** Didn't run `/save` before break.
 
 **Prevention:**
 ```bash
-# Build habit:
-# 1. Work on code
-# 2. /save every 30-60 min
-# 3. /save-full before breaks
-# 4. /save-full at end of day
-
-# Every session ends with:
-/save-full
-```
-
-### Blockers Not Captured
-
-**Symptoms:**
-- Hit blocker yesterday
-- Forgot what it was
-- No record in STATUS.md
-
-**Solution:**
-```bash
-# When blocker appears:
+# Always before breaks:
 /save
-
-# AI prompts for blocker details
-# Documents in STATUS.md immediately
 ```
 
-## Meta-Project Issues
+**Recovery:**
+```bash
+# Check git log for recent changes
+git log --oneline -10
 
-### Sub-Repo Commands Not Working
+# Check file modification times
+ls -lt src/
+
+# Reconstruct and update STATUS.md manually
+```
+
+### Lost Track of Working Set
 
 **Symptoms:**
-- Run `/save` from backend/
-- Error: Commands not found
-
-**Cause:** System checking wrong `.claude` directory.
+- Working Set lists files you're no longer touching
+- Forgot to update it when focus shifted
 
 **Solution:**
 ```bash
-# Ensure only one .claude in hierarchy
-ls -la .claude/              # Should not exist in sub-repo
-ls -la ../.claude/           # Should exist in parent
-
-# Remove if in sub-repo:
-rm -rf backend/.claude
-```
-
-### Git Status Shows Wrong Repo
-
-**Symptoms:**
-- Working in `backend/`
-- Git status shows `frontend/` changes
-
-**Cause:** Running from wrong directory.
-
-**Solution:**
-```bash
-# Check current directory
-pwd
-# /projects/portfolio/frontend  # Wrong!
-
-# Go to correct repo
-cd ../backend/
+# Update STATUS.md with current Working Set
 /save
+```
+
+The `/save` command prompts you to confirm or update the Working Set.
+
+### Decisions Not Captured
+
+**Symptoms:**
+- Made important decision yesterday
+- No record in DECISIONS.md
+
+**Prevention:**
+```bash
+# When prompted by /save:
+# "Any decisions worth recording?" → Yes
+```
+
+**Manual entry:**
+Add to `context/DECISIONS.md`:
+```markdown
+---
+
+## YYYY-MM-DD: [Area] Decision Title
+Why: [reason for the decision]
+Tradeoff: [what you gave up]
+RevisitWhen: [trigger to revisit]
+```
+
+## Emergency Recovery
+
+### Reinstall Everything
+
+**If system is broken:**
+
+```bash
+# 1. Backup context
+cp -r context context-backup
+
+# 2. Remove old installation
+rm -rf .claude
+
+# 3. Reinstall
+git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
+mkdir -p .claude
+cp -r ai-context-system/.claude/commands .claude/
+cp ai-context-system/.claude/VERSION .claude/
+rm -rf ai-context-system
+
+# 4. Restore context
+mv context-backup/* context/
+
+# 5. Restart Claude Code
+exit
+claude
+```
+
+### Context Files Corrupted
+
+**If STATUS.md or DECISIONS.md are broken:**
+
+```bash
+# Check git history
+git log context/STATUS.md
+git checkout HEAD~1 context/STATUS.md
+
+# Or recreate from template
+/init-context
+# (Will create new files, then merge in old content manually)
 ```
 
 ## Getting Help
 
-### Where to Get Support
+### Documentation
 
-**Documentation:**
 - [Getting Started](/guide/getting-started)
-- [Quick Start](/guide/quick-start)
-- [Commands Reference](/commands/)
-- [Workflows](/workflows/)
+- [CLAUDE.md Guide](/guide/claude-md)
+- [STATUS.md Guide](/guide/status-file)
+- [DECISIONS.md Guide](/guide/decisions-file)
 
-**GitHub:**
+### GitHub
+
 - [Issues](https://github.com/rexkirshner/ai-context-system/issues)
 - [Discussions](https://github.com/rexkirshner/ai-context-system/discussions)
 
 ### Reporting Bugs
 
-**Include:**
+Include:
 1. What you were trying to do
 2. What command you ran
 3. What error you got
-4. Your system info:
+4. System info:
    ```bash
-   # Version
-   cat VERSION
-
-   # OS
-   uname -a
-
-   # Directory structure
+   cat .claude/VERSION
    ls -la .claude/commands/
    ls -la context/
    ```
-
-### Feature Requests
-
-File an issue with:
-- Use case (what are you trying to do?)
-- Current workaround (if any)
-- Proposed solution
-- Examples from other systems
-
-## Emergency Recovery
-
-### System Completely Broken
-
-**Symptoms:**
-- No commands work
-- Context files corrupted
-- Can't recover
-
-**Nuclear Option - Reinstall:**
-```bash
-# 1. Backup current context
-cp -r context/ context-backup/
-
-# 2. Remove system
-rm -rf .claude/ scripts/ templates/
-
-# 3. Reinstall
-curl -sL https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/install.sh | bash
-
-# 4. Initialize
-/init-context
-
-# 5. Restore content from backup
-cp -r context-backup/* context/
-
-# 6. Verify
-/review-context
-```
-
-### Context Files Corrupted
-
-**Symptoms:**
-- SESSIONS.md won't open
-- STATUS.md has invalid format
-- Can't read context files
-
-**Recovery:**
-```bash
-# 1. Check git history (if tracked)
-git log context/SESSIONS.md
-git checkout HEAD~1 context/SESSIONS.md
-
-# 2. Or restore from backup
-ls -la .claude-backup-*/
-cp .claude-backup-*/context/SESSIONS.md context/
-
-# 3. Or recreate from templates
-cp templates/sessions-template.md context/SESSIONS.md
-# Manually add recent sessions
-```
 
 ## Still Stuck?
 
 If none of these solutions work:
 
-1. Check [GitHub Issues](https://github.com/rexkirshner/ai-context-system/issues) for similar problems
-2. Search [documentation](/) for your specific error
-3. File a new issue with details
-4. Ask in [GitHub Discussions](https://github.com/rexkirshner/ai-context-system/discussions)
+1. Check [GitHub Issues](https://github.com/rexkirshner/ai-context-system/issues)
+2. File a new issue with details
+3. Ask in [GitHub Discussions](https://github.com/rexkirshner/ai-context-system/discussions)
 
 **Remember:** When in doubt, `/save`!
