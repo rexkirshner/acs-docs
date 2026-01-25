@@ -2,6 +2,21 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.1] - 2026-01-25
+
+### Fixed
+
+- **Working Set scope limitation for review commands** — Added "Scope Expansion" sections to all review commands with critical paths to include when Working Set lacks review-relevant files
+- **`/save` decision recording now autonomous** — AI evaluates session and records decisions without prompting user, reducing friction
+
+### Added
+
+- Scope expansion guidance for all 5 review commands (security, accessibility, cost, performance, seo)
+- Automated tool suggestions: `npm audit` for security, Lighthouse/axe-core for accessibility, bundle analyzer for performance
+- "Good Patterns Found" section to security review output format
+
+---
+
 ## [6.0.0] - 2026-01-24
 
 ### Changed - Radical Simplification
