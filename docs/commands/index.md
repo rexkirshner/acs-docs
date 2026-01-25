@@ -44,7 +44,7 @@ Updates STATUS.md with current state. The core of the Session Loop.
 - Next Actions
 - Blocked On
 
-**Also asks:** "Any decisions worth recording?" — if yes, appends to DECISIONS.md.
+**Also:** Autonomously evaluates session and records significant decisions to DECISIONS.md.
 
 **Usage:**
 ```bash
@@ -135,7 +135,7 @@ v6.0 commands are:
 │   ├── review-accessibility.md
 │   ├── review-seo.md
 │   └── review-cost.md
-└── VERSION             # Current version (6.0.0)
+└── VERSION             # Current version (6.0.1)
 ```
 
 No agents. No schemas. No hooks. No scripts.
