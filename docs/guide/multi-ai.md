@@ -161,7 +161,7 @@ Claude Code gets extra conveniences:
 |---------|-------------|-----------|
 | Slash commands | `/save`, `/init-context` | Manual updates |
 | Auto-load | CLAUDE.md loads automatically | Must read manually |
-| Quick Reference | Commands built-in | N/A |
+| Command discovery | Type `/` to see all commands | N/A |
 
 But the **core system is identical**. Claude Code commands just automate:
 - Reading files
