@@ -49,7 +49,7 @@ This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── VERSION            # Installed version (6.0.0)
+│   ├── VERSION            # Installed version (6.0.1)
 │   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
@@ -71,7 +71,7 @@ That's it. No complex workflows. No validation machinery.
 | Command | Purpose |
 |---------|---------|
 | `/init-context` | Create context files (never overwrites) |
-| `/save` | Update STATUS.md, optionally record decisions |
+| `/save` | Update STATUS.md, record decisions autonomously |
 | `/update-context-system` | Update to latest version |
 | `/review-security` | Security audit (report only) |
 | `/review-performance` | Performance review (report only) |
@@ -81,12 +81,11 @@ That's it. No complex workflows. No validation machinery.
 
 ## Current Version
 
-**v6.0.0** — Radical Simplification
+**v6.0.1** — Scope Expansion + Autonomous Decisions
 
-- **3 files** instead of 8
-- **8 commands** instead of 22
-- **0 scripts** — Claude handles logic
-- **Advisory, not mechanical** — Guidelines, not enforcement
+- **Scope Expansion** — Review commands now guide you to relevant files
+- **Autonomous decisions** — `/save` records decisions without prompting
+- **Tool suggestions** — Each review command suggests automated tools
 
 [See full changelog →](/about/changelog)
 
