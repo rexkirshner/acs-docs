@@ -1,313 +1,221 @@
 # /save
 
-Quick context update for regular work sessions (2-3 minutes).
+Updates STATUS.md at the end of a session. The core of the Session Loop.
 
 ## Overview
 
-Lightweight command for frequent updates during active development:
-- Updates STATUS.md with current tasks and blockers
-- Auto-generates Quick Reference section (dashboard)
-- Captures work in progress
-- Takes 2-3 minutes
-
-**Use this command 3-5 times per session** during active work.
-
-## When to Use
-
-**Use /save for:**
-- Regular updates every 30-60 minutes
-- After completing a task
-- When switching tasks
-- Before short breaks (5-15 minutes)
-- Any time you want to capture current state
-
-**Use /save-full instead for:**
-- Long breaks (>1 hour)
-- End of day
-- Before handoffs to other developers/AI
-- After major milestones
-- When comprehensive documentation needed
-
-::: tip Frequency
-Most developers use /save 3-5 times per session and /save-full once at session end.
-:::
+Run `/save` at the end of every session to capture current state. This is what enables session continuity.
 
 ## What It Updates
 
 ### STATUS.md
 
-**Current Phase** - Where you are in project lifecycle
+Updates all fields:
 
-**Work In Progress** - Exact state of current work:
-```markdown
-## Work In Progress
+| Field | What It Captures |
+|-------|------------------|
+| `LastUpdated` | Today's date (YYYY-MM-DD) |
+| `HeadCommit` | Current git SHA (`git rev-parse --short HEAD`) |
+| `Objective` | Current goal (update if changed) |
+| `Working Set` | Files/directories being touched (3-7 items) |
+| `Next Actions` | Concrete next steps |
+| `Blocked On` | Any blockers (or "None") |
 
-**HIGH: User Authentication**
-- Location: `lib/auth.ts:145` in `generateTokens()`
-- Current approach: JWT with httpOnly cookies
-- Next action: Add refresh token rotation
-- Blocker: None
-```
+### DECISIONS.md (Optional)
 
-**Active Tasks** - From TodoWrite state
+After updating STATUS.md, the command asks:
 
-**Blockers** - Anything preventing progress
+> "Any decisions worth recording?"
 
-**Next Session** - What to do when you resume
-
-### Quick Reference (Auto-Generated)
-
-Top of STATUS.md gets dashboard view:
+If yes, appends a new entry to DECISIONS.md:
 
 ```markdown
-## 📊 Quick Reference
-_(This section is auto-generated - DO NOT edit manually)_
+---
 
-**Project:** my-app
-**Phase:** MVP Development
-**Status:** 🟢 Active
-
-**URLs:**
-- Production: https://my-app.com
-- Staging: https://staging.my-app.com
-- Repository: https://github.com/user/my-app
-
-**Tech Stack:** Next.js 14, TypeScript, PostgreSQL, Prisma
-
-**Commands:**
-npm run dev         # Start development server
-npm run build       # Build for production
-npm test           # Run tests
-
-**Current Focus:** User authentication and session management
-
-**Last Session:** [Session 15 (2025-10-23)](#session-15)
-
-**Documentation Health:** 🟢 Excellent
-- Last validated: 2025-10-23
-- Stale files: 0
+## YYYY-MM-DD: [Area] Decision Title
+Why: [reason for the decision]
+Tradeoff: [what we gave up]
+RevisitWhen: [trigger to revisit]
 ```
 
-Generated from `context/.context-config.json` + current STATUS.md content.
+## Usage
 
-## How It Works
+```bash
+/save
+```
 
-### Step 1: Capture TodoWrite State
+## When to Use
 
-AI reads your active todos:
-- ✅ Completed tasks
-- ⏳ In progress tasks
-- ⏸️ Blocked tasks
+**Run /save:**
+- At the end of every session
+- Before taking a break
+- When switching to a different task
+- Before handoffs to other developers or AI tools
 
-### Step 2: Update STATUS.md Sections
+**Build the habit:** End every session with `/save`.
 
-Updates these sections only:
-- **Current Phase** - If changed
-- **Work In Progress** - Current state
-- **Active Tasks** - From TodoWrite
-- **Blockers** - If any exist
-- **Next Session** - What to do next
-
-### Step 3: Auto-Generate Quick Reference
-
-Reads `.context-config.json` and STATUS.md, generates dashboard view automatically.
-
-### Step 4: Optional: Update CONTEXT.md
-
-If project fundamentals changed (rare):
-- Tech stack additions
-- Architecture changes
-- Team structure updates
-
-## Example Update
+## Example
 
 ### Before /save
 
 ```markdown
-## Work In Progress
+# Status
 
-**Task:** Implementing authentication
+SchemaVersion: 1
+LastUpdated: 2026-01-22
+HeadCommit: a1b2c3d
+Objective: Implement user authentication
+
+## Working Set
+
+- src/auth/login.ts
+- src/auth/session.ts
+
+## Next Actions
+
+- Add password hashing
+- Implement JWT tokens
+
+## Blocked On
+
+- (None)
 ```
 
 ### After /save
 
 ```markdown
-## Work In Progress
+# Status
 
-**HIGH: JWT Authentication Implementation**
-- Location: `lib/auth.ts:145` in `generateTokens()`
-- Current approach: Using jose library for JWT generation
-- Why this approach: Native Edge Runtime support, no dependencies
-- Next specific action: Implement refresh token rotation (7-day expiry)
-- Context needed: Refresh tokens stored in httpOnly cookie, access tokens in memory
-- Blocker: None
+SchemaVersion: 1
+LastUpdated: 2026-01-24
+HeadCommit: f4e5d6c
+Objective: Implement user authentication
 
-**MEDIUM: Email Verification Flow**
-- Location: `app/api/auth/verify/route.ts:34`
-- Current approach: SendGrid with signed tokens
-- Next action: Add rate limiting (max 3 emails per hour)
-- Blocker: SendGrid API key not in production env yet
+## Working Set
+
+- src/auth/login.ts
+- src/auth/session.ts
+- src/auth/jwt.ts
+- tests/auth.test.ts
+
+## Next Actions
+
+- Add refresh token rotation
+- Write integration tests
+- Update auth documentation
+
+## Blocked On
+
+- (None)
 ```
 
-### Quick Reference Generated
+## The Session Loop
 
-```markdown
-## 📊 Quick Reference
+`/save` is the third step of the Session Loop:
 
-**Project:** my-app
-**Phase:** MVP Development - Authentication Sprint
-**Status:** 🟢 Active
-
-**Current Focus:** JWT authentication + email verification
-
-**Last Session:** [Session 15 (2025-10-23)](#session-15)
-
-**Active Blockers:** 1
-- SendGrid API key missing in production environment
+```
+Start → Read STATUS.md
+Work → Edit Working Set files
+End → Run /save  ← You are here
 ```
 
-## Time Investment
+Follow this loop consistently and context persists naturally.
 
-- **Simple session:** 2 minutes (update WIP, no blockers)
-- **Complex session:** 3 minutes (multiple tasks, blockers, phase change)
-- **With CONTEXT.md update:** 4-5 minutes (rare)
+## What /save Asks
 
-**Compare to:**
-- /save-full: 10-15 minutes (comprehensive documentation)
-- Manual documentation: 0 minutes (but context loss on resume)
+The command prompts for:
+
+1. **Objective** — Is the current objective still accurate?
+2. **Working Set** — What files are you actively touching?
+3. **Next Actions** — What should happen next session?
+4. **Blockers** — Anything preventing progress?
+5. **Decisions** — Any decisions worth recording?
 
 ## Best Practices
 
-### Be Specific About WIP
+### Be Specific About Next Actions
 
 **Good:**
 ```markdown
-**Work In Progress:**
-- Implementing rate limiting in `middleware.ts:67`
-- Using express-rate-limit with Redis store
-- Next: Add custom error messages
-- Blocker: Redis connection config unclear
+## Next Actions
+
+- Add password hashing to src/auth/login.ts
+- Implement JWT token generation in src/auth/jwt.ts
+- Write tests for login flow in tests/auth.test.ts
 ```
 
 **Not this:**
 ```markdown
-**Work In Progress:**
-- Working on rate limiting
+## Next Actions
+
+- Continue work
+- Finish auth
 ```
 
-**Why:** Future you (or AI) needs exact context to resume.
+### Keep Working Set Current
 
-### Update Every 30-60 Minutes
+Update it when focus shifts:
+- Add files when you start touching them
+- Remove files you're done with
+- 3-7 items is ideal
 
-During active work:
-```
-9:00 AM - Start work
-9:30 AM - /save (after first task)
-10:30 AM - /save (after second task)
-11:30 AM - /save (before standup)
-12:00 PM - /save-full (before lunch)
-```
-
-### Capture Blockers Immediately
+### Document Blockers Immediately
 
 When you hit a blocker:
-1. Stop work
-2. Run /save
-3. Document blocker in STATUS.md
-4. Ask for help or switch tasks
-
-**Why:** Prevents wasted time, documents what's blocking progress.
-
-### Link to DECISIONS.md
-
-When documenting approach:
 ```markdown
-**Work In Progress:**
-- Implementing OAuth with NextAuth.js
-- See DEC-012 for library choice rationale
+## Blocked On
+
+- Waiting for API credentials from DevOps
+- Need design review for login page
 ```
 
-## Context Completeness Check
+### Record Meaningful Decisions
 
-::: tip
-/save now warns when CONTEXT.md has too many unfilled placeholders.
-:::
-
-After updating STATUS.md, /save checks if CONTEXT.md still has template placeholders:
-
-```bash
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️  CONTEXT.md Needs Attention
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-CONTEXT.md has 17 unfilled [FILL:...] placeholders.
-This file appears to still be in template state.
-
-Recommendation: Run /save-full which will guide you through filling
-in your project information, or manually edit context/CONTEXT.md
-```
-
-**Why this matters:** Context files left as templates defeat the purpose of the system. AI agents and future sessions need actual project information, not placeholder text.
-
-This is a **non-blocking warning** - the save still completes, but you should fill in CONTEXT.md when convenient.
-
-## What /save Does NOT Do
-
-❌ Create SESSIONS.md entries (use /save-full)
-
-❌ Document mental models (use /save-full)
-
-❌ Log git operations (use /save-full)
-
-❌ Export JSON (use /save-full --with-json)
-
-❌ Comprehensive documentation (use /save-full)
-
-✅ Quick state capture for work continuity
+When prompted, capture decisions that:
+- Affect future development
+- Have meaningful tradeoffs
+- Someone might ask "why did we do it this way?"
 
 ## Output Example
 
 ```bash
-$ /save
+/save
 
 📝 Updating STATUS.md...
 
-✅ Updated sections:
-   • Work In Progress (2 active tasks)
-   • Active Blockers (1 blocker added)
-   • Next Session priorities
+Objective: Implement user authentication
+(Press Enter to keep, or type new objective)
+>
 
-🔄 Regenerating Quick Reference...
+Working Set:
+- src/auth/login.ts
+- src/auth/session.ts
+Add/remove files? (Enter to keep)
+> + src/auth/jwt.ts
 
-✅ Quick Reference updated:
-   • Project phase: MVP Development
-   • Current focus: JWT authentication
-   • Active blockers: 1
+Next Actions:
+> Add refresh token rotation
+> Write integration tests
+> (blank to finish)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ QUICK SAVE COMPLETE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Blocked On:
+> (None)
 
-Updated:
-  ✅ STATUS.md (current state, Quick Reference)
+Any decisions worth recording? (y/N)
+> y
 
-Time invested: ~2 minutes
+Decision: [Auth] Use httpOnly cookies for JWT storage
+Why: Prevents XSS token theft
+Tradeoff: Can't access token from JavaScript
+RevisitWhen: If we need client-side token access
 
-Next Session:
-  • Resume: JWT refresh token rotation
-  • Address: SendGrid API key blocker
-
-💡 Tip: Use /save-full before breaks for comprehensive documentation
+✅ STATUS.md updated
+✅ DECISIONS.md updated (1 new entry)
 ```
-
-## Related Commands
-
-- [/save-full](/commands/save-full) - Comprehensive saves (10-15 min)
-- [/review-context](/commands/review-context) - View current state
-- [/validate-context](/commands/validate-context) - Check documentation health
 
 ## See Also
 
-- [Daily Work Workflow](/workflows/daily-work) - When to use /save
-- [STATUS.md Guide](/guide/status-file) - Understanding STATUS.md
-- [Session Continuity](/guide/session-continuity) - Zero context loss
+- [Session Continuity](/guide/session-continuity) — How context persists
+- [STATUS.md Guide](/guide/status-file) — Current state format
+- [DECISIONS.md Guide](/guide/decisions-file) — Decision log format
+- [/init-context](/commands/init-context) — Creates context files
