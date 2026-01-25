@@ -16,8 +16,8 @@ Creates the three context files for a new project.
 - For new projects with no context files
 - After installing the AI Context System for the first time
 
-**Don't use if:**
-- Context files already exist (they'll be overwritten)
+**Note:**
+- Never overwrites existing files (reports them as "Already exists")
 
 ## Usage
 
@@ -131,22 +131,23 @@ Next steps:
 
 ## If Context Already Exists
 
-If context files already exist:
+If context files already exist, the command reports them without overwriting:
 
 ```bash
 /init-context
 
-⚠️  Context files already exist:
-   ✓ CLAUDE.md
-   ✓ context/STATUS.md
-   ✓ context/DECISIONS.md
+Already exists: CLAUDE.md
+Already exists: context/STATUS.md
+Already exists: context/DECISIONS.md
 
-Options:
-[K] Keep existing (cancel)
-[O] Overwrite all (fresh start)
+No files created (all already exist).
 ```
 
-Choose based on whether you want to preserve existing content.
+**To reset:** Delete the files manually, then run `/init-context` again:
+```bash
+rm CLAUDE.md && rm -rf context/
+/init-context
+```
 
 ## After Initialization
 
@@ -173,7 +174,7 @@ pwd
 
 ### Already have CLAUDE.md
 
-**Solution:** The system will ask whether to keep or overwrite. If you have custom content in CLAUDE.md, choose "Keep" and add the Session Loop blockquote manually:
+**Solution:** The command won't overwrite it. Add the Session Loop blockquote manually at the top of your existing CLAUDE.md:
 
 ```markdown
 > **Session Loop**

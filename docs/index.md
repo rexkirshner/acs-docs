@@ -70,7 +70,7 @@ That's it. No complex workflows. No validation machinery.
 
 | Command | Purpose |
 |---------|---------|
-| `/init-context` | Create context files (asks before overwriting) |
+| `/init-context` | Create context files (never overwrites) |
 | `/save` | Update STATUS.md, optionally record decisions |
 | `/update-context-system` | Update to latest version |
 | `/review-security` | Security audit (report only) |
