@@ -101,9 +101,7 @@ This updates STATUS.md with:
 - Next actions
 - Blockers
 
-It also asks about decisions:
-- "Any decisions worth recording?"
-- If yes, appends to DECISIONS.md
+It also autonomously evaluates the session for recordable decisions and appends any significant ones to DECISIONS.md.
 
 ### Resuming Later
 
@@ -225,11 +223,11 @@ Update it when focus shifts. 3-7 items is ideal.
 
 ### Record Meaningful Decisions
 
-When you make a choice with tradeoffs, record it:
+When you make a choice with tradeoffs, the AI records it automatically:
 
 ```
 /save
-# "Any decisions worth recording?" → Yes
+# AI autonomously records significant decisions
 ```
 
 ### Trust the Loop
