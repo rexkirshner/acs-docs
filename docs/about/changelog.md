@@ -68,7 +68,7 @@ From mechanical validation to advisory prompts:
 
 | Feature | Reason |
 |---------|--------|
-| 15 commands | Rarely used, added complexity |
+| 14 commands | Rarely used, added complexity |
 | 14 agents | Over-engineered |
 | 8 JSON schemas | Mechanical validation unnecessary |
 | Session hooks | Added complexity without value |
