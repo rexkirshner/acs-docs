@@ -196,26 +196,6 @@ cat .claude/VERSION
 
 Should show the latest version number.
 
-## Migration from v5.x
-
-**This command does not handle pre-v6 migrations.**
-
-If you're on v5.x (22 commands, agents, scripts), use the migration script instead:
-
-```bash
-curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
-chmod +x migrate-to-v6.sh
-./migrate-to-v6.sh
-```
-
-The script:
-1. Creates a timestamped backup
-2. Deletes all v5.x artifacts (agents/, scripts/, schemas/, etc.)
-3. Downloads v6.0 commands
-4. Deletes itself after completion
-
-See [Migration Guide](/about/migration) for full details.
-
 ## See Also
 
 - [Getting Started](/guide/getting-started) — Installation
