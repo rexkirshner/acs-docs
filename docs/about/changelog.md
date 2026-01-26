@@ -2,6 +2,22 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.3] - 2026-01-26
+
+### Changed
+
+- **`/review-cost` rebalanced for serverless stacks** — Serverless & Edge Platforms section moved to top with Vercel-specific cost drivers (rendering strategy, image optimization, build minutes, bandwidth). Database section renamed to Database & ORM with Prisma-specific items. Traditional Infrastructure moved lower with "skip for serverless" guidance.
+
+### Fixed
+
+- **`/save` session history clarification** — Added note explaining STATUS.md is replaced each session (not appended). Session history preserved in git commits; persistent context goes in DECISIONS.md.
+- **`/save` mixed DECISIONS.md formats** — Clarified that new entries should always use v6.0 format even if file contains older v5.x entries.
+- **`/update-context-system` verification wording** — Changed "8 files" to "8 command files (*.md)" to avoid confusion.
+- **`/update-context-system` rollback placeholders** — Fixed inconsistent placeholder naming in rollback section.
+- **All review commands formatting consistency** — All 5 review commands now use consistent bold formatting with brief explanations for each checklist item.
+
+---
+
 ## [6.0.2] - 2026-01-25
 
 ### Fixed
