@@ -72,7 +72,7 @@ That's it. No complex workflows. No validation machinery.
 |---------|---------|
 | `/init-context` | Create context files (never overwrites) |
 | `/save` | Update STATUS.md, record decisions autonomously |
-| `/update-context-system` | Update to latest version |
+| `/update-context-system` | Update commands (v6.x only) |
 | `/review-security` | Security audit (report only) |
 | `/review-performance` | Performance review (report only) |
 | `/review-accessibility` | Accessibility review (report only) |
