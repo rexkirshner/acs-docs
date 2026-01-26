@@ -75,8 +75,8 @@ See: https://acs-docs.pages.dev/about/migration
 ### Step 1: Check Current Version
 
 ```bash
-📋 Current version: 6.0.1
-📋 Latest version: 6.0.2
+📋 Current version: 6.0.2
+📋 Latest version: 6.0.3
 ```
 
 ### Step 2: Download Latest
@@ -110,8 +110,8 @@ See: https://acs-docs.pages.dev/about/migration
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 6.0.1
-Latest Version: 6.0.2
+Current Version: 6.0.2
+Latest Version: 6.0.3
 
 📥 Downloading latest version...
    ✅ Downloaded from GitHub
