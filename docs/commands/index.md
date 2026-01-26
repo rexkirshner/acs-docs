@@ -105,13 +105,13 @@ Technical SEO review. Checks:
 
 ### /review-cost
 
-Cost optimization review. Checks:
-- Over-provisioned cloud resources
-- Inefficient database queries
-- Unnecessary API calls
-- Storage optimization
-- Serverless function costs
-- Missing caching layers
+Cost optimization review. Serverless-first — checks:
+- Rendering strategy (SSR vs ISR/SSG)
+- Function duration and memory
+- N+1 queries and connection pooling
+- Image optimization and bandwidth
+- Build minutes and cold starts
+- API usage and caching
 
 ## Command Philosophy
 
@@ -135,7 +135,7 @@ v6.0 commands are:
 │   ├── review-accessibility.md
 │   ├── review-seo.md
 │   └── review-cost.md
-└── VERSION             # Current version (6.0.2)
+└── VERSION             # Current version (6.0.3)
 ```
 
 No agents. No schemas. No hooks. No scripts.
