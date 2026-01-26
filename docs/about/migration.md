@@ -2,7 +2,7 @@
 
 How to upgrade to AI Context System v6.0.
 
-## Current Version: v6.0.2
+## Current Version: v6.0.3
 
 v6.0 is a **radical simplification**:
 
