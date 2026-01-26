@@ -75,39 +75,42 @@ This creates:
 
 **Symptoms:**
 - Files have v5.x format (SESSIONS.md, Quick Reference, etc.)
-- `/save` behaves unexpectedly
+- `/save` stops with "STATUS.md is in v5.x format" message
+
+**Cause:** v6.0.2 added a format guard to prevent `/save` from corrupting v5.x context files.
 
 **Solution:**
 
-The system may have been set up with a previous version. You can either:
+Run the migration script:
+```bash
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+```
 
-1. **Migrate manually:** Update STATUS.md to v6.0 format:
-   ```markdown
-   # Status
+Or manually update STATUS.md to v6.0 format:
+```markdown
+# Status
 
-   SchemaVersion: 1
-   LastUpdated: YYYY-MM-DD
-   HeadCommit: [git SHA or N/A]
-   Objective: [current goal]
+SchemaVersion: 1
+LastUpdated: YYYY-MM-DD
+HeadCommit: [git SHA or N/A]
+Objective: [current goal]
 
-   ## Working Set
+## Working Set
 
-   - [files you're touching]
+- [files you're touching]
 
-   ## Next Actions
+## Next Actions
 
-   - [concrete next steps]
+- [concrete next steps]
 
-   ## Blocked On
+## Blocked On
 
-   - (None)
-   ```
+- (None)
+```
 
-2. **Start fresh:** Back up and reinitialize:
-   ```bash
-   mv context context-backup
-   /init-context
-   ```
+See [Migration Guide](/about/migration) for full details.
 
 ## Git Integration
 
