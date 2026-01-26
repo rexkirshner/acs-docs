@@ -50,6 +50,8 @@ Updates all fields:
 | `Next Actions` | Concrete next steps |
 | `Blocked On` | Any blockers (or "None") |
 
+**Note:** STATUS.md is **replaced** each session—it captures current state, not history. Session history is preserved in git commits. For persistent context that should outlast a session, use DECISIONS.md.
+
 ### DECISIONS.md (Autonomous)
 
 After updating STATUS.md, the command autonomously evaluates the session for recordable decisions. No prompting—the AI uses its judgment based on session context.
@@ -69,6 +71,8 @@ Why: [reason for the decision]
 Tradeoff: [what we gave up]
 RevisitWhen: [trigger to revisit]
 ```
+
+**Note:** If DECISIONS.md contains older v5.x entries, new entries are still appended in v6.0 format. The file can contain mixed formats—older entries remain for historical context.
 
 ## Usage
 
