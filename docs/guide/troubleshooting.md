@@ -234,30 +234,7 @@ Use the migration script instead (see above).
 
 **This is a format guard** preventing corruption of v5.x context files.
 
-Either:
-1. **Run the migration script** (if you haven't yet)
-2. **Manually update STATUS.md** to v6.0 format:
-
-```markdown
-# Status
-
-SchemaVersion: 1
-LastUpdated: YYYY-MM-DD
-HeadCommit: [git SHA or N/A]
-Objective: [current goal]
-
-## Working Set
-
-- [files you're touching]
-
-## Next Actions
-
-- [concrete next steps]
-
-## Blocked On
-
-- (None)
-```
+See [Context Files Exist But Wrong Format](#context-files-exist-but-wrong-format) above for the solution.
 
 ### "migrate-to-v6.sh says I'm already on v6.x"
 
