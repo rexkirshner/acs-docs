@@ -6,6 +6,35 @@ Updates STATUS.md at the end of a session. The core of the Session Loop.
 
 Run `/save` at the end of every session to capture current state. This is what enables session continuity.
 
+## Format Check
+
+Before updating, `/save` verifies that `context/STATUS.md` is in v6.0 format.
+
+**v6.0 format indicators (required):**
+- Contains `SchemaVersion: 1`
+- Has `## Working Set` section
+- Has `## Next Actions` section
+
+**v5.x format indicators (migration needed):**
+- Contains `## Quick Reference`
+- Contains `## Current Phase` or `## Work In Progress`
+
+**If v5.x format detected, `/save` stops and reports:**
+
+```
+STATUS.md is in v5.x format and cannot be updated.
+
+To migrate to v6.0, run the migration script:
+
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+
+See: https://acs-docs.pages.dev/about/migration
+```
+
+This prevents `/save` from corrupting v5.x context files. See [Migration Guide](/about/migration) for upgrade instructions.
+
 ## What It Updates
 
 ### STATUS.md

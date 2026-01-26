@@ -2,7 +2,7 @@
 
 How to upgrade to AI Context System v6.0.
 
-## Current Version: v6.0.1
+## Current Version: v6.0.2
 
 v6.0 is a **radical simplification**:
 
@@ -17,7 +17,20 @@ v6.0 is a **radical simplification**:
 
 **Philosophy change:** From mechanical validation to advisory prompts.
 
-## Fresh Install (Recommended for New Projects)
+---
+
+## Two Upgrade Paths
+
+| From | To | Method |
+|------|-----|--------|
+| Pre-v6 (v5.x, v4.x, etc.) | v6.0+ | Run `migrate-to-v6.sh` script |
+| v6.x | v6.y | Run `/update-context-system` command |
+
+**Important:** These paths are mutually exclusive. Use the correct one for your situation.
+
+---
+
+## Fresh Install (New Projects)
 
 ```bash
 # 1. Clone and copy
@@ -35,99 +48,124 @@ ls .claude/commands/
 # Should show 8 files
 ```
 
-## Migrating from v5.x
+---
 
-### Step 1: Delete v5.x Artifacts
+## Upgrading from Pre-v6 (v5.x, v4.x, etc.)
+
+If you're on a pre-v6 version, you **must** use the migration script. The `/update-context-system` command will not work for pre-v6 projects.
+
+### How to Identify Pre-v6
+
+You're on pre-v6 if you have any of:
+- `scripts/` directory
+- `.claude/agents/` directory
+- `context/SESSIONS.md` file
+- STATUS.md with `## Quick Reference` or `## Current Phase` section
+
+### Migration Steps
+
+**1. Download and run the migration script:**
 
 ```bash
-# Remove directories that no longer exist in v6.0
-rm -rf .claude/agents/
-rm -rf .claude/docs/
-rm -rf .claude/schemas/
-rm -rf .claude/hooks/
-rm -rf scripts/
-rm -rf templates/
-rm -f .claude/acs-settings.json
-rm -f .claude/.last-update-check
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
 ```
 
-### Step 2: Update Commands
+**2. Restart Claude Code** (exit and reopen)
 
-```bash
-# Get v6.0 commands
-git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
-cp -r ai-context-system/.claude/commands .claude/
-cp ai-context-system/.claude/VERSION .claude/
-rm -rf ai-context-system
-```
+**3. Ask Claude to migrate your context files:**
 
-### Step 3: Simplify Context Files
+The script installs v6.0 commands and deletes v5.x artifacts, but leaves context file migration to Claude. Ask:
 
-**CLAUDE.md** — Add the Session Loop blockquote at the top:
+> "Please migrate context/STATUS.md and context/DECISIONS.md to v6.0 format. Backup is in context-backup-YYYYMMDD/"
 
-```markdown
-> **Session Loop**
-> 1. Start → Read `context/STATUS.md`
-> 2. End → Run `/save`
+**4. Verify with `/save`**
 
-# [Your Project Name]
+### What the Script Does
 
-[Your existing content...]
-```
+1. **Checks for git** — Required for downloading v6.0 commands
+2. **Verifies pre-v6 installation** — Refuses to run on fresh or v6.0+ projects
+3. **Creates backup** in `context-backup-YYYYMMDD-HHMMSS/`
+4. **Deletes all v5.x artifacts:**
+   - `scripts/`, `templates/`, `config/`, `test/`, `reference/`, `artifacts/`
+   - `.claude/agents/`, `.claude/skills/`, `.claude/schemas/`, `.claude/hooks/`, `.claude/docs/`
+   - `context/SESSIONS.md`, `context/CONTEXT.md`, and other legacy files
+   - `install.sh`, `VERSION` (root level)
+5. **Downloads v6.0 commands** from GitHub
+6. **Deletes itself** — The script is no longer needed after migration
 
-**STATUS.md** — Simplify to v6.0 format:
+### Context File Formats
+
+**STATUS.md v6.0 format:**
 
 ```markdown
 # Status
 
 SchemaVersion: 1
-LastUpdated: [today]
+LastUpdated: YYYY-MM-DD
 HeadCommit: [git SHA or N/A]
-Objective: [your current objective]
+Objective: [current goal]
 
 ## Working Set
 
-- [files you're touching]
+- [3-7 files/directories being touched]
 
 ## Next Actions
 
-- [what's next]
+- [concrete next steps]
 
 ## Blocked On
 
 - (None)
 ```
 
-Remove these sections (no longer used):
-- Quick Reference
-- Current Phase
-- Work In Progress details
-- Active Tasks
-- Context Restoration
+**DECISIONS.md v6.0 format:**
 
-**DECISIONS.md** — Keep as-is (format unchanged).
+```markdown
+# Decisions
 
-**Delete these files** (no longer used):
-- `context/CONTEXT.md`
-- `context/SESSIONS.md`
-- `context/context-feedback.md`
-- `context/.context-config.json`
+Append-only log.
 
-### Step 4: Verify
+---
+
+## YYYY-MM-DD: [Area] Decision Title
+Why: [reason for the decision]
+Tradeoff: [what we gave up]
+RevisitWhen: [trigger to revisit]
+```
+
+### If Something Goes Wrong
+
+Your backup is in `context-backup-YYYYMMDD-HHMMSS/`. To restore:
 
 ```bash
-# Check version
-cat .claude/VERSION
-# Should show: 6.0.1
-
-# List commands
-ls .claude/commands/
-# Should show 8 files
-
-# Test the Session Loop
-# Read context/STATUS.md
-# Run /save
+# Remove partially migrated state and restore from backup
+rm -rf context/ .claude/
+cp -r context-backup-YYYYMMDD-HHMMSS/context .
+cp -r context-backup-YYYYMMDD-HHMMSS/.claude .
+cp context-backup-YYYYMMDD-HHMMSS/CLAUDE.md .
 ```
+
+---
+
+## Upgrading from v6.x to v6.y
+
+For projects already on v6.0+, use the built-in command:
+
+```bash
+/update-context-system
+```
+
+That's it. The command:
+1. Checks current version
+2. Downloads latest v6.x commands
+3. Updates `.claude/commands/` and `.claude/VERSION`
+4. Reports success
+
+No migration steps needed for v6.x → v6.y upgrades.
+
+---
 
 ## What Changed in v6.0
 
@@ -166,7 +204,36 @@ ls .claude/commands/
 | SchemaVersion | Future-proofs STATUS.md |
 | Working Set | Explicit containment boundary |
 
+---
+
 ## Troubleshooting Migration
+
+### "/update-context-system says I'm on pre-v6"
+
+This is correct. The command only handles v6.x → v6.y upgrades. Use the migration script instead:
+
+```bash
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+```
+
+### "/save says STATUS.md is in v5.x format"
+
+Your context files need migration. Either:
+
+1. **Run the migration script** (if you haven't yet)
+2. **Manually update STATUS.md** to v6.0 format (see format above)
+
+### "migrate-to-v6.sh says I'm already on v6.x"
+
+Correct. You don't need the migration script. Use `/update-context-system` for v6.x → v6.y upgrades.
+
+### "migrate-to-v6.sh says no v5.x installation detected"
+
+This means you don't have any v5.x artifacts. Either:
+- This is a fresh project — use `/init-context` to set up
+- You already migrated — use `/update-context-system` for future upgrades
 
 ### Old commands still work
 
@@ -178,24 +245,7 @@ rm -rf .claude/commands/
 # Then reinstall v6.0 commands
 ```
 
-### STATUS.md has wrong format
-
-**Problem:** STATUS.md still has v5.x format with Quick Reference, etc.
-
-**Solution:** Manually update to v6.0 format (see Step 3 above).
-
-### Missing DECISIONS.md
-
-**Problem:** DECISIONS.md doesn't exist
-
-**Solution:** Create it:
-```markdown
-# Decisions
-
-Append-only log.
-
 ---
-```
 
 ## Need Help?
 

@@ -2,6 +2,39 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.2] - 2026-01-25
+
+### Fixed
+
+- **Pre-v6 migration failures** — v5.x users running `/update-context-system` encountered broken upgrades due to script dependencies being deleted mid-execution
+- **`/save` corrupting v5.x STATUS.md** — Now detects v5.x format and provides migration instructions instead of corrupting files
+
+### Added
+
+- **`migrate-to-v6.sh`** — One-time bootstrap script for pre-v6 → v6.0 migration
+  - Checks for git availability before proceeding
+  - Detects and refuses v6.0+ projects (directs to `/update-context-system`)
+  - Detects and refuses fresh projects (directs to `/init-context`)
+  - Creates timestamped backup before migration
+  - Deletes all v5.x artifacts (scripts/, agents/, templates/, etc.)
+  - Downloads v6.0 commands from GitHub with clear error handling
+  - Deletes itself after successful completion
+- **Format guard in `/save`** — Detects v5.x STATUS.md format and stops with clear migration instructions
+- **Pre-v6 detection in `/update-context-system`** — Refuses pre-v6 systems with migration script instructions
+
+### Changed
+
+- **Two upgrade paths** — Clear separation:
+  - Pre-v6 → v6.0: Run `migrate-to-v6.sh` script
+  - v6.x → v6.y: Run `/update-context-system` command
+- **`/update-context-system` simplified** — Now only handles v6.x → v6.y upgrades (migration logic moved to script)
+
+### Removed
+
+- **`install.sh`** — Superseded by two-path upgrade strategy (fresh installs use git clone + cp, pre-v6 migrations use migrate-to-v6.sh)
+
+---
+
 ## [6.0.1] - 2026-01-25
 
 ### Fixed

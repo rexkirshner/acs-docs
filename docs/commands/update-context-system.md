@@ -1,19 +1,47 @@
 # /update-context-system
 
-Updates command files to the latest version from GitHub.
+Updates command files from v6.x to v6.y. **Not for pre-v6 migrations.**
 
 ## Overview
 
-Downloads the latest commands while preserving your context files:
+Downloads the latest v6.x commands while preserving your context files:
 - Updates `.claude/commands/` (8 command files)
 - Updates `.claude/VERSION`
 - **Preserves `context/` directory** (your documentation)
 - **Preserves `CLAUDE.md`** (your project entry point)
 
+**Important:** This command is for v6.x → v6.y upgrades only. For pre-v6 migrations (v5.x, v4.x, etc.), use the `migrate-to-v6.sh` script. See [Migration Guide](/about/migration).
+
+## Pre-v6 Detection
+
+Before proceeding, the command checks for pre-v6 installations.
+
+**Pre-v6 indicators (any of these):**
+- `scripts/` directory exists
+- `.claude/agents/` directory exists
+- `context/SESSIONS.md` exists
+- STATUS.md contains `## Quick Reference` or `## Current Phase`
+
+**If pre-v6 detected, the command stops and reports:**
+
+```
+This project is on a pre-v6 version.
+
+/update-context-system is for v6.x to v6.y upgrades only.
+
+For pre-v6 to v6.0 migration, download and run the migration script:
+
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+
+See: https://acs-docs.pages.dev/about/migration
+```
+
 ## When to Use
 
 **Run when:**
-- New version available
+- New v6.x version available
 - Bug fixes released
 - Want latest features
 
@@ -47,8 +75,8 @@ Downloads the latest commands while preserving your context files:
 ### Step 1: Check Current Version
 
 ```bash
-📋 Current version: 6.0.0
-📋 Latest version: 6.0.1
+📋 Current version: 6.0.1
+📋 Latest version: 6.0.2
 ```
 
 ### Step 2: Download Latest
@@ -82,8 +110,8 @@ Downloads the latest commands while preserving your context files:
 🔄 AI CONTEXT SYSTEM UPDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current Version: 6.0.0
-Latest Version: 6.0.1
+Current Version: 6.0.1
+Latest Version: 6.0.2
 
 📥 Downloading latest version...
    ✅ Downloaded from GitHub
@@ -170,11 +198,23 @@ Should show the latest version number.
 
 ## Migration from v5.x
 
-If you're updating from v5.x (22 commands, agents, scripts), this update will:
-1. Replace all commands with the simplified v6.0 versions
-2. **Not** delete old v5.x files (agents/, docs/, schemas/, hooks/, scripts/)
+**This command does not handle pre-v6 migrations.**
 
-For a clean v6.0 installation, see the [Migration Guide](/about/migration).
+If you're on v5.x (22 commands, agents, scripts), use the migration script instead:
+
+```bash
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+```
+
+The script:
+1. Creates a timestamped backup
+2. Deletes all v5.x artifacts (agents/, scripts/, schemas/, etc.)
+3. Downloads v6.0 commands
+4. Deletes itself after completion
+
+See [Migration Guide](/about/migration) for full details.
 
 ## See Also
 

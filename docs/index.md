@@ -49,7 +49,7 @@ This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── VERSION            # Installed version (6.0.1)
+│   ├── VERSION            # Installed version (6.0.2)
 │   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
@@ -81,11 +81,11 @@ That's it. No complex workflows. No validation machinery.
 
 ## Current Version
 
-**v6.0.1** — Scope Expansion + Autonomous Decisions
+**v6.0.2** — Migration Improvements
 
-- **Scope Expansion** — Review commands now guide you to relevant files
-- **Autonomous decisions** — `/save` records decisions without prompting
-- **Tool suggestions** — Each review command suggests automated tools
+- **Two upgrade paths** — Pre-v6 uses `migrate-to-v6.sh` script, v6.x uses `/update-context-system`
+- **Format guards** — `/save` detects v5.x format and stops instead of corrupting files
+- **Migration script** — One-time bootstrap for pre-v6 → v6.0 with backup and cleanup
 
 [See full changelog →](/about/changelog)
 

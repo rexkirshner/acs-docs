@@ -109,7 +109,7 @@ Every session follows this loop. That's the entire system.
 
 | Command | When | What It Does |
 |---------|------|--------------|
-| `/update-context-system` | When updates available | Updates commands, runs migrations |
+| `/update-context-system` | When updates available | Updates commands (v6.x → v6.y only) |
 
 ### Optional Reviews
 
@@ -125,7 +125,7 @@ Every session follows this loop. That's the entire system.
 
 - Claude Code CLI (for slash commands)
 - Any project (language/framework agnostic)
-- Git (optional — enables HeadCommit staleness detection)
+- Git (required for installation and updates; optional for daily use if HeadCommit detection not needed)
 - macOS, Linux, or Windows with WSL/Git Bash
 
 Works with any AI tool that can read markdown files.
@@ -157,6 +157,20 @@ Not every choice needs recording. Focus on decisions that:
 ### Trust the System
 
 The Session Loop is simple by design. Follow it consistently and context persists naturally.
+
+## Upgrading from v5.x
+
+If you have an existing v5.x installation, use the migration script:
+
+```bash
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+```
+
+The `/update-context-system` command only handles v6.x → v6.y upgrades. For pre-v6 migrations, use the script.
+
+See [Migration Guide](/about/migration) for full details.
 
 ## Troubleshooting
 

@@ -209,14 +209,62 @@ rm -rf ai-context-system
 
 ### Migrating from v5.x
 
-If you have v5.x installed (22 commands, agents, scripts), see [Migration Guide](/about/migration).
+If you have v5.x installed (22 commands, agents, scripts), **use the migration script**:
 
-Key changes:
-- Delete `.claude/agents/`, `.claude/docs/`, `.claude/schemas/`, `.claude/hooks/`
-- Delete `scripts/` and `templates/`
-- Remove SESSIONS.md (no longer used)
-- Update STATUS.md to v6.0 format
-- Simplify CLAUDE.md with Session Loop blockquote
+```bash
+curl -O https://raw.githubusercontent.com/rexkirshner/ai-context-system/main/migrate-to-v6.sh
+chmod +x migrate-to-v6.sh
+./migrate-to-v6.sh
+```
+
+The `/update-context-system` command does **not** handle pre-v6 migrations.
+
+See [Migration Guide](/about/migration) for full details.
+
+### "/update-context-system says I'm on pre-v6"
+
+**This is correct behavior.** The command only handles v6.x → v6.y upgrades.
+
+Use the migration script instead (see above).
+
+### "/save says STATUS.md is in v5.x format"
+
+**This is a format guard** preventing corruption of v5.x context files.
+
+Either:
+1. **Run the migration script** (if you haven't yet)
+2. **Manually update STATUS.md** to v6.0 format:
+
+```markdown
+# Status
+
+SchemaVersion: 1
+LastUpdated: YYYY-MM-DD
+HeadCommit: [git SHA or N/A]
+Objective: [current goal]
+
+## Working Set
+
+- [files you're touching]
+
+## Next Actions
+
+- [concrete next steps]
+
+## Blocked On
+
+- (None)
+```
+
+### "migrate-to-v6.sh says I'm already on v6.x"
+
+**Correct.** You don't need the migration script. Use `/update-context-system` for v6.x → v6.y upgrades.
+
+### "migrate-to-v6.sh says no v5.x installation detected"
+
+This means you don't have any v5.x artifacts. Either:
+- This is a fresh project — use `/init-context` to set up
+- You already migrated — use `/update-context-system` for future upgrades
 
 ## Common Workflow Issues
 
