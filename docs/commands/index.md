@@ -8,7 +8,7 @@ The AI Context System v6.0 uses **8 slash commands** — pure prompts with no sc
 |---------|---------|-------------|
 | `/init-context` | Create context files | Once, at project setup |
 | `/save` | Update STATUS.md | End of every session |
-| `/update-context-system` | Get latest version | When updates available |
+| `/update-context-system` | Update commands (v6.x only) | When updates available |
 | `/review-security` | Security audit | Before deployment |
 | `/review-performance` | Performance check | Before deployment |
 | `/review-accessibility` | Accessibility audit | Before deployment |
@@ -55,14 +55,14 @@ Updates STATUS.md with current state. The core of the Session Loop.
 
 ### [/update-context-system](/commands/update-context-system)
 
-Updates command files from the GitHub repository.
+Updates command files from v6.x to v6.y. For pre-v6 migrations, use the `migrate-to-v6.sh` script instead.
 
 **Usage:**
 ```bash
 /update-context-system
 ```
 
-**When:** Periodically, or when you see an update notice.
+**When:** Periodically, when updates are available (v6.x projects only).
 
 ## Review Commands
 
