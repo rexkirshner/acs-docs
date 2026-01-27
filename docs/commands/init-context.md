@@ -1,6 +1,12 @@
 # /init-context
 
-Creates the three context files for a new project.
+Initialize context files for a new project, or complete migration from pre-v6 versions.
+
+## Two Modes
+
+**Normal Mode** — For new projects without context files. Creates fresh v6.0 files.
+
+**Migration Mode** — Detects pre-v6 context files (`SESSIONS.md`, `CONTEXT.md`, old format `STATUS.md`) and migrates them to v6.0 format.
 
 ## What It Creates
 
@@ -15,9 +21,26 @@ Creates the three context files for a new project.
 **Use this command:**
 - For new projects with no context files
 - After installing the AI Context System for the first time
+- After running `migrate-to-v6.sh` to complete the migration
 
-**Note:**
-- Never overwrites existing files (reports them as "Already exists")
+## Migration Mode
+
+If the command detects pre-v6 context files, it enters migration mode:
+
+**Pre-v6 indicators:**
+- `context/SESSIONS.md` exists
+- `context/CONTEXT.md` exists
+- `context/STATUS.md` contains `## Quick Reference` or `## Current Phase`
+
+**What migration mode does:**
+1. Reads old context files and extracts valuable information
+2. Creates v6.0 format `STATUS.md` with extracted data
+3. Updates `DECISIONS.md` to v6.0 format (preserves existing decisions)
+4. Adds Session Loop to `CLAUDE.md` if missing
+5. Deletes old files (`SESSIONS.md`, `CONTEXT.md`)
+
+**Normal mode note:**
+- Never overwrites existing v6.0 files (reports them as "Already exists")
 
 ## Usage
 
