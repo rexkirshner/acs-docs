@@ -85,6 +85,7 @@ That's it. No complex workflows. No validation machinery.
 
 - **`/init-context` handles existing CLAUDE.md** — Now detects when Session Loop is missing and provides snippet to add
 - **Session restart warning** — Installation docs now clarify that Claude Code must be restarted after copying command files
+- **No more backup clutter** — `/update-context-system` no longer creates redundant backup files (git handles rollback)
 
 [See full changelog →](/about/changelog)
 
