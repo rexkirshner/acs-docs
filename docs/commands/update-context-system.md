@@ -76,7 +76,7 @@ See: https://acs-docs.pages.dev/about/migration
 
 ```bash
 📋 Current version: 6.0.3
-📋 Latest version: 6.0.4
+📋 Latest version: 6.0.5
 ```
 
 ### Step 2: Download Latest
@@ -111,7 +111,7 @@ See: https://acs-docs.pages.dev/about/migration
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Current Version: 6.0.3
-Latest Version: 6.0.4
+Latest Version: 6.0.5
 
 📥 Downloading latest version...
    ✅ Downloaded from GitHub

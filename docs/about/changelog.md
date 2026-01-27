@@ -2,6 +2,15 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.5] - 2026-01-27
+
+### Fixed
+
+- **Pre-v6 update path restored** — Added `install.sh` compatibility shim so old `/update-context-system` commands (v4.x, v5.x) no longer fail with 404. The script redirects users to `migrate-to-v6.sh` with clear instructions.
+- **`/update-context-system` cp command fixed** — Fixed `cp -r` command that failed because destination directory didn't exist after `rm -rf`.
+
+---
+
 ## [6.0.4] - 2026-01-27
 
 ### Fixed

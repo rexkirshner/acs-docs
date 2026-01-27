@@ -49,7 +49,7 @@ This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── VERSION            # Installed version (6.0.4)
+│   ├── VERSION            # Installed version (6.0.5)
 │   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
@@ -81,11 +81,10 @@ That's it. No complex workflows. No validation machinery.
 
 ## Current Version
 
-**v6.0.4** — Installation & Onboarding Fixes
+**v6.0.5** — Pre-v6 Compatibility Fix
 
-- **`/init-context` handles existing CLAUDE.md** — Now detects when Session Loop is missing and provides snippet to add
-- **Session restart warning** — Installation docs now clarify that Claude Code must be restarted after copying command files
-- **No more backup clutter** — `/update-context-system` no longer creates backup files and cleans up legacy backups from previous versions
+- **Pre-v6 update path restored** — Old `/update-context-system` commands (v4.x, v5.x) now get clear migration instructions instead of failing with 404
+- **Update command fixed** — Fixed `cp` command that failed during update
 
 [See full changelog →](/about/changelog)
 
