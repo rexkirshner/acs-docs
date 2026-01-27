@@ -135,7 +135,7 @@ v6.0 commands are:
 │   ├── review-accessibility.md
 │   ├── review-seo.md
 │   └── review-cost.md
-└── VERSION             # Current version (6.0.5)
+└── VERSION             # Current version (6.0.6)
 ```
 
 No agents. No schemas. No hooks. No scripts.

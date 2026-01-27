@@ -49,7 +49,7 @@ This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── VERSION            # Installed version (6.0.5)
+│   ├── VERSION            # Installed version (6.0.6)
 │   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
@@ -81,10 +81,10 @@ That's it. No complex workflows. No validation machinery.
 
 ## Current Version
 
-**v6.0.5** — Pre-v6 Compatibility Fix
+**v6.0.6** — Migration Script Fix
 
-- **Pre-v6 update path restored** — Old `/update-context-system` commands (v4.x, v5.x) now get clear migration instructions instead of failing with 404
-- **Update command fixed** — Fixed `cp` command that failed during update
+- **No more backup clutter** — `migrate-to-v6.sh` no longer creates backup directories (use `git checkout` to rollback)
+- **Context preserved for migration** — Old context files (`SESSIONS.md`, `CONTEXT.md`) stay in place so Claude can extract value before deleting
 
 [See full changelog →](/about/changelog)
 

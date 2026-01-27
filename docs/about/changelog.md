@@ -2,6 +2,19 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.6] - 2026-01-27
+
+### Fixed
+
+- **`migrate-to-v6.sh` no longer creates backups** — Removed redundant backup step. Use `git checkout` to rollback if needed. Consistent with v6.0.4's removal of backups from `/update-context-system`.
+- **`migrate-to-v6.sh` preserves context files for migration** — Old context files (`SESSIONS.md`, `CONTEXT.md`) are now kept in place so Claude can read them, extract valuable information, then delete them. Previously, files were deleted before migration and users had to reference backup directories.
+
+### Changed
+
+- **Migration workflow improved** — Script now deletes only infrastructure (scripts, agents, schemas) immediately. Context files are preserved for Claude to migrate, then Claude deletes them. Cleaner workflow, no backup directory clutter.
+
+---
+
 ## [6.0.5] - 2026-01-27
 
 ### Fixed
@@ -50,8 +63,8 @@ All notable changes to the AI Context System.
   - Checks for git availability before proceeding
   - Detects and refuses v6.0+ projects (directs to `/update-context-system`)
   - Detects and refuses fresh projects (directs to `/init-context`)
-  - Creates timestamped backup before migration
-  - Deletes all v5.x artifacts (scripts/, agents/, templates/, etc.)
+  - Deletes v5.x infrastructure artifacts (scripts/, agents/, templates/, etc.)
+  - Keeps context files for Claude to migrate and then delete
   - Downloads v6.0 commands from GitHub with clear error handling
   - Deletes itself after successful completion
 - **Format guard in `/save`** — Detects v5.x STATUS.md format and stops with clear migration instructions

@@ -313,26 +313,22 @@ RevisitWhen: [trigger to revisit]
 **If system is broken:**
 
 ```bash
-# 1. Backup context
-cp -r context context-backup
+# 1. Remove old commands
+rm -rf .claude/commands .claude/VERSION
 
-# 2. Remove old installation
-rm -rf .claude
-
-# 3. Reinstall
+# 2. Reinstall
 git clone --depth 1 https://github.com/rexkirshner/ai-context-system.git
 mkdir -p .claude
 cp -r ai-context-system/.claude/commands .claude/
 cp ai-context-system/.claude/VERSION .claude/
 rm -rf ai-context-system
 
-# 4. Restore context
-mv context-backup/* context/
-
-# 5. Restart Claude Code
+# 3. Restart Claude Code
 exit
 claude
 ```
+
+**Note:** This only reinstalls commands. Your context files (`context/STATUS.md`, `context/DECISIONS.md`, `CLAUDE.md`) are preserved. If context files are corrupted, use `git checkout` to restore them.
 
 ### Context Files Corrupted
 
