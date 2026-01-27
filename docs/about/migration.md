@@ -64,6 +64,8 @@ You're on pre-v6 if you have any of:
 
 ### Migration Steps
 
+**Before you start:** Commit your files to git. The script doesn't create backups — use `git checkout` to rollback if needed.
+
 **1. Download and run the migration script:**
 
 ```bash
@@ -83,7 +85,7 @@ The script keeps your old context files so Claude can extract valuable informati
 > 2. Extract any valuable project context, decisions, or history
 > 3. Update context/STATUS.md to v6.0 format
 > 4. Update context/DECISIONS.md to v6.0 format (preserve existing decisions)
-> 5. Delete the old files: context/SESSIONS.md, context/CONTEXT.md
+> 5. Delete the old files (if they exist): context/SESSIONS.md, context/CONTEXT.md
 > 6. Verify with /save
 
 **4. Verify with `/save`**
@@ -155,8 +157,6 @@ git checkout -- .
 # Or restore specific files
 git checkout -- context/ .claude/ CLAUDE.md
 ```
-
-**Note:** This assumes your context files are committed to git. Always commit before running migrations.
 
 ---
 
