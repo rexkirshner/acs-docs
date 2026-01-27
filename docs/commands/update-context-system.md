@@ -196,6 +196,15 @@ cat .claude/VERSION
 
 Should show the latest version number.
 
+### Need to Rollback
+
+**Problem:** Update caused issues, need to restore previous version
+
+**Solution:** Use git to restore:
+```bash
+git checkout .claude/commands/ .claude/VERSION
+```
+
 ## See Also
 
 - [Getting Started](/guide/getting-started) — Installation
