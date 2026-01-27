@@ -205,6 +205,8 @@ Should show the latest version number.
 git checkout .claude/commands/ .claude/VERSION
 ```
 
+**Note:** This assumes `.claude/` is committed to your repository. Commit it before running updates.
+
 ## See Also
 
 - [Getting Started](/guide/getting-started) — Installation
