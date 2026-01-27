@@ -158,6 +158,8 @@ pattern that enables context persistence. Add this block to the top of your CLAU
 > **Session Loop**
 > 1. Start → Read `context/STATUS.md`
 > 2. End → Run `/save`
+
+This tells future AI sessions how to use the context system.
 ```
 
 **To reset:** Delete the files manually, then run `/init-context` again:
