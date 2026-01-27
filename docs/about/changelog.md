@@ -2,6 +2,15 @@
 
 All notable changes to the AI Context System.
 
+## [6.0.4] - 2026-01-27
+
+### Fixed
+
+- **`/init-context` handles existing CLAUDE.md** — When CLAUDE.md already exists but lacks the Session Loop block, the command now detects this and displays the snippet to add. Previously, existing CLAUDE.md files were silently preserved without the core ACS mechanism, leaving future sessions unaware of context/STATUS.md and `/save`.
+- **Installation docs clarify session restart** — Added warning that Claude Code must be restarted after copying command files for new commands to be available. Previously, users encountered "Unknown skill" errors when running `/init-context` immediately after installation.
+
+---
+
 ## [6.0.3] - 2026-01-26
 
 ### Changed

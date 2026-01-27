@@ -19,6 +19,10 @@ cp ai-context-system/.claude/VERSION /path/to/your/project/.claude/
 rm -rf ai-context-system
 ```
 
+::: warning Session Restart Required
+After copying the command files, **restart Claude Code** before running `/init-context`. New commands aren't available until the next session.
+:::
+
 ### Verify Installation
 
 ```bash

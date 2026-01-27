@@ -37,7 +37,7 @@ cp -r ai-context-system/.claude/commands /path/to/your/project/.claude/
 cp ai-context-system/.claude/VERSION /path/to/your/project/.claude/
 rm -rf ai-context-system
 
-# In Claude Code, initialize
+# Restart Claude Code, then initialize
 /init-context
 ```
 
@@ -49,7 +49,7 @@ This creates `CLAUDE.md`, `context/STATUS.md`, and `context/DECISIONS.md`.
 your-project/
 ├── CLAUDE.md              # Entry point (auto-loaded by Claude Code)
 ├── .claude/
-│   ├── VERSION            # Installed version (6.0.3)
+│   ├── VERSION            # Installed version (6.0.4)
 │   └── commands/          # 8 slash commands
 └── context/
     ├── STATUS.md          # Current state + Working Set
@@ -81,11 +81,10 @@ That's it. No complex workflows. No validation machinery.
 
 ## Current Version
 
-**v6.0.3** — Serverless Focus & Consistency
+**v6.0.4** — Installation & Onboarding Fixes
 
-- **`/review-cost` rebalanced** — Serverless & Edge section moved to top with Vercel-specific cost drivers; Traditional Infrastructure deprioritized
-- **All review commands improved** — Consistent bold formatting with brief explanations for each checklist item
-- **Documentation clarifications** — STATUS.md replacement behavior, mixed DECISIONS.md format handling
+- **`/init-context` handles existing CLAUDE.md** — Now detects when Session Loop is missing and provides snippet to add
+- **Session restart warning** — Installation docs now clarify that Claude Code must be restarted after copying command files
 
 [See full changelog →](/about/changelog)
 

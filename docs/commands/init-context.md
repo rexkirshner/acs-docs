@@ -143,6 +143,23 @@ Already exists: context/DECISIONS.md
 No files created (all already exist).
 ```
 
+### Missing Session Loop
+
+If your existing `CLAUDE.md` doesn't include the Session Loop block, the command will detect this and display instructions:
+
+```bash
+/init-context
+
+Already exists: CLAUDE.md
+
+⚠️ Important: Your existing CLAUDE.md doesn't include the Session Loop — the core
+pattern that enables context persistence. Add this block to the top of your CLAUDE.md:
+
+> **Session Loop**
+> 1. Start → Read `context/STATUS.md`
+> 2. End → Run `/save`
+```
+
 **To reset:** Delete the files manually, then run `/init-context` again:
 ```bash
 rm CLAUDE.md && rm -rf context/
