@@ -36,8 +36,7 @@ export default {
             { text: 'Overview', link: '/commands/' },
             { text: '/update-context', link: '/commands/update-context' },
             { text: '/save-session', link: '/commands/save-session' },
-            { text: '/review', link: '/commands/review' },
-            { text: '/cleanup-acs', link: '/commands/cleanup-acs' }
+            { text: '/review', link: '/commands/review' }
           ]
         }
       ]

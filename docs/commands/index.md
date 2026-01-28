@@ -1,6 +1,6 @@
 # Commands
 
-Four global commands, installed to `~/.claude/commands/` (Claude Code) and `~/.codex/prompts/` (OpenAI Codex).
+Three global commands, installed to `~/.claude/commands/` (Claude Code) and `~/.codex/prompts/` (OpenAI Codex).
 
 ## Installation
 
@@ -19,7 +19,6 @@ This copies the command files to your global config directories. No per-project 
 | [/update-context](/commands/update-context) | Extract permanent learnings → update CLAUDE.md and AGENTS.md |
 | [/save-session](/commands/save-session) | Record session history to `docs/sessions/SESSION-NNN.md` |
 | [/review](/commands/review) | Comprehensive code review to `docs/audits/CODE-REVIEW-NN.md` |
-| [/cleanup-acs](/commands/cleanup-acs) | Remove all ACS artifacts from any project |
 
 ## Philosophy
 
