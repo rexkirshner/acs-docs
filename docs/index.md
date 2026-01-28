@@ -7,7 +7,7 @@ title: The AI Context System - A Swan Song
 
 My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the smartest, most technical people I know were using Claude Code as their daily driver while building real businesses.
 
-One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c). My life changed. But this isn't the story of how AI agents changed my life (that story is still being written). This is the story of how quickly you can veer into a dead end when you're experiencing drastic change.
+One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c). My life changed. But this isn't the story of how AI agents changed my life (that story is still being written). This is the story of how quickly you can veer into a dead end when intoxicated with drastic change.
 
 ## The Seed
 
@@ -26,9 +26,15 @@ Claude Code Rules:
 9. MAKE ALL FIXES AND CODE CHANGES AS SIMPLE AS HUMANLY POSSIBLE...
 ```
 
-This was the seed that eventually grew into the AI Context System. A seed that grew into 22 commands, 14 agents, and 150KB of shell scripts. Into 1,100 files and 436,000 lines of code across 15 projects.
+My first thought, even before I really started building anything, was "there HAS to be a better way than copy/pasting this into every project." And as I watched Alex Finn copy/paste intermediate versions of planning docs back and forth between Claude Code and ChatGPT I began to think "what if I externalized as much planning and context documentation as possible... then ChatGPT would be able to review all of it. Maybe I would be able to bypass the effects of auto-compacting. Maybe I could make the handoff to other agents easy and avoid the trap of being locked into Claude Code."
 
-A weed that, as of today, I have ripped out of my garden.
+The tipping point came after I wrote out a prompt for code reviews for the nth time... why am I rewriting the same thing over and over? 
+
+All of this was solvable.
+
+These were the seeds that eventually grew into the AI Context System. Seeds that grew into 22 commands, 14 agents, and 150KB of shell scripts. Into 1,100 files and 436,000 lines of code across 15 projects.
+
+Seeds that grew into weeds... and weeds that, as of today, I have ripped out of my garden.
 
 ## The Wake-Up Call
 
