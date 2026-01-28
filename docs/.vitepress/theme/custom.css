@@ -45,9 +45,11 @@ h1, h2, h3 {
   padding-bottom: 0;
 }
 
-/* Better spacing for h2 */
+/* h2: only bottom border, no top border */
 .vp-doc h2 {
   margin-top: 48px;
+  border-top: none;
+  padding-top: 0;
   border-bottom: 2px solid var(--vp-c-brand-soft);
   padding-bottom: 8px;
 }
