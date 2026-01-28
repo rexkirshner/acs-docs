@@ -1,6 +1,6 @@
 export default {
   title: 'AI Context System',
-  description: 'Session continuity for AI coding. Pick up exactly where you left off.',
+  description: 'A swan song: what I learned building context management for AI coding tools.',
 
   ignoreDeadLinks: true,
 
@@ -17,7 +17,7 @@ export default {
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
     ['meta', { property: 'og:title', content: 'AI Context System' }],
-    ['meta', { property: 'og:description', content: 'Session continuity for AI coding. Pick up exactly where you left off.' }],
+    ['meta', { property: 'og:description', content: 'A swan song: what I learned building context management for AI coding tools.' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: 'https://acs-docs.pages.dev/og-image.png' }]
   ],
@@ -25,76 +25,19 @@ export default {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'Commands', link: '/commands/' },
-      { text: 'Workflows', link: '/workflows/' },
-      {
-        text: 'v6.0.6',
-        items: [
-          { text: 'Changelog', link: '/about/changelog' },
-          { text: 'Migration Guide', link: '/about/migration' }
-        ]
-      }
+      { text: 'Commands', link: '/commands/' }
     ],
 
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Getting Started',
-          items: [
-            { text: 'Installation', link: '/guide/getting-started' }
-          ]
-        },
-        {
-          text: 'Core Concepts',
-          items: [
-            { text: 'Session Continuity', link: '/guide/session-continuity' },
-            { text: 'Multi-AI Support', link: '/guide/multi-ai' }
-          ]
-        },
-        {
-          text: 'Context Files',
-          items: [
-            { text: 'CLAUDE.md', link: '/guide/claude-md' },
-            { text: 'STATUS.md', link: '/guide/status-file' },
-            { text: 'DECISIONS.md', link: '/guide/decisions-file' }
-          ]
-        },
-        {
-          text: 'Help',
-          items: [
-            { text: 'Troubleshooting', link: '/guide/troubleshooting' }
-          ]
-        }
-      ],
-
       '/commands/': [
         {
           text: 'Commands',
           items: [
             { text: 'Overview', link: '/commands/' },
-            { text: '/init-context', link: '/commands/init-context' },
-            { text: '/save', link: '/commands/save' },
-            { text: '/update-context-system', link: '/commands/update-context-system' }
-          ]
-        }
-      ],
-
-      '/workflows/': [
-        {
-          text: 'Workflows',
-          items: [
-            { text: 'Overview', link: '/workflows/' }
-          ]
-        }
-      ],
-
-      '/about/': [
-        {
-          text: 'About',
-          items: [
-            { text: 'Changelog', link: '/about/changelog' },
-            { text: 'Migration Guide', link: '/about/migration' }
+            { text: '/update-context', link: '/commands/update-context' },
+            { text: '/save-session', link: '/commands/save-session' },
+            { text: '/review', link: '/commands/review' },
+            { text: '/cleanup-acs', link: '/commands/cleanup-acs' }
           ]
         }
       ]
