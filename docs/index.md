@@ -66,19 +66,21 @@ That's when it hit me... I was still chasing the same dragon that got me here.
 
 And so, I quit. Cold turkey.
 
-## What Actually Matters
+## What I Learned
 
 A few things were worth the detour.
 
-Claude Code reads `CLAUDE.md` automatically. OpenAI Codex reads `AGENTS.md`. This is the one verified mechanism. Everything else is speculation. Build on what you know works.
+On the practical side: Claude Code loads the `CLAUDE.md` file in the directory you open it in AND all the `CLAUDE.md` files in parent directories. So if you have global rules (style guidelines, git workflow, etc) you can put them in a top-level folder and they'll apply to everything underneath. OpenAI Codex does the same thing with `AGENTS.md`. And saving commands to `~/.claude/commands/` (or `~/.codex/prompts/`) makes them available in all projects.
 
-Putting reusable prompts in `~/.claude/commands/` is a real productivity win. That part was worth discovering.
+Between those two insights, I can get most of the functionality I was trying to build.
 
-AI feedback loops push toward more building. Every time I asked Claude to review the system, it suggested improvements. Every suggestion felt reasonable. Every improvement added complexity. The AI will never tell you to stop. You have to decide that yourself.
+The most important file in your project is `CLAUDE.md`. You're better off keeping it updated and succinct than spending time creating elaborate context documentation. I also learned it's worth managing your workflow around the context window rather than just plowing through with autocompact. And I learned that it's almost impossible to get Claude to automatically engage with a system like this. It was never updating the AI Context System docs unless I explicitly told it to, which somewhat defeated the purpose.
+
+On the meta side: AI feedback loops push toward more building. Every time I asked Claude to review the system, it suggested improvements. Every suggestion felt reasonable. Every improvement added complexity. The AI will never tell you to stop. You have to decide that yourself.
 
 Git already does decision tracking. Commit frequently with good messages and that's your decision log.
 
-What we ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
+What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
 
 1. [/update-context](/commands/update-context) extracts permanent learnings and updates CLAUDE.md
 2. [/save-session](/commands/save-session) records session history when you want it
