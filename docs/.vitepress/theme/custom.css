@@ -39,7 +39,13 @@ h1, h2, h3 {
   background-clip: text;
 }
 
-/* Better spacing */
+/* Remove h1 bottom border */
+.vp-doc h1 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Better spacing for h2 */
 .vp-doc h2 {
   margin-top: 48px;
   border-bottom: 2px solid var(--vp-c-brand-soft);
