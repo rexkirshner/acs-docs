@@ -38,7 +38,7 @@ export default {
     },
 
     footer: {
-      copyright: 'A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Story.'
+      copyright: 'A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Story'
     }
   }
 }
