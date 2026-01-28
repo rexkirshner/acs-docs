@@ -80,6 +80,8 @@ On the meta side: Claude Code and all coding agents are incredibly well tuned to
 
 If you ask the AI what to build, it will give you answers. It will not stop and ask you if building this is a good idea. We've all heard about the sycophancy of chat agents ("incredible insight!" etc), but what's less talked about is the more subtle form of that when engaging in long building tasks. The AI may never be openly sycophantic, but it can easily have the same effect as you make incredible progress on a project that's irrelevant.
 
+When you're working with AI agents you're working with abundance. The value you bring as a developer shifts from creating to pruning, from adding to subtracting.
+
 And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
 
 What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
@@ -95,7 +97,3 @@ No framework. No installation per-project. No versions.
 Once I made the decision I built a cleanup command and removed the AI Context System from every project I'd installed it in. Fifteen projects. Over 1,100 files. 436,000 lines of code, most of it backup directories from migrations between versions I'd already abandoned.
 
 It felt like taking off a heavy backpack I'd forgotten I was wearing.
-
-I spent three months building a complex system to manage AI context. The answer was to just use the context file that already auto-loads. Now I have three commands, one context file, and no machinery I don't need.
-
-*The podcast episode that sparked this: [Signaling Theory Episode 14](https://sigtheory.com/episodes/sigtheory14/) (January 29, 2026)*
