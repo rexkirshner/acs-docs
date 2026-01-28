@@ -1,13 +1,17 @@
 ---
 layout: doc
-title: The AI Context System - A Swan Song
+title: Sitting at a Slot Machine
 ---
 
-# The AI Context System: A Swan Song
+# Sitting at a Slot Machine
 
-My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the smartest, most technical people I know were using Claude Code as their daily driver while building real businesses.
+My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the most technical people I know were using Claude Code as their daily driver for real business.
 
-One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c). My life changed. But this isn't the story of how AI agents changed my life (that story is still being written). This is the story of how quickly you can veer into a dead end when intoxicated with drastic change.
+One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c) and began rebuilding my personal website. If all I could get out of this was extricating myself from a Squarespace subscription, I'd count it a win.
+
+Little did I know, everything was about to change.
+
+But this isn't the story of how AI agents changed my life (that story is still being written). This is the story of how quickly you can veer into a dead end when intoxicated with drastic change.
 
 ## The Seed
 
@@ -26,7 +30,7 @@ Claude Code Rules:
 9. MAKE ALL FIXES AND CODE CHANGES AS SIMPLE AS HUMANLY POSSIBLE...
 ```
 
-My first thought, even before I really started building anything, was "there HAS to be a better way than copy/pasting this into every project." And as I watched Alex Finn copy/paste intermediate versions of planning docs back and forth between Claude Code and ChatGPT I began to think "what if I externalized as much planning and context documentation as possible... then ChatGPT would be able to review all of it. Maybe I would be able to bypass the effects of auto-compacting. Maybe I could make the handoff to other agents easy and avoid the trap of being locked into Claude Code."
+My first thought, even before I really started building anything, was "there HAS to be a better way than copy/pasting this into every project." And as I watched Alex Finn copy/paste intermediate versions of planning docs back and forth between Claude Code and ChatGPT, I began to think "what if I externalized as much planning and context documentation as possible... then ChatGPT would be able to review all of it. Maybe I would be able to bypass the effects of auto-compacting. Maybe I could make the handoff to other agents easy (I was already nervous about being locked in to Claude Code)."
 
 The tipping point came after I wrote out a prompt for code reviews for the nth time... why am I rewriting the same thing over and over? 
 
@@ -52,9 +56,9 @@ But in the deep, dark depths of my subconscious, an itch started to grow. One th
 
 ## The Wake-Up Call
 
-In January I recorded a podcast episode with some friends about AI tools. One of them made an offhand comment I couldn't stop thinking about:
+In January I was on a podcast, and one of them made a comment that I couldn't stop thinking about:
 
-> "Claude Code really hits your addiction centers strongly. You really feel like you're doing so much, but that doesn't really mean you're doing anything."
+> "Yeah, I do think for people whose mindsets are like engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the like feature is working. And now, all it takes a prompt and watching it go. Sometimes I feel like I'm sitting in a slot machine, just pulling the handle and winning every time."
 
 The questions I'd been shoving down had grown so loud that they became impossible to ignore. Is the AI Context System actually helping Claude code better? Am I creating more useful context, or am I clogging up limited context windows with irrelevant documentation? Was I developing something that, in practice, was making everything worse?
 
