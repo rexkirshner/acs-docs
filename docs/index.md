@@ -5,19 +5,30 @@ title: The AI Context System - A Swan Song
 
 # The AI Context System: A Swan Song
 
-I spent three months building a system to help AI coding assistants maintain context across sessions. It grew to 22 commands, 14 agents, and 150KB of shell scripts. Then I deleted all of it from 15 projects, over 1,100 files and 436,000 lines of code, and felt nothing but relief.
+My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the smartest, most technical people I know were using Claude Code as their daily driver while building real businesses.
 
-This is the story of what I built, why I killed it, and what I actually learned.
+One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c). My life changed. But this isn't the story of how AI agents changed my life (that story is still being written). This is the story of how quickly you can veer into a dead end when you're experiencing drastic change.
 
-## The Itch
+## The Seed
 
-It started in mid-October 2025 with a simple annoyance: I kept copy/pasting the same instructions into `CLAUDE.md` files across projects. So I thought, what if I could share commands across projects? What if Claude could remember what we were working on between sessions?
+As I watched that video, I saw Alex Finn create a `CLAUDE.md` file and copy/paste a set of rules into "every new project":
 
-I didn't know what Claude Code actually needed to be effective, so I made everything available and figured Claude would pick what's useful.
+```
+Claude Code Rules:
+1. First think through the problem, read the codebase for relevant files, and write a plan to tasks/todo.md.
+2. The plan should have a list of todo items that you can check off as you complete them
+3. Before you begin working, check in with me and I will verify the plan.
+4. Then, begin working on the todo items, marking them as complete as you go.
+5. Please every step of the way just give me a high level explanation of what changes you made
+6. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
+7. Finally, add a review section to the todo.md file with a summary of the changes you made and any other relevant information.
+8. DO NOT BE LAZY. NEVER BE LAZY. IF THERE IS A BUG FIND THE ROOT CAUSE AND FIX IT. NO TEMPORARY FIXES. YOU ARE A SENIOR DEVELOPER. NEVER BE LAZY
+9. MAKE ALL FIXES AND CODE CHANGES AS SIMPLE AS HUMANLY POSSIBLE...
+```
 
-That was the first mistake. Over the next few months the system grew into something monstrous: 22 commands, 14 specialized agents, 150KB of shell scripts, JSON schemas, git hooks, multiple context files, templates, migration scripts, and 80 unit tests. Every time Claude suggested an improvement, I built it. Every edge case got handled. Every feature got documented.
+This was the seed that eventually grew into the AI Context System. A seed that grew into 22 commands, 14 agents, and 150KB of shell scripts. Into 1,100 files and 436,000 lines of code across 15 projects.
 
-I assumed more structure meant more effective AI. I was solving problems I had never verified existed.
+A weed that, as of today, I have ripped out of my garden.
 
 ## The Wake-Up Call
 
