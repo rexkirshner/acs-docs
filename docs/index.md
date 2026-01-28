@@ -9,8 +9,6 @@ I spent three months building a system to help AI coding assistants maintain con
 
 This is the story of what I built, why I killed it, and what I actually learned.
 
----
-
 ## The Itch
 
 It started in mid-October 2025 with a simple annoyance: I kept copy/pasting the same instructions into `CLAUDE.md` files across projects. Claude Code reads this file automatically at session start—that much I knew worked. So I thought: what if I could share commands across projects? What if Claude could remember what we were working on between sessions?
@@ -28,8 +26,6 @@ I didn't know what Claude Code actually needed to be effective. So I adopted a p
 > "I don't know what it needs, so I'll make everything available and let Claude pick what's useful."
 
 This was the first mistake.
-
----
 
 ## The Expansion
 
@@ -50,8 +46,6 @@ I built features like "two-layer deduplication (location-based + pattern groupin
 Every time Claude suggested an improvement, I built it. Every edge case got handled. Every feature got documented.
 
 The assumption was: more structure = more effective AI. Comprehensive documentation = better context. I was solving problems I had never verified existed.
-
----
 
 ## The Simplification Attempt
 
@@ -78,8 +72,6 @@ But v6 still had:
 
 I had simplified the system without questioning whether the system should exist.
 
----
-
 ## The Wake-Up Call
 
 In January, I recorded an episode of [Signaling Theory](https://sigtheory.com) about AI tools with a few friends. One of them made an offhand comment that I couldn't stop thinking about:
@@ -98,8 +90,6 @@ The uncomfortable answer: I had no idea. I'd never tested any of my assumptions.
 
 It didn't. It just added layers.
 
----
-
 ## What I Actually Learned
 
 Here's the thing: I don't feel like I wasted three months. I learned things that were worth the detour.
@@ -116,8 +106,6 @@ Here's the thing: I don't feel like I wasted three months. I learned things that
 
 **Session continuity might not be a problem.** When you start a new session, you have: CLAUDE.md (auto-loads), the codebase (Claude can explore it), git history (Claude can read it), and your own memory of what you're working on. The elaborate "Session Loop" ceremony was solving a problem that might not exist.
 
----
-
 ## What We Ended Up With
 
 Three global commands, installed to `~/.claude/commands/` and `~/.codex/prompts/`:
@@ -129,8 +117,6 @@ Three global commands, installed to `~/.claude/commands/` and `~/.codex/prompts/
 That's it. No framework. No installation per-project. No versions. No migration paths.
 
 The core philosophy now: one context file per tool (CLAUDE.md for Claude Code, AGENTS.md for Codex), and a command that makes it better over time. The context file captures permanent learnings—how to run tests, constraints, quirks, preferences. Everything else is either in the codebase or in your head.
-
----
 
 ## The Cleanup
 
@@ -163,8 +149,6 @@ Nearly half a million lines of code, deleted in an afternoon. The largest single
 
 It felt like taking off a heavy backpack I'd forgotten I was wearing.
 
----
-
 ## Lessons for Others
 
 If you're building tools to help AI assistants work better, here's what I'd tell you:
@@ -183,8 +167,6 @@ If you're building tools to help AI assistants work better, here's what I'd tell
 
 7. **Sometimes the answer is "do less."** The best version of the AI Context System is almost nothing.
 
----
-
 ## The Punchline
 
 I spent three months building a complex system to manage AI context.
@@ -194,8 +176,6 @@ The answer was: just use the context file that already auto-loads.
 The journey wasn't wasted—I learned how to use commands effectively, how nested context files work, and most importantly, how easy it is to get tricked into building more when the AI is your only feedback loop.
 
 Now I have three commands, one context file, and the calm that comes from knowing I'm not carrying around 436,000 lines of machinery I don't need.
-
----
 
 *The podcast episode that sparked this reckoning: [Signaling Theory Episode 14](https://sigtheory.com/episodes/sigtheory14/) (available January 29, 2026)*
 
