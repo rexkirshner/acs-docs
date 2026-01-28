@@ -7,7 +7,7 @@ title: Sitting at a Slot Machine
 
 My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the most technical people I know were using Claude Code as their daily driver for real business.
 
-One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c) and began rebuilding my personal website. If all I could get out of this was extricating myself from a Squarespace subscription, I'd count it a win.
+One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c) and began rebuilding my personal website. If all I could get out of this was extricating myself from a Square Space subscription, I'd count it a win.
 
 Little did I know, everything was about to change.
 
@@ -44,9 +44,13 @@ Seeds that grew into weeds... and weeds that, as of today, I have ripped out of 
 
 On October 4, 2025, I made my first commit. By the end of that day I had made over 30 commits and gone from v1.0 to v1.3.3. The system had an update command, a migration command, template syncing, version detection. I was solving problems at a pace I had never experienced before.
 
+It was intoxicating.
+
+In retrospect, I committed to the unbounded feedback look from the very beginning. Every time I would install the system, I'd ask the instance of Claude Code to provide feedback of bugs, things that were unclear and opportunities for improvement. Then I would bring that feedback back to the AI Context System and just have it upgrade the system based on that.
+
 Over the next few months, I went through six major versions. Each one fixed problems introduced by the previous one. Each one added features to address edge cases. Each one felt like progress.
 
-I added a `context-feedback.md` file where Claude could log issues it encountered while using the system. Then I thought, why not centralize this? So I built a feedback API where Claude could POST issues with severity, category, and project info to a local server. Then I built an analyzer dashboard that aggregated feedback from all projects with filtering and statistics. A feedback loop where Claude could report problems back to me for review.
+Eventually I got tired of collecting the feedback files each of my projects generated, and so I built a feedback API where Claude could POST issues with severity, category, and project info to a local server. Then I built an analyzer dashboard that aggregated feedback from all projects with filtering and statistics. I was optimizing the feedback cycle to work with even less friction; upgrades were even easier and felt more substantial. 
 
 In early January I was talking with friends about subagents. They were all using them. I realized I was the only one who hadn't really touched them yet. So I refactored all my code reviews to use an orchestrator pattern with specialist agents. By January 20 I had 14 agents. The orchestrator would dispatch findings to each specialist, then a synthesis agent would merge everything into a final report with deduplication and grading.
 
@@ -58,17 +62,19 @@ But in the deep, dark depths of my subconscious, an itch started to grow. One th
 
 In January I was on a podcast, and one of them made a comment that I couldn't stop thinking about:
 
-> "Yeah, I do think for people whose mindsets are like engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the like feature is working. And now, all it takes a prompt and watching it go.
+> "I think that for people whose mindsets are engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the feature working. And now, all it takes a prompt and watching it go.
 >
 > <br>
 >
 > Sometimes I feel like I'm sitting at a slot machine, just pulling the handle and winning every time."
 
-The questions I'd been shoving down had grown so loud that they became impossible to ignore. Is the AI Context System actually helping Claude code better? Am I creating more useful context, or am I clogging up limited context windows with irrelevant documentation? Was I developing something that, in practice, was making everything worse?
+The questions I'd been shoving down had grown so loud that they became impossible to ignore. Is the AI Context System actually helping Claude code better? Am I creating more useful context, or am I clogging up limited context windows with irrelevant documentation? 
+
+Was I developing something that, in practice, was making everything worse?
 
 So I did what everyone does in situations like these: I asked Claude what it thought. "Give me a honest assessment, how much value is this system providing." You push it a few times, and it'll tell you "my honest assessment: most of this is just theater. We really could get most of the value with just 1 or 2 of these files."
 
-So I tried rebuilding with a bare-bones version. Eight commands instead of 22. No shell scripts. No agents. But, as any dev will tell you, sometimes simplification isn't so simple. I began iterating, specifically spending a ton of time on figuring out how to implement the upgrade path. Just a couple days after tearing everything down, I had already released 6 updates.
+So I tried rebuilding with a bare-bones version. Eight commands instead of 22. No shell scripts. No agents. But sometimes simplification isn't so simple. I began iterating, specifically spending a ton of time on figuring out how to implement the upgrade path. Just a couple days after tearing everything down, I had already released 6 updates.
 
 That's when it hit me... I was still chasing the same dragon that got me here. 
 
@@ -78,19 +84,22 @@ And so, I quit. Cold turkey.
 
 A few things were worth the detour.
 
-On the practical side: Claude Code loads the `CLAUDE.md` file in the directory you open it in AND all the `CLAUDE.md` files in parent directories. So if you have global rules (style guidelines, git workflow, etc) you can put them in a top-level folder and they'll apply to everything underneath. OpenAI Codex does the same thing with `AGENTS.md`. And saving commands to `~/.claude/commands/` (or `~/.codex/prompts/`) makes them available in all projects.
+**On the practical side:**
 
-Between those two insights, I can get most of the functionality I was trying to build.
+- Claude Code loads the `CLAUDE.md` file in the directory you open it in AND all the `CLAUDE.md` files in parent directories. So if you have global rules (style guidelines, git workflow, etc) you can put them in a top-level folder and they'll apply to everything underneath. OpenAI Codex does the same with `AGENTS.md`.
+- Saving commands to `~/.claude/commands/` (or `~/.codex/prompts/`) makes them available in all projects.
+- Between those two insights, I can get most of the functionality I was trying to build.
+- The most important file in your project is `CLAUDE.md`. You're better off keeping it updated and succinct than spending time creating elaborate context documentation.
+- It's worth managing your workflow around the context window rather than just plowing through with autocompact.
+- It's almost impossible to get Claude to automatically engage with a system like this. It was never updating the AI Context System docs unless I explicitly told it to, which somewhat defeated the purpose.
 
-The most important file in your project is `CLAUDE.md`. You're better off keeping it updated and succinct than spending time creating elaborate context documentation. I also learned it's worth managing your workflow around the context window rather than just plowing through with autocompact. And I learned that it's almost impossible to get Claude to automatically engage with a system like this. It was never updating the AI Context System docs unless I explicitly told it to, which somewhat defeated the purpose.
+**On the meta side:**
 
-On the meta side: Claude Code and all coding agents are incredibly well tuned to hit the addiction centers of a developer's brain. The dopamine release from feeling like you're accomplishing so much is just as powerful as the mechanisms that Meta builds into Facebook or Caesars builds into slot machines.
-
-If you ask the AI what to build, it will give you answers. It will not stop and ask you if building this is a good idea. We've all heard about the sycophancy of chat agents ("incredible insight!" etc), but what's less talked about is the more subtle form of that when engaging in long building tasks. The AI may never be openly sycophantic, but it can easily have the same effect as you make incredible progress on a project that's irrelevant.
-
-When you're working with AI agents you're working with abundance. The value you bring as a developer shifts from creating to pruning, from adding to subtracting.
-
-And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
+- Claude Code and all coding agents are incredibly well tuned to hit the addiction centers of a developer's brain. The dopamine release from feeling like you're accomplishing so much is just as powerful as the mechanisms that Meta builds into Facebook or Caesars builds into slot machines.
+- If you ask the AI what to build, it will give you answers. It will not stop and ask you if building this is a good idea.
+- We've all heard about the sycophancy of chat agents ("incredible insight!" etc), but what's less talked about is the more subtle form of that when engaging in long building tasks. The AI may never be openly sycophantic, but it can easily have the same effect as you make incredible progress on a project that's irrelevant.
+- When you're working with AI agents you're working with abundance. The value you bring as a developer shifts from creating to pruning, from adding to subtracting.
+- And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
 
 What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
 
