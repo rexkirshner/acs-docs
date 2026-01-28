@@ -38,7 +38,7 @@ export default {
     },
 
     footer: {
-      copyright: '© 2026 AI Context System. A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Story.'
+      copyright: 'A <a href="https://scratchspace.dev/" target="_blank" rel="noopener">Scratch Space</a> Story.'
     }
   }
 }
