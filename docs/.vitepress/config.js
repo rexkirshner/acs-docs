@@ -24,23 +24,10 @@ export default {
 
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Commands', link: '/commands/' }
+      { text: 'Home', link: '/' }
     ],
 
-    sidebar: {
-      '/commands/': [
-        {
-          text: 'Commands',
-          items: [
-            { text: 'Overview', link: '/commands/' },
-            { text: '/update-context', link: '/commands/update-context' },
-            { text: '/save-session', link: '/commands/save-session' },
-            { text: '/review', link: '/commands/review' }
-          ]
-        }
-      ]
-    },
+    sidebar: {},
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/rexkirshner/ai-context-system' }

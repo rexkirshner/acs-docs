@@ -88,9 +88,10 @@ A few things were worth the detour.
 
 - Claude Code loads the `CLAUDE.md` file in the directory you open it in AND all the `CLAUDE.md` files in parent directories. So if you have global rules (style guidelines, git workflow, etc) you can put them in a top-level folder and they'll apply to everything underneath. OpenAI Codex does the same with `AGENTS.md`.
 - Saving commands to `~/.claude/commands/` (or `~/.codex/prompts/`) makes them available in all projects.
-- Between those two insights, I can get most of the functionality I was trying to build.
+
+Between those two insights, I can get most of the functionality I was trying to build.
+
 - The most important file in your project is `CLAUDE.md`. You're better off keeping it updated and succinct than spending time creating elaborate context documentation.
-- It's worth managing your workflow around the context window rather than just plowing through with autocompact.
 - It's almost impossible to get Claude to automatically engage with a system like this. It was never updating the AI Context System docs unless I explicitly told it to, which somewhat defeated the purpose.
 
 **On the meta side:**
@@ -103,9 +104,9 @@ A few things were worth the detour.
 
 What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
 
-1. [/update-context](/commands/update-context) extracts permanent learnings and updates CLAUDE.md
-2. [/save-session](/commands/save-session) records session history when you want it
-3. [/review](/commands/review) runs a comprehensive code review
+1. `/update-context` extracts permanent learnings and updates CLAUDE.md
+2. `/save-session` records session history when you want it
+3. `/review` runs a comprehensive code review
 
 No framework. No installation per-project. No versions.
 
