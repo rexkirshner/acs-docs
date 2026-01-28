@@ -5,9 +5,15 @@ title: Sitting at a Slot Machine
 
 # Sitting at a Slot Machine
 
+You know that feeling when someone says something that rings so true that you can feel it begin to change the way you think? 
+
+> "Sometimes I feel like I'm sitting at a slot machine, just pulling the handle and winning every time."
+
+## My Introduction
+
 My vibe coding journey began at the end of September 2025. I had been hearing about Cursor and Claude Code for months, but what really set me over the edge was that two of the most technical people I know were using Claude Code as their daily driver for real business.
 
-One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c) and began rebuilding my personal website. If all I could get out of this was extricating myself from a Square Space subscription, I'd count it a win.
+One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbhY4xV2c) and began rebuilding my personal website. If all I could get out of this was extricating myself from a Squarespace subscription, I'd count it a win.
 
 Little did I know, everything was about to change.
 
