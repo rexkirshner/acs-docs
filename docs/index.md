@@ -11,7 +11,7 @@ One day I got home and opened [this video](https://www.youtube.com/watch?v=PCvbh
 
 ## The Seed
 
-As I watched that video, I saw Alex Finn create a `CLAUDE.md` file and copy/paste a set of rules into "every new project":
+As I watched that video, I saw Alex Finn init a `CLAUDE.md` file and copy/paste a set of rules into "every new project":
 
 ```
 Claude Code Rules:
