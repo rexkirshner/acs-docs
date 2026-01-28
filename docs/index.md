@@ -46,7 +46,7 @@ On October 4, 2025, I made my first commit. By the end of that day I had made ov
 
 It was intoxicating.
 
-In retrospect, I committed to the unbounded feedback look from the very beginning. Every time I would install the system, I'd ask the instance of Claude Code to provide feedback of bugs, things that were unclear and opportunities for improvement. Then I would bring that feedback back to the AI Context System and just have it upgrade the system based on that.
+In retrospect, I committed to the unbounded feedback loop from the very beginning. Every time I would install the system, I'd ask the instance of Claude Code to provide feedback of bugs, things that were unclear and opportunities for improvement. Then I would bring that feedback back to the AI Context System and just have it upgrade the system based on that.
 
 Over the next few months, I went through six major versions. Each one fixed problems introduced by the previous one. Each one added features to address edge cases. Each one felt like progress.
 
@@ -97,10 +97,11 @@ Between those two insights, I can get most of the functionality I was trying to 
 **On the meta side:**
 
 - Claude Code and all coding agents are incredibly well tuned to hit the addiction centers of a developer's brain. The dopamine release from feeling like you're accomplishing so much is just as powerful as the mechanisms that Meta builds into Facebook or Caesars builds into slot machines.
-- If you ask the AI what to build, it will give you answers. It will not stop and ask you if building this is a good idea.
+- If you ask the AI what to build, it will give you answers. Always. But it will rarely tell you that you are not asking the right questions.
 - We've all heard about the sycophancy of chat agents ("incredible insight!" etc), but what's less talked about is the more subtle form of that when engaging in long building tasks. The AI may never be openly sycophantic, but it can easily have the same effect as you make incredible progress on a project that's irrelevant.
 - When you're working with AI agents you're working with abundance. The value you bring as a developer shifts from creating to pruning, from adding to subtracting.
-- And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
+
+And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
 
 What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
 
@@ -114,4 +115,4 @@ No framework. No installation per-project. No versions.
 
 Once I made the decision I built a cleanup command and removed the AI Context System from every project I'd installed it in. Fifteen projects. Over 1,100 files. 436,000 lines of code, most of it backup directories from migrations between versions I'd already abandoned.
 
-It felt like taking off a heavy backpack I'd forgotten I was wearing.
+It felt like stumbling into the sunlight out of a Vegas Casino.
