@@ -60,6 +60,7 @@ In January I was on a podcast, and one of them made a comment that I couldn't st
 
 > "Yeah, I do think for people whose mindsets are like engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the like feature is working. And now, all it takes a prompt and watching it go.
 >
+> <br>
 >
 > Sometimes I feel like I'm sitting at a slot machine, just pulling the handle and winning every time."
 
