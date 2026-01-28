@@ -58,7 +58,9 @@ But in the deep, dark depths of my subconscious, an itch started to grow. One th
 
 In January I was on a podcast, and one of them made a comment that I couldn't stop thinking about:
 
-> "Yeah, I do think for people whose mindsets are like engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the like feature is working. And now, all it takes a prompt and watching it go. Sometimes I feel like I'm sitting at a slot machine, just pulling the handle and winning every time."
+> "Yeah, I do think for people whose mindsets are like engineer-builder mindsets, and the way our brain chemistry works... these things are incredibly addictive, like super addictive, because it hits that reward center that we used to have to slog away for hours - before you get the green test pass or before you get the like feature is working. And now, all it takes a prompt and watching it go.
+>
+> Sometimes I feel like I'm sitting at a slot machine, just pulling the handle and winning every time."
 
 The questions I'd been shoving down had grown so loud that they became impossible to ignore. Is the AI Context System actually helping Claude code better? Am I creating more useful context, or am I clogging up limited context windows with irrelevant documentation? Was I developing something that, in practice, was making everything worse?
 
