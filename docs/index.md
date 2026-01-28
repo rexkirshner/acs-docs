@@ -76,9 +76,11 @@ Between those two insights, I can get most of the functionality I was trying to 
 
 The most important file in your project is `CLAUDE.md`. You're better off keeping it updated and succinct than spending time creating elaborate context documentation. I also learned it's worth managing your workflow around the context window rather than just plowing through with autocompact. And I learned that it's almost impossible to get Claude to automatically engage with a system like this. It was never updating the AI Context System docs unless I explicitly told it to, which somewhat defeated the purpose.
 
-On the meta side: AI feedback loops push toward more building. Every time I asked Claude to review the system, it suggested improvements. Every suggestion felt reasonable. Every improvement added complexity. The AI will never tell you to stop. You have to decide that yourself.
+On the meta side: Claude Code and all coding agents are incredibly well tuned to hit the addiction centers of a developer's brain. The dopamine release from feeling like you're accomplishing so much is just as powerful as the mechanisms that Meta builds into Facebook or Caesars builds into slot machines.
 
-Git already does decision tracking. Commit frequently with good messages and that's your decision log.
+If you ask the AI what to build, it will give you answers. It will not stop and ask you if building this is a good idea. We've all heard about the sycophancy of chat agents ("incredible insight!" etc), but what's less talked about is the more subtle form of that when engaging in long building tasks. The AI may never be openly sycophantic, but it can easily have the same effect as you make incredible progress on a project that's irrelevant.
+
+And most importantly: I still don't really know how to use Claude Code well. I have no way to measure if what I'm doing is helping or slowing down the system.
 
 What I ended up with: three global commands installed to `~/.claude/commands/` and `~/.codex/prompts/`:
 
